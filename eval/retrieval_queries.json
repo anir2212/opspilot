@@ -1,0 +1,242 @@
+[
+  {
+    "query": "Why are charges failing with 5xx?",
+    "relevant": [
+      "RB-01"
+    ]
+  },
+  {
+    "query": "How should I triage an increase in payment errors?",
+    "relevant": [
+      "RB-01"
+    ]
+  },
+  {
+    "query": "Checkout is slow but not failing; what should I inspect?",
+    "relevant": [
+      "RB-02"
+    ]
+  },
+  {
+    "query": "How to investigate gateway p95 latency?",
+    "relevant": [
+      "RB-02"
+    ]
+  },
+  {
+    "query": "Gateway memory keeps climbing and restarts",
+    "relevant": [
+      "RB-03"
+    ]
+  },
+  {
+    "query": "What do I do for a possible memory leak in gateway?",
+    "relevant": [
+      "RB-03"
+    ]
+  },
+  {
+    "query": "CPU pegged on gateway workers",
+    "relevant": [
+      "RB-04"
+    ]
+  },
+  {
+    "query": "How should I triage CPU saturation?",
+    "relevant": [
+      "RB-04"
+    ]
+  },
+  {
+    "query": "Payment upstream connection refused",
+    "relevant": [
+      "RB-05"
+    ]
+  },
+  {
+    "query": "How do I diagnose an unavailable payment dependency?",
+    "relevant": [
+      "RB-05"
+    ]
+  },
+  {
+    "query": "Payment errors started after a new version",
+    "relevant": [
+      "RB-06"
+    ]
+  },
+  {
+    "query": "When should I roll back a bad payment deploy?",
+    "relevant": [
+      "RB-06"
+    ]
+  },
+  {
+    "query": "A scheduled backup job failed",
+    "relevant": [
+      "RB-07"
+    ]
+  },
+  {
+    "query": "How to investigate a failed backup policy run?",
+    "relevant": [
+      "RB-07"
+    ]
+  },
+  {
+    "query": "Backup storage says disk full",
+    "relevant": [
+      "RB-08"
+    ]
+  },
+  {
+    "query": "How to respond to no free disk space for backups?",
+    "relevant": [
+      "RB-08"
+    ]
+  },
+  {
+    "query": "Payment calls keep timing out",
+    "relevant": [
+      "RB-09"
+    ]
+  },
+  {
+    "query": "Which timeout budget should I inspect for checkout?",
+    "relevant": [
+      "RB-09"
+    ]
+  },
+  {
+    "query": "Gateway retries are amplifying an outage",
+    "relevant": [
+      "RB-10"
+    ]
+  },
+  {
+    "query": "How do I stop a retry storm safely?",
+    "relevant": [
+      "RB-10"
+    ]
+  },
+  {
+    "query": "Alertmanager sends duplicate webhooks",
+    "relevant": [
+      "RB-11"
+    ]
+  },
+  {
+    "query": "How should repeated alerts be deduplicated?",
+    "relevant": [
+      "RB-11"
+    ]
+  },
+  {
+    "query": "A single short spike fired an alert",
+    "relevant": [
+      "RB-12"
+    ]
+  },
+  {
+    "query": "How do I check whether an alert is a false positive?",
+    "relevant": [
+      "RB-12"
+    ]
+  },
+  {
+    "query": "How to set severity during a checkout outage?",
+    "relevant": [
+      "RB-13"
+    ]
+  },
+  {
+    "query": "What evidence distinguishes SEV2 from SEV3?",
+    "relevant": [
+      "RB-13"
+    ]
+  },
+  {
+    "query": "Gateway and payments both show anomalies",
+    "relevant": [
+      "RB-14"
+    ]
+  },
+  {
+    "query": "How can traces reveal the first failing service?",
+    "relevant": [
+      "RB-14"
+    ]
+  },
+  {
+    "query": "What evidence ties an alert to a deployment?",
+    "relevant": [
+      "RB-15"
+    ]
+  },
+  {
+    "query": "How should I distinguish correlation from deploy causation?",
+    "relevant": [
+      "RB-15"
+    ]
+  },
+  {
+    "query": "Backup completed only partially",
+    "relevant": [
+      "RB-16"
+    ]
+  },
+  {
+    "query": "What does a partial backup status mean?",
+    "relevant": [
+      "RB-16"
+    ]
+  },
+  {
+    "query": "How to verify a successful backup is recoverable?",
+    "relevant": [
+      "RB-17"
+    ]
+  },
+  {
+    "query": "Which restore test should follow a backup alert?",
+    "relevant": [
+      "RB-17"
+    ]
+  },
+  {
+    "query": "Payment processor returns 401",
+    "relevant": [
+      "RB-18"
+    ]
+  },
+  {
+    "query": "How to triage expired payment credentials?",
+    "relevant": [
+      "RB-18"
+    ]
+  },
+  {
+    "query": "Gateway pods never become ready",
+    "relevant": [
+      "RB-19"
+    ]
+  },
+  {
+    "query": "What should I check when readiness probes fail?",
+    "relevant": [
+      "RB-19"
+    ]
+  },
+  {
+    "query": "Who needs to approve a production rollback?",
+    "relevant": [
+      "RB-20"
+    ]
+  },
+  {
+    "query": "How are deployment changes checked before execution?",
+    "relevant": [
+      "RB-20"
+    ]
+  }
+]

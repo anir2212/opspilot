@@ -1,0 +1,23 @@
+id: latency_baseline
+source: authored fixture; no live fault injected by this file
+variant: baseline
+alert:
+  fingerprint: fixture-latency-baseline
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: gateway
+  annotations:
+    description: gateway p95 latency rose above two seconds
+expected_faults:
+- latency
+expected_runbooks:
+- RB-02
+evidence:
+  signal: gateway p95 latency rose above two seconds
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-02
+- RB-03

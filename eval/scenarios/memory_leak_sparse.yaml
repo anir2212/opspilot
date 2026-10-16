@@ -1,0 +1,23 @@
+id: memory_leak_sparse
+source: authored fixture; no live fault injected by this file
+variant: sparse
+alert:
+  fingerprint: fixture-memory_leak-sparse
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: gateway
+  annotations:
+    description: gateway resident memory keeps growing
+expected_faults:
+- memory_leak
+expected_runbooks:
+- RB-03
+evidence:
+  signal: gateway resident memory keeps growing
+  noise: ''
+  incomplete: true
+runbook_candidates:
+- RB-12
+- RB-03
+- RB-04

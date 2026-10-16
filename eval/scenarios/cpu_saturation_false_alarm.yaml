@@ -1,0 +1,23 @@
+id: cpu_saturation_false_alarm
+source: authored fixture; no live fault injected by this file
+variant: false_alarm
+alert:
+  fingerprint: fixture-cpu_saturation-false_alarm
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: gateway
+  annotations:
+    description: Transient signal resembling gateway CPU is saturated; recovered before
+      sustained impact
+expected_faults: []
+expected_runbooks: []
+evidence:
+  signal: Transient signal resembling gateway CPU is saturated; recovered before sustained
+    impact
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-04
+- RB-05

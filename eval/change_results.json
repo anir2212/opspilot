@@ -1,0 +1,67 @@
+{
+  "method": "authored policy fixture agreement, not real change outcome accuracy",
+  "cases": 10,
+  "agreements": 10,
+  "rows": [
+    {
+      "case": "complete",
+      "expected": "APPROVE",
+      "actual": "APPROVE",
+      "agree": true
+    },
+    {
+      "case": "missing tests",
+      "expected": "NEEDS INFO",
+      "actual": "NEEDS INFO",
+      "agree": true
+    },
+    {
+      "case": "missing security",
+      "expected": "NEEDS INFO",
+      "actual": "NEEDS INFO",
+      "agree": true
+    },
+    {
+      "case": "missing owner",
+      "expected": "NEEDS INFO",
+      "actual": "NEEDS INFO",
+      "agree": true
+    },
+    {
+      "case": "missing QA",
+      "expected": "NEEDS INFO",
+      "actual": "NEEDS INFO",
+      "agree": true
+    },
+    {
+      "case": "freeze",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "agree": true
+    },
+    {
+      "case": "severe incident",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "agree": true
+    },
+    {
+      "case": "failed deploy",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "agree": true
+    },
+    {
+      "case": "invalid window",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "agree": true
+    },
+    {
+      "case": "missing calendar",
+      "expected": "NEEDS INFO",
+      "actual": "NEEDS INFO",
+      "agree": true
+    }
+  ]
+}

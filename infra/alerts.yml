@@ -1,0 +1,50 @@
+groups:
+  - name: injected-faults
+    rules:
+      - alert: PaymentErrorsInjected
+        expr: opspilot_fault_active{kind="payment_errors"} == 1
+        for: 0s
+        labels: {severity: warning}
+        annotations: {summary: "Synthetic payment errors active"}
+      - alert: LatencyInjected
+        expr: opspilot_fault_active{kind="latency"} == 1
+        for: 0s
+        labels: {severity: warning}
+        annotations: {summary: "Synthetic gateway latency active"}
+      - alert: MemoryLeakInjected
+        expr: opspilot_fault_active{kind="memory_leak"} == 1
+        for: 0s
+        labels: {severity: warning}
+        annotations: {summary: "Synthetic memory pressure active"}
+      - alert: CPUSaturationInjected
+        expr: opspilot_fault_active{kind="cpu_saturation"} == 1
+        for: 0s
+        labels: {severity: warning}
+        annotations: {summary: "Synthetic CPU saturation active"}
+      - alert: DependencyDownInjected
+        expr: opspilot_fault_active{kind="dependency_down"} == 1
+        for: 0s
+        labels: {severity: warning}
+        annotations: {summary: "Synthetic payment dependency outage active"}
+      - alert: BadDeployInjected
+        expr: opspilot_fault_active{kind="bad_deploy"} == 1
+        for: 0s
+        labels: {severity: warning}
+        annotations: {summary: "Synthetic bad payment deploy active"}
+      - alert: BackupFailureInjected
+        expr: opspilot_fault_active{kind="backup_failure"} == 1
+        for: 0s
+        labels: {severity: warning}
+        annotations: {summary: "Synthetic backup failure active"}
+      - alert: DiskFullInjected
+        expr: opspilot_fault_active{kind="disk_full"} == 1
+        for: 0s
+        labels: {severity: warning}
+        annotations: {summary: "Synthetic backup disk-full fault active"}
+  - name: service-signals
+    rules:
+      - alert: PaymentErrorRateHigh
+        expr: sum(rate(opspilot_requests_total{service="payments",outcome="error"}[1m])) / clamp_min(sum(rate(opspilot_requests_total{service="payments"}[1m])), 0.001) > 0.2
+        for: 30s
+        labels: {severity: warning}
+        annotations: {summary: "Payment error rate exceeded 20 percent"}

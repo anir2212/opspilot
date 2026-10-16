@@ -1,0 +1,25 @@
+id: disk_full_concurrent
+source: authored fixture; no live fault injected by this file
+variant: concurrent
+alert:
+  fingerprint: fixture-disk_full-concurrent
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: backups
+  annotations:
+    description: backup capacity is exhausted
+expected_faults:
+- disk_full
+- payment_errors
+expected_runbooks:
+- RB-08
+- RB-01
+evidence:
+  signal: backup capacity is exhausted
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-08
+- RB-01

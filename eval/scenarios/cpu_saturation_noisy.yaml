@@ -1,0 +1,23 @@
+id: cpu_saturation_noisy
+source: authored fixture; no live fault injected by this file
+variant: noisy
+alert:
+  fingerprint: fixture-cpu_saturation-noisy
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: gateway
+  annotations:
+    description: gateway CPU is saturated
+expected_faults:
+- cpu_saturation
+expected_runbooks:
+- RB-04
+evidence:
+  signal: gateway CPU is saturated
+  noise: unrelated retries also observed
+  incomplete: false
+runbook_candidates:
+- RB-05
+- RB-12
+- RB-04

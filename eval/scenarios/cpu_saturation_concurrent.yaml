@@ -1,0 +1,25 @@
+id: cpu_saturation_concurrent
+source: authored fixture; no live fault injected by this file
+variant: concurrent
+alert:
+  fingerprint: fixture-cpu_saturation-concurrent
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: gateway
+  annotations:
+    description: gateway CPU is saturated
+expected_faults:
+- cpu_saturation
+- dependency_down
+expected_runbooks:
+- RB-04
+- RB-05
+evidence:
+  signal: gateway CPU is saturated
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-04
+- RB-05

@@ -1,0 +1,25 @@
+id: bad_deploy_concurrent
+source: authored fixture; no live fault injected by this file
+variant: concurrent
+alert:
+  fingerprint: fixture-bad_deploy-concurrent
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: payments
+  annotations:
+    description: payment failures began after a release
+expected_faults:
+- bad_deploy
+- backup_failure
+expected_runbooks:
+- RB-06
+- RB-07
+evidence:
+  signal: payment failures began after a release
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-06
+- RB-07

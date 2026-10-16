@@ -1,0 +1,90 @@
+name: OpsPilot CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Push images to GHCR after checks pass
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.12'
+      - run: uv sync --locked --extra analysis --extra database --extra embeddings --extra agent --extra mcp --extra bots --extra telemetry --group dev
+      - run: make lint typecheck test
+      - run: uv run pytest -q tests/test_eval_harness.py
+
+  integration:
+    runs-on: ubuntu-latest
+    env:
+      # The container writes to the bind-mounted model cache as root. Keep the
+      # runner's FastEmbed download in its own writable directory.
+      OPSPILOT_MODEL_CACHE: /tmp/opspilot-host-model-cache
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.12'
+      - run: uv sync --locked --extra analysis --extra database --extra embeddings --extra agent --extra mcp --extra bots --extra telemetry --group dev
+      - run: docker compose up -d --build
+      - run: |
+          for i in $(seq 1 90); do
+            if curl -fsS http://127.0.0.1:18100/health >/dev/null &&
+               curl -fsS http://127.0.0.1:18131/loki/api/v1/status/buildinfo >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker compose ps
+          exit 1
+      - run: make seed ingest
+      - run: OPSPILOT_INTEGRATION=1 uv run pytest -q tests/integration
+      - if: always()
+        run: docker compose down -v
+
+  kind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: helm/kind-action@v1.14.0
+        with:
+          cluster_name: opspilot
+          config: infra/kind-config.yaml
+      - uses: azure/setup-helm@v5
+        with:
+          version: v3.18.4
+      - run: helm lint charts/opspilot
+      - run: docker build -t opspilot-lite-local:0.1.0 -f Dockerfile.lite .
+      - run: docker build -t opspilot-api-local:0.1.0 -f Dockerfile .
+      - run: kind load docker-image opspilot-lite-local:0.1.0 opspilot-api-local:0.1.0 --name opspilot
+      - run: helm upgrade --install opspilot charts/opspilot --kube-context kind-opspilot --wait --timeout 5m
+      - run: make kind-smoke
+
+  publish:
+    if: github.event_name == 'workflow_dispatch' && inputs.publish == true
+    needs: [python, integration, kind]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          docker build -t ghcr.io/${{ github.repository }}/opspilot-api:${{ github.sha }} -f Dockerfile .
+          docker build -t ghcr.io/${{ github.repository }}/opspilot-lite:${{ github.sha }} -f Dockerfile.lite .
+          docker push ghcr.io/${{ github.repository }}/opspilot-api:${{ github.sha }}
+          docker push ghcr.io/${{ github.repository }}/opspilot-lite:${{ github.sha }}

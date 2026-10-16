@@ -1,0 +1,25 @@
+id: dependency_down_concurrent
+source: authored fixture; no live fault injected by this file
+variant: concurrent
+alert:
+  fingerprint: fixture-dependency_down-concurrent
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: payments
+  annotations:
+    description: payments cannot reach its dependency
+expected_faults:
+- dependency_down
+- bad_deploy
+expected_runbooks:
+- RB-05
+- RB-06
+evidence:
+  signal: payments cannot reach its dependency
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-05
+- RB-06

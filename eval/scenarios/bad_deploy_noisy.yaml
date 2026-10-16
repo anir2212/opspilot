@@ -1,0 +1,23 @@
+id: bad_deploy_noisy
+source: authored fixture; no live fault injected by this file
+variant: noisy
+alert:
+  fingerprint: fixture-bad_deploy-noisy
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: payments
+  annotations:
+    description: payment failures began after a release
+expected_faults:
+- bad_deploy
+expected_runbooks:
+- RB-06
+evidence:
+  signal: payment failures began after a release
+  noise: unrelated retries also observed
+  incomplete: false
+runbook_candidates:
+- RB-07
+- RB-12
+- RB-06

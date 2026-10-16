@@ -1,0 +1,23 @@
+id: disk_full_noisy
+source: authored fixture; no live fault injected by this file
+variant: noisy
+alert:
+  fingerprint: fixture-disk_full-noisy
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: backups
+  annotations:
+    description: backup capacity is exhausted
+expected_faults:
+- disk_full
+expected_runbooks:
+- RB-08
+evidence:
+  signal: backup capacity is exhausted
+  noise: unrelated retries also observed
+  incomplete: false
+runbook_candidates:
+- RB-01
+- RB-12
+- RB-08
