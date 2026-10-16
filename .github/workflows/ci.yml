@@ -30,7 +30,7 @@ jobs:
     env:
       # The container writes to the bind-mounted model cache as root. Keep the
       # runner's FastEmbed download in its own writable directory.
-      OPSPILOT_MODEL_CACHE: ${{ runner.temp }}/opspilot-host-model-cache
+      OPSPILOT_MODEL_CACHE: /tmp/opspilot-host-model-cache
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
