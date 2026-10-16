@@ -1,0 +1,40 @@
+{
+  "uid": "opspilot-health",
+  "title": "OpsPilot health",
+  "schemaVersion": 40,
+  "version": 1,
+  "timezone": "browser",
+  "time": {"from": "now-30m", "to": "now"},
+  "panels": [
+    {
+      "id": 1, "title": "Agent runs by outcome", "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"expr": "sum by (outcome) (rate(opspilot_agent_runs_total[5m]))", "refId": "A"}]
+    },
+    {
+      "id": 2, "title": "Agent p95 duration", "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"expr": "histogram_quantile(0.95, sum by (le) (rate(opspilot_agent_duration_seconds_bucket[5m])))", "refId": "A"}]
+    },
+    {
+      "id": 3, "title": "Tool errors", "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"expr": "sum by (tool) (rate(opspilot_tool_calls_total{outcome=\"error\"}[5m]))", "refId": "A"}]
+    },
+    {
+      "id": 4, "title": "Payment error rate", "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"expr": "sum(rate(opspilot_requests_total{service=\"payments\",outcome=\"error\"}[1m]))", "refId": "A"}]
+    },
+    {
+      "id": 5, "title": "Firing synthetic fault alerts", "type": "table",
+      "gridPos": {"h": 8, "w": 24, "x": 0, "y": 16},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [{"expr": "ALERTS{alertstate=\"firing\",alertname=~\"PaymentErrorsInjected|LatencyInjected|BackupFailureInjected\"}", "format": "table", "instant": true, "refId": "A"}]
+    }
+  ]
+}

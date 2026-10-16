@@ -1,0 +1,23 @@
+id: latency_false_alarm
+source: authored fixture; no live fault injected by this file
+variant: false_alarm
+alert:
+  fingerprint: fixture-latency-false_alarm
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: gateway
+  annotations:
+    description: Transient signal resembling gateway p95 latency rose above two seconds;
+      recovered before sustained impact
+expected_faults: []
+expected_runbooks: []
+evidence:
+  signal: Transient signal resembling gateway p95 latency rose above two seconds;
+    recovered before sustained impact
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-02
+- RB-03

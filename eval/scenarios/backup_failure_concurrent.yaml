@@ -1,0 +1,25 @@
+id: backup_failure_concurrent
+source: authored fixture; no live fault injected by this file
+variant: concurrent
+alert:
+  fingerprint: fixture-backup_failure-concurrent
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: backups
+  annotations:
+    description: scheduled backup job failed
+expected_faults:
+- backup_failure
+- disk_full
+expected_runbooks:
+- RB-07
+- RB-08
+evidence:
+  signal: scheduled backup job failed
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-07
+- RB-08

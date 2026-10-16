@@ -1,0 +1,23 @@
+id: dependency_down_baseline
+source: authored fixture; no live fault injected by this file
+variant: baseline
+alert:
+  fingerprint: fixture-dependency_down-baseline
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: payments
+  annotations:
+    description: payments cannot reach its dependency
+expected_faults:
+- dependency_down
+expected_runbooks:
+- RB-05
+evidence:
+  signal: payments cannot reach its dependency
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-05
+- RB-06

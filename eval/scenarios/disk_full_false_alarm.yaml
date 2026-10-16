@@ -1,0 +1,23 @@
+id: disk_full_false_alarm
+source: authored fixture; no live fault injected by this file
+variant: false_alarm
+alert:
+  fingerprint: fixture-disk_full-false_alarm
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: backups
+  annotations:
+    description: Transient signal resembling backup capacity is exhausted; recovered
+      before sustained impact
+expected_faults: []
+expected_runbooks: []
+evidence:
+  signal: Transient signal resembling backup capacity is exhausted; recovered before
+    sustained impact
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-08
+- RB-01

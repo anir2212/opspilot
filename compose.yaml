@@ -1,0 +1,161 @@
+name: opspilot
+
+x-python-service: &python-service
+  build:
+    context: .
+    dockerfile: Dockerfile.lite
+  image: opspilot-lite-local:0.1.0
+  restart: unless-stopped
+  networks: [ops]
+
+services:
+  gateway:
+    <<: *python-service
+    command: ["uvicorn", "opspilot.lite_app:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      OPSPILOT_SERVICE_NAME: gateway
+      OPSPILOT_PAYMENT_URL: http://payments:8000
+      OPSPILOT_OTEL_ENABLED: "1"
+      OPSPILOT_OTLP_ENDPOINT: http://otel-collector:4318
+    ports: ["127.0.0.1:18101:8000"]
+    depends_on: [payments]
+
+  payments:
+    <<: *python-service
+    command: ["uvicorn", "opspilot.lite_app:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      OPSPILOT_SERVICE_NAME: payments
+      OPSPILOT_OTEL_ENABLED: "1"
+      OPSPILOT_OTLP_ENDPOINT: http://otel-collector:4318
+    ports: ["127.0.0.1:18102:8000"]
+
+  backups:
+    <<: *python-service
+    command: ["uvicorn", "opspilot.lite_app:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      OPSPILOT_SERVICE_NAME: backups
+      OPSPILOT_OTEL_ENABLED: "1"
+      OPSPILOT_OTLP_ENDPOINT: http://otel-collector:4318
+    ports: ["127.0.0.1:18103:8000"]
+
+  opspilot-api:
+    <<: *python-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: opspilot-api-local:0.1.0
+    environment:
+      OPSPILOT_DATABASE_URL: postgresql+psycopg://opspilot:opspilot@postgres:5432/opspilot
+      OPSPILOT_MODEL_CACHE: /model-cache
+      OPSPILOT_APPROVAL_TOKEN: ${OPSPILOT_APPROVAL_TOKEN:-}
+      OPSPILOT_PROMETHEUS_URL: http://prometheus:9090
+      OPSPILOT_LLM_BACKEND: ${OPSPILOT_LLM_BACKEND:-deterministic}
+      OPSPILOT_OLLAMA_URL: ${OPSPILOT_OLLAMA_URL:-http://host.docker.internal:11434}
+      OPSPILOT_CHAT_DELIVERY: ${OPSPILOT_CHAT_DELIVERY:-0}
+      OPSPILOT_SLACK_BOT_TOKEN: ${OPSPILOT_SLACK_BOT_TOKEN:-}
+      OPSPILOT_SLACK_CHANNEL: ${OPSPILOT_SLACK_CHANNEL:-}
+      OPSPILOT_TEAMS_BOT_URL: ${OPSPILOT_TEAMS_BOT_URL:-}
+      OPSPILOT_TEAMS_INTERNAL_TOKEN: ${OPSPILOT_TEAMS_INTERNAL_TOKEN:-}
+      OPSPILOT_OTEL_ENABLED: "1"
+      OPSPILOT_OTLP_ENDPOINT: http://otel-collector:4318
+      OPSPILOT_LOKI_URL: http://loki:3100
+      OPSPILOT_TRACE_FILE: /var/log/otel/traces.json
+    volumes:
+      - ./.model-cache:/model-cache
+      - ./infra/change_freezes.json:/app/infra/change_freezes.json:ro
+      - ./.telemetry:/var/log/otel:ro
+    depends_on: [postgres]
+    ports: ["127.0.0.1:18100:8000"]
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: opspilot
+      POSTGRES_USER: opspilot
+      POSTGRES_PASSWORD: opspilot
+    ports: ["127.0.0.1:15432:5432"]
+    volumes: [opspilot_pg:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U opspilot -d opspilot"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    networks: [ops]
+
+  prometheus:
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=2d"]
+    volumes:
+      - ./infra/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./infra/alerts.yml:/etc/prometheus/alerts.yml:ro
+    ports: ["127.0.0.1:18109:9090"]
+    networks: [ops]
+    depends_on: [gateway, payments, backups, alertmanager]
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    restart: unless-stopped
+    command: ["--config.file=/etc/alertmanager/alertmanager.yml"]
+    volumes:
+      - ./infra/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+    ports: ["127.0.0.1:18193:9093"]
+    networks: [ops]
+    depends_on: [opspilot-api]
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.132.0
+    restart: unless-stopped
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    volumes:
+      - ./infra/otel-collector.yaml:/etc/otelcol-contrib/config.yaml:ro
+      - ./.telemetry:/var/log/otel
+    networks: [ops]
+    depends_on: [tempo, loki]
+
+  tempo:
+    image: grafana/tempo:2.9.0
+    restart: unless-stopped
+    command: ["-config.file=/etc/tempo.yaml"]
+    volumes:
+      - ./infra/tempo.yaml:/etc/tempo.yaml:ro
+      - opspilot_tempo:/var/tempo
+    ports: ["127.0.0.1:18132:3200"]
+    networks: [ops]
+
+  loki:
+    image: grafana/loki:3.5.5
+    restart: unless-stopped
+    command: ["-config.file=/etc/loki.yaml"]
+    volumes:
+      - ./infra/loki.yaml:/etc/loki.yaml:ro
+      - opspilot_loki:/loki
+    ports: ["127.0.0.1:18131:3100"]
+    networks: [ops]
+
+  grafana:
+    image: grafana/grafana:12.2.0
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: local-admin
+      GF_SECURITY_ADMIN_PASSWORD: local-demo-only
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+    volumes:
+      - ./infra/grafana/datasources.yaml:/etc/grafana/provisioning/datasources/opspilot.yaml:ro
+      - ./infra/grafana/dashboards.yaml:/etc/grafana/provisioning/dashboards/opspilot.yaml:ro
+      - ./infra/grafana/opspilot-health.json:/var/lib/grafana/dashboards/opspilot-health.json:ro
+      - opspilot_grafana:/var/lib/grafana
+    ports: ["127.0.0.1:18130:3000"]
+    networks: [ops]
+    depends_on: [prometheus, loki, tempo]
+
+networks:
+  ops: {}
+
+volumes:
+  opspilot_pg: {}
+  opspilot_tempo: {}
+  opspilot_loki: {}
+  opspilot_grafana: {}

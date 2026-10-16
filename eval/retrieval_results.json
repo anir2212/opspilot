@@ -1,0 +1,27 @@
+{
+  "bm25": {
+    "queries": 40,
+    "recall_at_5": 0.475,
+    "mrr_at_5": 0.4208333333333333
+  },
+  "vector": {
+    "queries": 40,
+    "recall_at_5": 0.5,
+    "mrr_at_5": 0.4583333333333333
+  },
+  "hybrid": {
+    "queries": 40,
+    "recall_at_5": 0.5,
+    "mrr_at_5": 0.38375
+  },
+  "rerank": {
+    "queries": 40,
+    "recall_at_5": 0.675,
+    "mrr_at_5": 0.5766666666666667
+  },
+  "lexical": {
+    "queries": 40,
+    "recall_at_5": 0.05,
+    "mrr_at_5": 0.05
+  }
+}

@@ -1,0 +1,23 @@
+id: memory_leak_noisy
+source: authored fixture; no live fault injected by this file
+variant: noisy
+alert:
+  fingerprint: fixture-memory_leak-noisy
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: gateway
+  annotations:
+    description: gateway resident memory keeps growing
+expected_faults:
+- memory_leak
+expected_runbooks:
+- RB-03
+evidence:
+  signal: gateway resident memory keeps growing
+  noise: unrelated retries also observed
+  incomplete: false
+runbook_candidates:
+- RB-04
+- RB-12
+- RB-03

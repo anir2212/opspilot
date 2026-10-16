@@ -1,0 +1,23 @@
+id: bad_deploy_sparse
+source: authored fixture; no live fault injected by this file
+variant: sparse
+alert:
+  fingerprint: fixture-bad_deploy-sparse
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: payments
+  annotations:
+    description: payment failures began after a release
+expected_faults:
+- bad_deploy
+expected_runbooks:
+- RB-06
+evidence:
+  signal: payment failures began after a release
+  noise: ''
+  incomplete: true
+runbook_candidates:
+- RB-12
+- RB-06
+- RB-07

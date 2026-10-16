@@ -1,0 +1,25 @@
+id: latency_concurrent
+source: authored fixture; no live fault injected by this file
+variant: concurrent
+alert:
+  fingerprint: fixture-latency-concurrent
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: gateway
+  annotations:
+    description: gateway p95 latency rose above two seconds
+expected_faults:
+- latency
+- memory_leak
+expected_runbooks:
+- RB-02
+- RB-03
+evidence:
+  signal: gateway p95 latency rose above two seconds
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-02
+- RB-03

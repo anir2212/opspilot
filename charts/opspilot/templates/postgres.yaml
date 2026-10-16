@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: opspilot-postgres
+type: Opaque
+stringData:
+  password: {{ .Values.postgres.password | quote }}
+  database_url: {{ printf "postgresql+psycopg://opspilot:%s@opspilot-postgres:5432/opspilot" .Values.postgres.password | quote }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: opspilot-postgres
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: {{ .Values.postgres.storage }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opspilot-postgres
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels: {app: opspilot-postgres}
+  template:
+    metadata:
+      labels: {app: opspilot-postgres}
+    spec:
+      containers:
+        - name: postgres
+          image: {{ .Values.postgres.image }}
+          env:
+            - {name: POSTGRES_DB, value: opspilot}
+            - {name: POSTGRES_USER, value: opspilot}
+            - name: POSTGRES_PASSWORD
+              valueFrom: {secretKeyRef: {name: opspilot-postgres, key: password}}
+          ports: [{containerPort: 5432}]
+          resources:
+            {{- toYaml .Values.postgres.resources | nindent 12 }}
+          readinessProbe:
+            exec: {command: [pg_isready, -U, opspilot, -d, opspilot]}
+            periodSeconds: 5
+          volumeMounts: [{name: data, mountPath: /var/lib/postgresql/data}]
+      volumes: [{name: data, persistentVolumeClaim: {claimName: opspilot-postgres}}]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opspilot-postgres
+spec:
+  selector: {app: opspilot-postgres}
+  ports: [{port: 5432, targetPort: 5432}]

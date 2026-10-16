@@ -1,0 +1,23 @@
+id: backup_failure_noisy
+source: authored fixture; no live fault injected by this file
+variant: noisy
+alert:
+  fingerprint: fixture-backup_failure-noisy
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: backups
+  annotations:
+    description: scheduled backup job failed
+expected_faults:
+- backup_failure
+expected_runbooks:
+- RB-07
+evidence:
+  signal: scheduled backup job failed
+  noise: unrelated retries also observed
+  incomplete: false
+runbook_candidates:
+- RB-08
+- RB-12
+- RB-07

@@ -1,0 +1,25 @@
+id: payment_errors_concurrent
+source: authored fixture; no live fault injected by this file
+variant: concurrent
+alert:
+  fingerprint: fixture-payment_errors-concurrent
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: payments
+  annotations:
+    description: payment requests fail with 5xx responses
+expected_faults:
+- payment_errors
+- latency
+expected_runbooks:
+- RB-01
+- RB-02
+evidence:
+  signal: payment requests fail with 5xx responses
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-01
+- RB-02

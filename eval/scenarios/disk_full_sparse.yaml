@@ -1,0 +1,23 @@
+id: disk_full_sparse
+source: authored fixture; no live fault injected by this file
+variant: sparse
+alert:
+  fingerprint: fixture-disk_full-sparse
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: backups
+  annotations:
+    description: backup capacity is exhausted
+expected_faults:
+- disk_full
+expected_runbooks:
+- RB-08
+evidence:
+  signal: backup capacity is exhausted
+  noise: ''
+  incomplete: true
+runbook_candidates:
+- RB-12
+- RB-08
+- RB-01

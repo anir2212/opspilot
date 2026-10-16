@@ -1,0 +1,23 @@
+id: memory_leak_false_alarm
+source: authored fixture; no live fault injected by this file
+variant: false_alarm
+alert:
+  fingerprint: fixture-memory_leak-false_alarm
+  status: firing
+  labels:
+    alertname: ServiceDegraded
+    service: gateway
+  annotations:
+    description: Transient signal resembling gateway resident memory keeps growing;
+      recovered before sustained impact
+expected_faults: []
+expected_runbooks: []
+evidence:
+  signal: Transient signal resembling gateway resident memory keeps growing; recovered
+    before sustained impact
+  noise: ''
+  incomplete: false
+runbook_candidates:
+- RB-12
+- RB-03
+- RB-04

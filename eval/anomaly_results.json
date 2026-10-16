@@ -1,0 +1,26 @@
+{
+  "source": "locally injected synthetic faults; observed HTTP and process metrics",
+  "episodes": 32,
+  "samples": 704,
+  "separate_healthy_training_samples": 180,
+  "detector": {
+    "tp": 192,
+    "fp": 38,
+    "fn": 0,
+    "precision": 0.8347826086956521,
+    "recall": 1.0,
+    "f1": 0.909952606635071,
+    "episodes_detected": 32,
+    "median_detection_delay_seconds_detected_only": 0.0050225
+  },
+  "static_threshold": {
+    "tp": 140,
+    "fp": 0,
+    "fn": 52,
+    "precision": 1.0,
+    "recall": 0.7291666666666666,
+    "f1": 0.8433734939759037,
+    "episodes_detected": 28,
+    "median_detection_delay_seconds_detected_only": 0.009388
+  }
+}
