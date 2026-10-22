@@ -181,6 +181,15 @@ class OllamaBackend:
         self.input_tokens = 0
         self.output_tokens = 0
 
+    def model_digest(self) -> str | None:
+        """Return the local manifest digest of the configured model, or None if absent."""
+        response = self.client.get(self.url + "/api/tags")
+        response.raise_for_status()
+        for entry in response.json().get("models", []):
+            if self.model in (entry.get("name"), entry.get("model")):
+                return entry.get("digest")
+        return None
+
     def _claims(self, task: str, alert: dict, context: dict, hypotheses: list[dict] | None = None):
         allowed = sorted(_available_sources(alert, context))
         prompt = (
@@ -329,6 +338,7 @@ def build_graph(tools: InvestigationTools, backend: TriageBackend, checkpointer=
                 "text": f"{phase} unavailable because supplied citations were invalid",
                 "source_ids": [source],
                 "confidence": "unknown",
+                "fallback": True,
             }
         ]
 
