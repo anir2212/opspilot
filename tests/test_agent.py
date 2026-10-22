@@ -85,3 +85,5 @@ def test_invalid_model_citations_retry_once_then_fail_closed() -> None:
     assert backend.calls == 2
     assert "Hypothesis unavailable" in result["summary"]
     assert "made-up-id" not in result["summary"]
+    assert result["hypotheses"][0]["fallback"] is True
+    assert "fallback" not in result["recommendations"][0]

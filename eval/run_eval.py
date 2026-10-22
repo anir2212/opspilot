@@ -150,6 +150,14 @@ def run(backend_name: str = "fixture", limit: int | None = None,
         collect_citations: bool = False) -> dict:
     scenarios = load_scenarios(limit)
     backend = OllamaBackend() if backend_name == "ollama" else DeterministicBackend()
+    model_digest = None
+    if backend_name == "ollama":
+        # Never pull: an absent local model is a blocker, not something to download here.
+        model_digest = backend.model_digest()
+        if model_digest is None:
+            raise RuntimeError(f"Ollama model {backend.model!r} is not available locally")
+    provenance = {"backend": backend_name, "model": getattr(backend, "model", None),
+                  "model_digest": model_digest}
     agent_rows = []
     rag_rows = []
     citation_review_items = []
@@ -170,7 +178,9 @@ def run(backend_name: str = "fixture", limit: int | None = None,
             agent["output_tokens"] = backend.output_tokens - before_out
         agent_rows.append(score(scenario, agent))
         if collect_citations:
-            citation_review_items.extend(review_items(scenario.id, "agent", scenario.alert, agent))
+            citation_review_items.extend(
+                review_items(scenario.id, "agent", scenario.alert, agent, provenance)
+            )
 
         # One model call and runbook context only: an intentionally smaller RAG baseline.
         started = time.perf_counter()
@@ -194,11 +204,12 @@ def run(backend_name: str = "fixture", limit: int | None = None,
         rag_rows.append(score(scenario, rag))
         if collect_citations:
             citation_review_items.extend(
-                review_items(scenario.id, "single_shot_rag", scenario.alert, rag)
+                review_items(scenario.id, "single_shot_rag", scenario.alert, rag, provenance)
             )
     report = {
         "backend": backend_name,
         "model": getattr(backend, "model", None),
+        "model_digest": model_digest,
         "scope": "authored context fixtures; no live fault injection in this harness run",
         "single_shot_rag": summarize(rag_rows),
         "agent": summarize(agent_rows),
@@ -289,13 +300,16 @@ if __name__ == "__main__":
     parser.add_argument("--update-results", action="store_true")
     parser.add_argument("--export-citations", type=Path,
                         help="Write unlabeled claim/source pairs for human semantic review")
+    parser.add_argument("--report-path", type=Path,
+                        help="Full-run JSON path (default eval/agent_results_<backend>.json)")
     options = parser.parse_args()
     report = run(options.backend, options.limit, collect_citations=bool(options.export_citations))
     if options.export_citations:
         write_review_queue(options.export_citations, report["citation_review_items"])
     if options.limit is None:
-        output = ROOT / "eval" / f"agent_results_{options.backend}.json"
-        output.write_text(json.dumps(report, indent=2) + "\n")
+        output = options.report_path or ROOT / "eval" / f"agent_results_{options.backend}.json"
+        saved = {k: v for k, v in report.items() if k != "citation_review_items"}
+        output.write_text(json.dumps(saved, indent=2) + "\n")
     if options.update_results:
         if options.backend != "fixture" or options.limit is not None:
             raise ValueError("Only the full 40-fixture run updates RESULTS.md")

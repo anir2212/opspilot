@@ -55,6 +55,6 @@ Compose is the full local demo path because it fits the small laptop and support
 - Replace mock ServiceNow/backup/deployment adapters with authenticated enterprise clients; keep the validated tool interface and read-only default.
 - Use OIDC user identity and role checks for approvals; sign the Alertmanager webhook; store secrets in a managed secret store.
 - Move from `create_all` to migrations; add idempotency keys and an outbox for reliable chat delivery.
-- Test retrieval and diagnosis on held-out, de-identified real incidents, including counterfactual and prompt-injection cases. Add human-labeled semantic citation checks.
+- Test retrieval and diagnosis on held-out, de-identified real incidents, including counterfactual and prompt-injection cases. Complete the human-labelled semantic citation check: a blinded 30-pair packet from the real local model and its scorer are ready in `eval/citation_review/` and `eval/citation_packet.py`.
 - Run real resource-failure experiments in a disposable cluster and measure alert-to-summary latency end to end.
 - Replace local file trace export with a service graph generated from an indexed trace backend; bound retention and cardinality.

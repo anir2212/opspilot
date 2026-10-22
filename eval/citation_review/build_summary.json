@@ -1,0 +1,31 @@
+{
+  "backend": "ollama",
+  "export_file": "export_ollama_qwen2.5-0.5b.jsonl",
+  "export_sha256": "9f16f5e0f85a5f187e327b2c99fa5ad9be50587f89c27f8c555d11fbe41703be",
+  "human_labels": 0,
+  "labellers": [
+    "A",
+    "B"
+  ],
+  "method": "seeded simple random sample of eligible pairs sorted by stable hash",
+  "model_digests": [
+    "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67"
+  ],
+  "models": [
+    "qwen2.5:0.5b"
+  ],
+  "n": 30,
+  "pool_counts": {
+    "eligible": 332,
+    "excluded_duplicate_pair": 565,
+    "excluded_unresolved_source": 24,
+    "excluded_validator_fallback": 12,
+    "exported": 933
+  },
+  "redaction": "scenario ID and alert fingerprint replaced with [scenario-id-redacted]",
+  "seed": 20261020,
+  "selected_by_path": {
+    "agent": 21,
+    "single_shot_rag": 9
+  }
+}

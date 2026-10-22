@@ -4,7 +4,7 @@
 
 The demo services, Prometheus, Loki, runbooks, incident records, and chat text can all contain attacker-controlled data. The investigation tools treat those values as data. Metric and log queries are assembled from enum-validated templates; model text cannot supply arbitrary PromQL, LogQL, SQL, URLs, or shell commands. MCP exposes only six read methods. The seventh agent tool creates a pending local ticket note; it cannot apply the note.
 
-The final claim validator checks that every source ID exists in gathered context. That catches fabricated IDs, but it **does not prove semantic support**. A malicious log line or runbook could still influence an LLM. Before production use, add source-level trust labels, semantic entailment checks, adversarial prompt-injection tests, and human review of all recommendations.
+The final claim validator checks that every source ID exists in gathered context. That catches fabricated IDs, but it **does not prove semantic support**. A blinded human review packet (`eval/citation_review/`, rubric in `docs/CITATION_RUBRIC.md`) exists to measure support; it has no labels yet. The sealed key must stay away from labellers until both have finished. A malicious log line or runbook could still influence an LLM. Before production use, add source-level trust labels, semantic entailment checks, adversarial prompt-injection tests, and human review of all recommendations.
 
 ## Writes and approval
 

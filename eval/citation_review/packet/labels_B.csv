@@ -1,0 +1,190 @@
+item_id,label,note,claim_text,source_text
+CR-0473cbdb,,,Payment errors are a plausible cause of the backup job failure.,"{
+  ""body"": ""---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-07""
+}"
+CR-0555cb79,,,"Check the `fixture:metric:error_rate:gateway` alert, which shows a high error rate.","{
+  ""observation"": {
+    ""incomplete"": true,
+    ""noise"": """",
+    ""signal"": ""gateway resident memory keeps growing""
+  },
+  ""source_id"": ""fixture:metric:error_rate:gateway""
+}"
+CR-10de5b1e,,,"Latency issues with HTTP 5xx responses, which can be caused by slow downstream requests or an overloaded gateway worker.","{
+  ""body"": ""---\nid: RB-02\nservice: gateway\nsymptoms: p95 request latency above two seconds with low throughput\n---\n# Gateway latency\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: p95 request latency above two seconds with low throughput. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Slow downstream requests or an overloaded gateway worker. Inspect gateway p50 and p95; compare payment latency; sample traces; limit expensive retries; ask owner before changing capacity. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. p95 falls below alert threshold for ten minutes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-02""
+}"
+CR-1883379c,,,CPU saturation can cause system bottlenecks and performance degradation.,"{
+  ""body"": ""---\nid: RB-06\nservice: payments\nsymptoms: Errors begin shortly after a payment service release\n---\n# Payment rollback decision\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Errors begin shortly after a payment service release. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: New payment version introduced regression. Verify deploy timestamp against error onset; compare canary and stable instances; collect failing trace; draft a rollback request with owner sign-off. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. After approved rollback, errors drop and smoke payment passes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-06""
+}"
+CR-191c805e,,,Payment errors are a plausible cause of the gateway p95 request latency above two seconds with low throughput.,"{
+  ""annotations"": {
+    ""description"": ""gateway p95 latency rose above two seconds""
+  },
+  ""fingerprint"": ""[scenario-id-redacted]"",
+  ""labels"": {
+    ""alertname"": ""ServiceDegraded"",
+    ""service"": ""gateway""
+  },
+  ""status"": ""firing""
+}"
+CR-1a3952b3,,,Latency issues are a plausible cause of gateway p95 latency rising above two seconds.,"{
+  ""body"": ""---\nid: RB-02\nservice: gateway\nsymptoms: p95 request latency above two seconds with low throughput\n---\n# Gateway latency\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: p95 request latency above two seconds with low throughput. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Slow downstream requests or an overloaded gateway worker. Inspect gateway p50 and p95; compare payment latency; sample traces; limit expensive retries; ask owner before changing capacity. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. p95 falls below alert threshold for ten minutes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-02""
+}"
+CR-22875093,,,Memory leak is a plausible cause of high p95 request latency.,"{
+  ""annotations"": {
+    ""description"": ""gateway p95 latency rose above two seconds""
+  },
+  ""fingerprint"": ""[scenario-id-redacted]"",
+  ""labels"": {
+    ""alertname"": ""ServiceDegraded"",
+    ""service"": ""gateway""
+  },
+  ""status"": ""firing""
+}"
+CR-263b4e68,,,Payment error spikes due to insufficient backup capacity.,"{
+  ""body"": ""---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-12""
+}"
+CR-276afa16,,,Dependency endpoint unavailable or connection pool exhausted,"{
+  ""body"": ""---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-12""
+}"
+CR-584f3d35,,,Latency caused the backup job to fail.,"{
+  ""body"": ""---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-07""
+}"
+CR-64b1e47b,,,The gateway p95 latency is a key metric for monitoring the system's performance.,"{
+  ""annotations"": {
+    ""description"": ""gateway p95 latency rose above two seconds""
+  },
+  ""fingerprint"": ""[scenario-id-redacted]"",
+  ""labels"": {
+    ""alertname"": ""ServiceDegraded"",
+    ""service"": ""gateway""
+  },
+  ""status"": ""firing""
+}"
+CR-69d42e1d,,,Latency,"{
+  ""annotations"": {
+    ""description"": ""gateway resident memory keeps growing""
+  },
+  ""fingerprint"": ""[scenario-id-redacted]"",
+  ""labels"": {
+    ""alertname"": ""ServiceDegraded"",
+    ""service"": ""gateway""
+  },
+  ""status"": ""firing""
+}"
+CR-6e5e02d8,,,"Payment errors may cause a temporary signal resembling a scheduled backup job failure, leading to a false alarm.","{
+  ""body"": ""---\nid: RB-08\nservice: backups\nsymptoms: Disk free metric at zero or write failure\n---\n# Backup capacity exhausted\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Disk free metric at zero or write failure. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Backup repository capacity exhausted. Check free space and retention; identify safe expired snapshots; ask storage owner before deletion; extend capacity through approved change. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Free space and a test backup write remain healthy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-08""
+}"
+CR-7bafb5bc,,,Latency,"{
+  ""observation"": {
+    ""incomplete"": false,
+    ""noise"": """",
+    ""signal"": ""gateway resident memory keeps growing""
+  },
+  ""source_id"": ""fixture:metric:p95_latency:gateway""
+}"
+CR-84d3fcfb,,,Backup repository capacity exhausted,"{
+  ""body"": ""---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-12""
+}"
+CR-93ac53fb,,,Memory leak caused the backup job to fail.,"{
+  ""body"": ""---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-07""
+}"
+CR-9838f620,,,Check the `fixture:metric:p95_latency:gateway` metric.,"{
+  ""observation"": {
+    ""incomplete"": false,
+    ""noise"": """",
+    ""signal"": ""gateway resident memory keeps growing""
+  },
+  ""source_id"": ""fixture:metric:p95_latency:gateway""
+}"
+CR-a95597ce,,,Payment service releases are often accompanied by unexpected errors.,"{
+  ""body"": ""---\nid: RB-06\nservice: payments\nsymptoms: Errors begin shortly after a payment service release\n---\n# Payment rollback decision\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Errors begin shortly after a payment service release. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: New payment version introduced regression. Verify deploy timestamp against error onset; compare canary and stable instances; collect failing trace; draft a rollback request with owner sign-off. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. After approved rollback, errors drop and smoke payment passes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-06""
+}"
+CR-b35155a8,,,Latency and memory leaks are common issues in payment processing.,"{
+  ""annotations"": {
+    ""description"": ""Transient signal resembling payment failures began after a release; recovered before sustained impact""
+  },
+  ""fingerprint"": ""[scenario-id-redacted]"",
+  ""labels"": {
+    ""alertname"": ""ServiceDegraded"",
+    ""service"": ""payments""
+  },
+  ""status"": ""firing""
+}"
+CR-b43bd12f,,,Payment service releases are often accompanied by transient signal anomalies.,"{
+  ""body"": ""---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-07""
+}"
+CR-b52fb9c1,,,Payment requests fail with 5xx responses due to a slow gateway worker or a high p95 request latency.,"{
+  ""body"": ""---\nid: RB-02\nservice: gateway\nsymptoms: p95 request latency above two seconds with low throughput\n---\n# Gateway latency\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: p95 request latency above two seconds with low throughput. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Slow downstream requests or an overloaded gateway worker. Inspect gateway p50 and p95; compare payment latency; sample traces; limit expensive retries; ask owner before changing capacity. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. p95 falls below alert threshold for ten minutes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-02""
+}"
+CR-b7691174,,,Payment errors are a plausible cause of the Gateway memory leak.,"{
+  ""annotations"": {
+    ""description"": ""gateway resident memory keeps growing""
+  },
+  ""fingerprint"": ""[scenario-id-redacted]"",
+  ""labels"": {
+    ""alertname"": ""ServiceDegraded"",
+    ""service"": ""gateway""
+  },
+  ""status"": ""firing""
+}"
+CR-c592d125,,,Memory leak is a plausible cause of a backup job failure.,"{
+  ""body"": ""---\nid: RB-08\nservice: backups\nsymptoms: Disk free metric at zero or write failure\n---\n# Backup capacity exhausted\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Disk free metric at zero or write failure. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Backup repository capacity exhausted. Check free space and retention; identify safe expired snapshots; ask storage owner before deletion; extend capacity through approved change. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Free space and a test backup write remain healthy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-08""
+}"
+CR-dba9ebc5,,,Disk full due to insufficient backup capacity.,"{
+  ""body"": ""---\nid: RB-01\nservice: payments\nsymptoms: HTTP 5xx, rejected charges and failed checkout\n---\n# Payment error spike\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: HTTP 5xx, rejected charges and failed checkout. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Payment handler returns exceptions or upstream processor rejects requests. Inspect payment error ratio and gateway 5xx; compare processor responses; pause retries if they amplify errors; escalate to payment owner. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Error ratio returns below baseline and test checkout succeeds. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-01""
+}"
+CR-dd894c71,,,Latency issues can cause errors in payment service releases.,"{
+  ""body"": ""---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-12""
+}"
+CR-e2a1cba8,,,"The use of a read-only service can lead to unexpected behavior and 5xx responses, which can be caused by a payment handler returning exceptions or an upstream processor rejecting requests.","{
+  ""body"": ""---\nid: RB-02\nservice: gateway\nsymptoms: p95 request latency above two seconds with low throughput\n---\n# Gateway latency\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: p95 request latency above two seconds with low throughput. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Slow downstream requests or an overloaded gateway worker. Inspect gateway p50 and p95; compare payment latency; sample traces; limit expensive retries; ask owner before changing capacity. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. p95 falls below alert threshold for ten minutes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-02""
+}"
+CR-ef588fb5,,,"Payment errors may cause a temporary signal resembling a scheduled backup job failure, leading to a false alarm.","{
+  ""annotations"": {
+    ""description"": ""Transient signal resembling scheduled backup job failed; recovered before sustained impact""
+  },
+  ""fingerprint"": ""[scenario-id-redacted]"",
+  ""labels"": {
+    ""alertname"": ""ServiceDegraded"",
+    ""service"": ""backups""
+  },
+  ""status"": ""firing""
+}"
+CR-f3ef54d1,,,Memory Leak,"{
+  ""body"": ""---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"",
+  ""source_id"": ""RB-12""
+}"
+CR-f66d6b8c,,,Monitor the `fixture:metric:error_rate:gateway` metric.,"{
+  ""observation"": {
+    ""incomplete"": false,
+    ""noise"": """",
+    ""signal"": ""gateway resident memory keeps growing""
+  },
+  ""source_id"": ""fixture:metric:error_rate:gateway""
+}"
+CR-fab017a2,,,Memory Leak,"{
+  ""observation"": {
+    ""incomplete"": false,
+    ""noise"": """",
+    ""signal"": ""gateway resident memory keeps growing""
+  },
+  ""source_id"": ""fixture:metric:error_rate:gateway""
+}"
