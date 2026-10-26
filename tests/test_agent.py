@@ -87,3 +87,29 @@ def test_invalid_model_citations_retry_once_then_fail_closed() -> None:
     assert "made-up-id" not in result["summary"]
     assert result["hypotheses"][0]["fallback"] is True
     assert "fallback" not in result["recommendations"][0]
+
+
+def test_agent_searches_with_observed_symptom_and_bounds_untrusted_annotation() -> None:
+    class CapturingTools(FixtureTools):
+        def __init__(self):
+            self.queries = []
+
+        def search_runbooks(self, args):
+            self.queries.append(args.query)
+            return super().search_runbooks(args)
+
+        def get_similar_incidents(self, args):
+            self.queries.append(args.query)
+            return super().get_similar_incidents(args)
+
+    tools = CapturingTools()
+    graph = build_graph(tools, DeterministicBackend())
+    graph.invoke({"alert": {
+        "fingerprint": "symptom-query",
+        "labels": {"alertname": "ServiceDegraded", "service": "gateway"},
+        "annotations": {"description": "Gateway p95 latency rose " * 40, "summary": 17},
+    }})
+    assert len(tools.queries) == 2
+    assert tools.queries[0] == tools.queries[1]
+    assert tools.queries[0].startswith("gateway Gateway p95 latency rose")
+    assert len(tools.queries[0]) == 500

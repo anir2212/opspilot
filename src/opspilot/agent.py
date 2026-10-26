@@ -74,6 +74,19 @@ RUNBOOK_BY_ALERT = {
 }
 
 
+def _evidence_query(alert: dict, service: str) -> str:
+    """Search with the observed symptom, not just a generic alert label."""
+    labels = alert.get("labels", {})
+    annotations = alert.get("annotations", {})
+    values = (
+        service,
+        annotations.get("description"),
+        annotations.get("summary"),
+        labels.get("alertname"),
+    )
+    return " ".join(" ".join(value.split()) for value in values if isinstance(value, str))[:500]
+
+
 def _available_sources(alert: dict, context: dict) -> set[str]:
     sources = {
         f"alert:{alert.get('fingerprint') or alert.get('labels', {}).get('alertname', 'unknown')}",
@@ -272,7 +285,7 @@ def build_graph(tools: InvestigationTools, backend: TriageBackend, checkpointer=
     def gather_context(state: AgentState) -> AgentState:
         started = time.perf_counter()
         service = state["service"]
-        alert_name = state["alert"].get("labels", {}).get("alertname", "incident")
+        evidence_query = _evidence_query(state["alert"], service)
         tasks = {
             "error_rate": (tools.query_metrics, MetricQuery.model_validate(
                 {"metric": "error_rate", "service": service}
@@ -287,10 +300,10 @@ def build_graph(tools: InvestigationTools, backend: TriageBackend, checkpointer=
             "deploys": (tools.get_recent_deploys, ServiceWindow.model_validate(
                 {"service": service}
             )),
-            "runbooks": (tools.search_runbooks, SearchQuery(query=f"{service} {alert_name}")),
+            "runbooks": (tools.search_runbooks, SearchQuery(query=evidence_query)),
             "incidents": (
                 tools.get_similar_incidents,
-                SearchQuery(query=f"{service} {alert_name}"),
+                SearchQuery(query=evidence_query),
             ),
             "backups": (tools.get_backup_jobs, BackupQuery(status="failed")),
         }

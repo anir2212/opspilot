@@ -53,6 +53,17 @@ The new opt-in citation-review export was smoke tested on five deterministic fix
 
 The corpus and questions are synthetic and from the same domain. The baseline was revised after inspecting an initial run, so these are **development-set scores**, not held-out generalization claims. The non-reranked hybrid does not outperform vector-only here. The 80 near-duplicate incident notes often outrank the intended runbook, and strict `plainto_tsquery` misses paraphrases. These failure modes remain visible in the report.
 
+## Symptom-aware agent retrieval development check, 26 October 2026
+
+The [predeclared comparison](docs/RETRIEVAL_QUERY_PROTOCOL.md) used a separate temporary PostgreSQL 18/pgvector database containing the unchanged 160 indexed chunks: 80 runbook sections and 80 synthetic incident notes. The agent's actual runbook tool filters to runbook chunks and uses hybrid BM25/vector RRF, five returned chunks. Across the **32 actionable authored scenario fixtures**, the old query used only `<service> ServiceDegraded`; the new query includes the alert's symptom description and summary, then its name, within 500 characters. The [saved per-scenario result](eval/agent_retrieval_query_2026-10-26.json) records both queries against the same database and corpus.
+
+| Query supplied to the unchanged runbook search | Mean expected-runbook recall among five chunks | Full-credit scenarios | Zero-credit scenarios |
+|---|---:|---:|---:|
+| Service + generic alert name | **0.46875** | 13/32 | 15/32 |
+| Service + observed symptom + alert name | **0.890625** | 25/32 | 0/32 |
+
+The seven remaining partial scores are all concurrent-fault fixtures: their alert text describes the first fault, while the expected list also contains a second fault. Repeated sections from one runbook can occupy multiple of the five slots. This comparison was made on development fixtures whose contents were already known; it is evidence that the query path uses available symptoms, **not a held-out or production retrieval estimate**. The original 40-question full-corpus reranker result above remains 0.675, and its query/corpus filter differs from this check. The saved local Ollama runbook-citation scores (25/32 single-shot, 23/32 agent) were **not rerun**; that harness supplies a fixed candidate list and ignores the tool's query. Human citation support is still unmeasured.
+
 ## M3 anomaly development benchmark
 
 `make anomaly-baseline`, `make anomaly-collect`, and `make anomaly-eval` recorded 180 separate healthy training observations, then 32 local fault-injection episodes (four repeats of each of eight faults). Each episode has 16 healthy and six fault samples: 704 evaluation samples, of which 192 are labeled positive. Observations contain rolling request p50/p95 latency and error fraction, plus process CPU and resident memory. The direct `opspilot_fault_active` gauge is **excluded**. The resource faults are simulated by the app, not actual OOM, CPU exhaustion, or disk fill.
