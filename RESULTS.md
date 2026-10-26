@@ -64,6 +64,23 @@ The [predeclared comparison](docs/RETRIEVAL_QUERY_PROTOCOL.md) used a separate t
 
 The seven remaining partial scores are all concurrent-fault fixtures: their alert text describes the first fault, while the expected list also contains a second fault. Repeated sections from one runbook can occupy multiple of the five slots. This comparison was made on development fixtures whose contents were already known; it is evidence that the query path uses available symptoms, **not a held-out or production retrieval estimate**. The original 40-question full-corpus reranker result above remains 0.675, and its query/corpus filter differs from this check. The saved local Ollama runbook-citation scores (25/32 single-shot, 23/32 agent) were **not rerun**; that harness supplies a fixed candidate list and ignores the tool's query. Human citation support is still unmeasured.
 
+## Separately authored runbook-query holdout, 26 October 2026
+
+The owner supplied a Claude-authored set of 40 queries, two labelled for each RB-01–RB-20, with SHA-256 `966df6939b701bb3789a446381c4cbf1edce1e92a132494963de0686ddadab45`. Its [exact input](eval/independent_retrieval_queries_2026-10-26.json), [precommitted scoring protocol](docs/INDEPENDENT_RETRIEVAL_HOLDOUT_PROTOCOL.md), [evaluator](eval/independent_retrieval_holdout_eval.py), and [per-query output](eval/independent_retrieval_holdout_2026-10-26.json) are saved. The 160 indexed synthetic chunks, modes and top-five limit were unchanged. The primary metric was full-corpus reranked Recall@5, with a hit when any labelled runbook ID appeared among the five chunks.
+
+| Search path on the new 40 queries | Runbook hit@5 | MRR@5 |
+|---|---:|---:|
+| Full corpus: reranked hybrid (predeclared primary) | **31/40 = 0.775** | 0.7113 |
+| Full corpus: Okapi BM25 | 29/40 = 0.725 | 0.6833 |
+| Full corpus: vector | 32/40 = 0.800 | 0.7104 |
+| Full corpus: hybrid RRF | 31/40 = 0.775 | 0.6858 |
+| Full corpus: PostgreSQL lexical | 0/40 = 0.000 | 0.0000 |
+| Runbook-filtered hybrid, direct query text | 40/40 = 1.000 | 0.9875 |
+
+All nine full-corpus reranker misses targeted RB-01–RB-08; in each, five near-duplicate synthetic incident notes occupied the returned slots. Vector-only exceeded reranking by one query on this set, so the earlier 0.675 development result is not evidence that reranking is consistently best. PostgreSQL lexical returned no chunks for these long paraphrased questions because `plainto_tsquery` requires all query terms. The runbook-filtered result is promising for the agent's runbook tool but uses the supplied query text directly; it does **not** test whether a real alert supplies enough symptom text, nor any LLM diagnosis or citation. The queries were authored from these same synthetic runbooks, their relevance labels have not been independently adjudicated, and the author's reading restrictions were self-reported. This is an independent *question-writing* check, not a real-incident generalization estimate. No retrieval change was made after seeing the results.
+
+The first evaluation attempt was blocked by sandbox localhost access before scoring. A second attempt reached `lexical` mode, then failed because its existing nullable SQL filter lacked an explicit type; no result file was written or rankings inspected. The text cast was committed and smoke tested on a development phrase before the completed run, with the same holdout hash, corpus, evaluator and modes. See the protocol for that interruption.
+
 ## M3 anomaly development benchmark
 
 `make anomaly-baseline`, `make anomaly-collect`, and `make anomaly-eval` recorded 180 separate healthy training observations, then 32 local fault-injection episodes (four repeats of each of eight faults). Each episode has 16 healthy and six fault samples: 704 evaluation samples, of which 192 are labeled positive. Observations contain rolling request p50/p95 latency and error fraction, plus process CPU and resident memory. The direct `opspilot_fault_active` gauge is **excluded**. The resource faults are simulated by the app, not actual OOM, CPU exhaustion, or disk fill.

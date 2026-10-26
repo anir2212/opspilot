@@ -13,14 +13,14 @@ An alert is usually the start of an investigation, not its conclusion. This proj
 | Plan milestone | Where it stands |
 |---|---|
 | M1: alert path | All eight synthetic fault types reached the local webhook in one integration test. The resource faults are simulated. |
-| M2: mock systems and knowledge | Mock incident/backup APIs and ingestion run locally. Full-corpus reranked runbook Recall@5 was 0.675 on 40 authored development queries, versus 0.475 for BM25 alone. In a separate 32-scenario development check, adding alert symptoms to the agent's runbook search raised mean expected-runbook recall among five chunks from 0.469 to 0.891; the LLM was not rerun. |
+| M2: mock systems and knowledge | Mock incident/backup APIs and ingestion run locally. Full-corpus reranked runbook Recall@5 was 0.675 on 40 authored development queries, versus 0.475 for BM25 alone. In a separate 32-scenario development check, adding alert symptoms to the agent's runbook search raised mean expected-runbook recall among five chunks from 0.469 to 0.891. On 40 separately authored questions, full-corpus reranking hit 31/40 and vector search 32/40; direct runbook-filtered hybrid hit 40/40. These are different synthetic tests; the LLM was not rerun. |
 | M3: anomaly detection | The guarded STL/MAD + IsolationForest detector found 32/32 injected episodes on the synthetic development set, with sample precision 0.835. |
 | M4–M5: agent and operator channels | An investigation thread survived an API restart; the local console shows its context and pending actions. Slack/Teams adapters have local tests, but real channel delivery is unverified. Ticket writes need a separate approval request. |
 | M6–M8: evaluation and hardening | A local Qwen comparison, read-only MCP tools, policy-case checks, and a kind smoke are recorded. Semantic citation support (a blinded 30-pair review packet is ready, unlabelled) and production-like faults remain unverified. |
 
 The next evidence milestone is a human review of whether the actual model's cited sources support its claims. Source-ID validity alone cannot answer that question. The review is prepared but not done. A full 40-scenario run of the local Ollama `qwen2.5:0.5b` exported 933 claim/source pairs to `eval/citation_review/`. `eval/citation_packet.py build` drew a seeded sample of 30 of the 332 eligible pairs into a blinded packet, with two empty label sheets that show only an item ID, the claim and the cited source. Two labellers follow the [citation rubric](docs/CITATION_RUBRIC.md). `eval/citation_packet.py score` then reports support precision with Wilson intervals, Cohen's kappa between the labellers and consensus precision, and it refuses missing or invalid labels. The key that maps items back to scenarios is kept out of this repository until labelling is finished. **No human labels exist yet**, so citation precision is unmeasured. Denominators and limits are in [RESULTS.md](RESULTS.md).
 
-The agent's runbook and similar-incident tools now search with the alert's service, description, summary and name, capped at 500 characters. The [predeclared comparison](docs/RETRIEVAL_QUERY_PROTOCOL.md) and [dated result](RESULTS.md#symptom-aware-agent-retrieval-development-check-26-october-2026) cover the authored scenarios. An independently written holdout is still needed before treating this as evidence of generalization.
+The agent's runbook and similar-incident tools now search with the alert's service, description, summary and name, capped at 500 characters. The [predeclared comparison](docs/RETRIEVAL_QUERY_PROTOCOL.md) and [dated result](RESULTS.md#symptom-aware-agent-retrieval-development-check-26-october-2026) cover the authored alert scenarios. A [separately authored question set](RESULTS.md#separately-authored-runbook-query-holdout-26-october-2026) tests direct retrieval from the same synthetic runbooks; it does not test the alert-to-query step or real incident generalization. Human citation-support labels remain open.
 
 ## Run locally
 
@@ -38,6 +38,8 @@ make test
 The API is at `http://127.0.0.1:18100`; Grafana is at `http://127.0.0.1:18130`. Run `make web-install && make web-dev` for the console, and `make down` when finished. [Architecture](docs/ARCHITECTURE.md), [chat adapters](docs/CHAT.md), and [security notes](docs/SECURITY.md) describe the service boundaries.
 
 With the corpus indexed in PostgreSQL, run `python eval/agent_retrieval_eval.py --out /tmp/opspilot-query-check.json` to reproduce the old-versus-current agent query comparison on authored scenarios. It tests retrieval only and does not call Ollama.
+
+The exact separately authored queries, frozen scoring protocol, evaluator and per-query output are saved under `eval/` and `docs/`; see [the result table](RESULTS.md#separately-authored-runbook-query-holdout-26-october-2026). The labelled question set has already been used for evaluation and should not be reused for tuning.
 
 ## Repository map
 
