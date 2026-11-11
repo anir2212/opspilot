@@ -108,7 +108,7 @@ def lexical_search(
                 "SELECT id FROM knowledge_chunks "
                 "WHERE to_tsvector('english', heading || ' ' || body) "
                 "@@ plainto_tsquery('english', :q) "
-                "AND (:source_type IS NULL OR source_type = :source_type) "
+                "AND (CAST(:source_type AS text) IS NULL OR source_type = :source_type) "
                 "ORDER BY ts_rank(to_tsvector('english', heading || ' ' || body), "
                 "plainto_tsquery('english', :q)) DESC, id LIMIT :n"
             ),

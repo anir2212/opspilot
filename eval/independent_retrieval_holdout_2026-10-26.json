@@ -1,0 +1,3405 @@
+{
+  "input_sha256": "966df6939b701bb3789a446381c4cbf1edce1e92a132494963de0686ddadab45",
+  "scope": "independently authored runbook-query text; same synthetic corpus; no agent alert or LLM",
+  "queries": 40,
+  "candidate_chunks": 5,
+  "modes": {
+    "rerank": {
+      "recall_at_5": 0.775,
+      "mrr_at_5": 0.7112499999999999,
+      "rows": [
+        {
+          "item": 1,
+          "query": "Checkout is failing for a lot of customers, the payments service is throwing 500s and charges are getting rejected by the processor. Where do I start?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [
+            "INC0001",
+            "INC0025",
+            "INC0033",
+            "INC0017",
+            "INC0073"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 2,
+          "query": "The payment handler is raising exceptions and the share of payment requests returning server errors jumped well above normal. How do I triage it and confirm we're back to healthy?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [
+            "RB-01",
+            "INC0001",
+            "INC0025",
+            "INC0017",
+            "INC0041"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 3,
+          "query": "The gateway's p95 has been above 2 seconds for a while even though traffic is light. What should I look at?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [
+            "INC0010",
+            "INC0002",
+            "INC0034",
+            "INC0058",
+            "INC0066"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 4,
+          "query": "Requests through the gateway are slow at the tail but throughput is low; how do I tell whether a slow downstream call or an overloaded worker is the culprit, and when can I call it recovered?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [
+            "INC0034",
+            "INC0002",
+            "INC0018",
+            "INC0050",
+            "INC0042"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 5,
+          "query": "Gateway resident memory keeps climbing in a straight line until the process gets restarted, and then it starts all over again.",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [
+            "INC0067",
+            "INC0059",
+            "INC0035",
+            "INC0075",
+            "INC0043"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 6,
+          "query": "Since the last gateway release its RSS never comes back down; I suspect a cache that never evicts or requests being held onto. How do I grab a heap profile safely and should I prepare a rollback?",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [
+            "RB-03",
+            "INC0003",
+            "INC0035",
+            "INC0075",
+            "INC0059"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 7,
+          "query": "Gateway CPU is pinned above 90% and the request queue keeps getting longer.",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [
+            "INC0036",
+            "INC0044",
+            "INC0076",
+            "INC0068",
+            "INC0052"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 8,
+          "query": "Gateway pods are compute-bound and a backlog is building up; could an expensive code path be eating cycles, and is it OK to switch off optional batch work to relieve it?",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [
+            "INC0036",
+            "RB-04",
+            "INC0044",
+            "INC0076",
+            "INC0004"
+          ],
+          "first_relevant_rank": 2
+        },
+        {
+          "item": 9,
+          "query": "Payments is logging connection refused whenever it tries to reach the downstream dependency it relies on. What checks should I run?",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [
+            "INC0037",
+            "INC0053",
+            "INC0005",
+            "INC0061",
+            "INC0045"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 10,
+          "query": "The payment service can't get a connection to its dependency, I'm seeing connection pool exhaustion errors and wondering if DNS for that endpoint is broken.",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [
+            "RB-05",
+            "INC0005",
+            "INC0037",
+            "INC0069",
+            "INC0077"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 11,
+          "query": "We shipped a new payments version 15 minutes ago and errors started right after; the canary pods look worse than stable. Should we roll it back, and what do I need to do that?",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [
+            "INC0006",
+            "INC0038",
+            "INC0046",
+            "INC0078",
+            "INC0054"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 12,
+          "query": "Payment failures kicked off right after today's payments deploy. I want to show the new build regressed by pulling a failing trace and comparing canary to stable before asking the owner to revert.",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [
+            "RB-06",
+            "INC0006",
+            "INC0046",
+            "INC0038",
+            "INC0078"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 13,
+          "query": "Last night's backup ended with status failed and an error code, maybe the client was offline. What do I check before rerunning it?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [
+            "INC0007",
+            "INC0031",
+            "INC0039",
+            "INC0015",
+            "INC0047"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 14,
+          "query": "A backup job errored out and I suspect the destination repository was unreachable or the credentials or policy were wrong. How do I diagnose it without losing our last good restore point?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [
+            "RB-07",
+            "INC0007",
+            "INC0031",
+            "INC0023",
+            "INC0015"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 15,
+          "query": "The backup repository is reporting zero free disk and backup writes are failing.",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [
+            "INC0008",
+            "INC0016",
+            "INC0080",
+            "INC0072",
+            "INC0024"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 16,
+          "query": "Our backup target is completely full. Can I delete old snapshots to make room, and how should I check retention before I do?",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [
+            "RB-08",
+            "INC0040",
+            "INC0008",
+            "INC0032",
+            "INC0048"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 17,
+          "query": "Payment requests to the processor keep exceeding the configured client timeout and the gateway's response times are rising too. How do I check the connect timeout and retry count?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [
+            "RB-09",
+            "RB-09",
+            "RB-10",
+            "RB-09",
+            "RB-01"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 18,
+          "query": "The card processor is now slower than the timeout we give it, so payment calls time out. What evidence do I need before proposing a longer timeout?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [
+            "RB-09",
+            "RB-09",
+            "RB-09",
+            "RB-05",
+            "RB-01"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 19,
+          "query": "Request volume on the gateway has roughly doubled but most of it is retries, and completed checkouts are dropping.",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [
+            "RB-10",
+            "RB-10",
+            "RB-02",
+            "INC0052",
+            "INC0036"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 20,
+          "query": "Clients keep retrying a failing dependency and it's amplifying the load; how do I check whether the circuit breaker opened and cap the number of retry attempts?",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [
+            "RB-10",
+            "RB-05",
+            "RB-09",
+            "RB-04",
+            "INC0005"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 21,
+          "query": "We got paged about 30 times for what is clearly the same gateway problem. How do I collapse these into one?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [
+            "RB-14",
+            "RB-02",
+            "RB-14",
+            "RB-11",
+            "RB-14"
+          ],
+          "first_relevant_rank": 4
+        },
+        {
+          "item": 22,
+          "query": "The Alertmanager webhook keeps redelivering the same alert and we open a new incident each time; how do I make it idempotent using the alert fingerprint?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [
+            "RB-11",
+            "RB-20",
+            "RB-15",
+            "RB-12",
+            "RB-07"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 23,
+          "query": "An alert fired for one short spike and then cleared on its own, and no users seem affected. Do I need to open an incident?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [
+            "RB-20",
+            "RB-12",
+            "RB-12",
+            "RB-12",
+            "RB-11"
+          ],
+          "first_relevant_rank": 2
+        },
+        {
+          "item": 24,
+          "query": "I think the alert was caused by a gap in Prometheus scraping or a quick burst of traffic. How do I confirm it wasn't real and document why I silenced it?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [
+            "RB-12",
+            "RB-19",
+            "RB-11",
+            "RB-07",
+            "RB-02"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 25,
+          "query": "Several services are alerting at once, but some are hurting users badly and others barely at all. How do I decide what sev level this is?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [
+            "RB-13",
+            "RB-13",
+            "RB-13",
+            "RB-11",
+            "RB-11"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 26,
+          "query": "Failed user requests are spreading across more services and I want to raise the incident's priority level; how do I justify and record that change?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [
+            "RB-13",
+            "RB-11",
+            "RB-13",
+            "RB-13",
+            "RB-03"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 27,
+          "query": "The gateway is slow and payments is erroring at the same time. How do I figure out which one is the actual cause and which is just a symptom?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [
+            "RB-14",
+            "RB-14",
+            "RB-02",
+            "RB-01",
+            "RB-14"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 28,
+          "query": "I want to follow trace IDs from the gateway spans down into the payment spans to find the first span that actually failed. What should my root-cause hypothesis cite?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [
+            "RB-14",
+            "RB-14",
+            "RB-06",
+            "RB-02",
+            "RB-01"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 29,
+          "query": "A payments alert fired around the time of a release, but I'm not convinced the deploy caused it. How do I gather evidence either way?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [
+            "RB-06",
+            "RB-06",
+            "RB-14",
+            "RB-01",
+            "RB-15"
+          ],
+          "first_relevant_rank": 5
+        },
+        {
+          "item": 30,
+          "query": "Before I blame the rollout for this payments issue, what should I record (version, rollout time, change ticket, baseline error rate), and how do I rule out a dependency that just happened to fail at the same time?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [
+            "RB-15",
+            "RB-05",
+            "RB-14",
+            "RB-06",
+            "RB-20"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 31,
+          "query": "The backup finished as partial: some data got written but not all of it. How do I find out what was skipped?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [
+            "RB-16",
+            "RB-16",
+            "RB-16",
+            "RB-08",
+            "RB-07"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 32,
+          "query": "Bytes written by last night's backup are much lower than the last healthy run and a few clients show errors or excluded paths. How do I rerun just those?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [
+            "RB-16",
+            "RB-07",
+            "INC0007",
+            "INC0039",
+            "INC0031"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 33,
+          "query": "Our backups all report success, but nobody has ever actually tried restoring from them. How do I prove they're usable?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [
+            "RB-17",
+            "RB-08",
+            "RB-07",
+            "RB-17",
+            "RB-17"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 34,
+          "query": "How should I restore a backup into a non-production target, check the checksum and that the application can read the data, and time how long recovery takes?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [
+            "RB-17",
+            "INC0039",
+            "INC0007",
+            "INC0047",
+            "INC0079"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 35,
+          "query": "The payment processor started returning 401 unauthorized on every request.",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [
+            "RB-18",
+            "RB-18",
+            "RB-01",
+            "INC0001",
+            "INC0025"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 36,
+          "query": "I think the processor API key expired during rotation or we're referencing the wrong secret. How do I investigate without leaking the secret into logs?",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [
+            "RB-18",
+            "RB-04",
+            "RB-09",
+            "RB-19",
+            "RB-01"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 37,
+          "query": "New gateway replicas come up but never pass their readiness check.",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [
+            "RB-19",
+            "RB-02",
+            "INC0043",
+            "INC0027",
+            "INC0051"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 38,
+          "query": "Gateway pods boot but stay out of rotation because the probe keeps failing after startup; could it be a startup dependency or the wrong probe path?",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [
+            "RB-19",
+            "RB-19",
+            "RB-10",
+            "RB-14",
+            "RB-19"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 39,
+          "query": "Someone wants to push a risky config change to payments while a severe incident is still open. What sign-offs and checks do we need before it's executed?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [
+            "RB-20",
+            "RB-20",
+            "RB-20",
+            "RB-06",
+            "RB-19"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 40,
+          "query": "An engineer wants to apply an untested payments config change during a change freeze. Who has to approve it (owner, QA, security) and what test evidence must be attached?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [
+            "RB-20",
+            "RB-20",
+            "RB-16",
+            "RB-08",
+            "RB-01"
+          ],
+          "first_relevant_rank": 1
+        }
+      ]
+    },
+    "bm25": {
+      "recall_at_5": 0.725,
+      "mrr_at_5": 0.6833333333333333,
+      "rows": [
+        {
+          "item": 1,
+          "query": "Checkout is failing for a lot of customers, the payments service is throwing 500s and charges are getting rejected by the processor. Where do I start?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [
+            "INC0001",
+            "INC0009",
+            "INC0017",
+            "INC0025",
+            "INC0033"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 2,
+          "query": "The payment handler is raising exceptions and the share of payment requests returning server errors jumped well above normal. How do I triage it and confirm we're back to healthy?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [
+            "RB-01",
+            "INC0001",
+            "INC0009",
+            "INC0017",
+            "INC0025"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 3,
+          "query": "The gateway's p95 has been above 2 seconds for a while even though traffic is light. What should I look at?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [
+            "INC0010",
+            "INC0002",
+            "INC0018",
+            "INC0026",
+            "INC0034"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 4,
+          "query": "Requests through the gateway are slow at the tail but throughput is low; how do I tell whether a slow downstream call or an overloaded worker is the culprit, and when can I call it recovered?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [
+            "INC0002",
+            "INC0010",
+            "INC0018",
+            "INC0026",
+            "INC0034"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 5,
+          "query": "Gateway resident memory keeps climbing in a straight line until the process gets restarted, and then it starts all over again.",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [
+            "INC0003",
+            "INC0011",
+            "INC0019",
+            "INC0027",
+            "INC0035"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 6,
+          "query": "Since the last gateway release its RSS never comes back down; I suspect a cache that never evicts or requests being held onto. How do I grab a heap profile safely and should I prepare a rollback?",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [
+            "INC0003",
+            "INC0011",
+            "INC0019",
+            "INC0027",
+            "INC0035"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 7,
+          "query": "Gateway CPU is pinned above 90% and the request queue keeps getting longer.",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [
+            "INC0004",
+            "INC0012",
+            "INC0020",
+            "INC0028",
+            "INC0036"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 8,
+          "query": "Gateway pods are compute-bound and a backlog is building up; could an expensive code path be eating cycles, and is it OK to switch off optional batch work to relieve it?",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [
+            "RB-04",
+            "INC0004",
+            "INC0012",
+            "INC0020",
+            "INC0028"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 9,
+          "query": "Payments is logging connection refused whenever it tries to reach the downstream dependency it relies on. What checks should I run?",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [
+            "INC0005",
+            "INC0013",
+            "INC0021",
+            "INC0029",
+            "INC0037"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 10,
+          "query": "The payment service can't get a connection to its dependency, I'm seeing connection pool exhaustion errors and wondering if DNS for that endpoint is broken.",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [
+            "RB-05",
+            "INC0005",
+            "INC0013",
+            "INC0021",
+            "INC0029"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 11,
+          "query": "We shipped a new payments version 15 minutes ago and errors started right after; the canary pods look worse than stable. Should we roll it back, and what do I need to do that?",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [
+            "INC0006",
+            "INC0014",
+            "INC0022",
+            "INC0030",
+            "INC0038"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 12,
+          "query": "Payment failures kicked off right after today's payments deploy. I want to show the new build regressed by pulling a failing trace and comparing canary to stable before asking the owner to revert.",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [
+            "RB-06",
+            "INC0006",
+            "INC0014",
+            "INC0022",
+            "INC0030"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 13,
+          "query": "Last night's backup ended with status failed and an error code, maybe the client was offline. What do I check before rerunning it?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [
+            "INC0007",
+            "INC0015",
+            "INC0023",
+            "INC0031",
+            "INC0039"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 14,
+          "query": "A backup job errored out and I suspect the destination repository was unreachable or the credentials or policy were wrong. How do I diagnose it without losing our last good restore point?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [
+            "RB-07",
+            "INC0007",
+            "INC0015",
+            "INC0023",
+            "INC0031"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 15,
+          "query": "The backup repository is reporting zero free disk and backup writes are failing.",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [
+            "INC0008",
+            "INC0016",
+            "INC0024",
+            "INC0032",
+            "INC0040"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 16,
+          "query": "Our backup target is completely full. Can I delete old snapshots to make room, and how should I check retention before I do?",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [
+            "RB-08",
+            "INC0008",
+            "INC0016",
+            "INC0024",
+            "INC0032"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 17,
+          "query": "Payment requests to the processor keep exceeding the configured client timeout and the gateway's response times are rising too. How do I check the connect timeout and retry count?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [
+            "RB-09",
+            "INC0005",
+            "INC0013",
+            "INC0021",
+            "INC0029"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 18,
+          "query": "The card processor is now slower than the timeout we give it, so payment calls time out. What evidence do I need before proposing a longer timeout?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [
+            "RB-09",
+            "RB-09",
+            "RB-09",
+            "RB-05",
+            "RB-18"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 19,
+          "query": "Request volume on the gateway has roughly doubled but most of it is retries, and completed checkouts are dropping.",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [
+            "RB-10",
+            "INC0001",
+            "INC0009",
+            "INC0017",
+            "INC0025"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 20,
+          "query": "Clients keep retrying a failing dependency and it's amplifying the load; how do I check whether the circuit breaker opened and cap the number of retry attempts?",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [
+            "RB-10",
+            "RB-09",
+            "RB-05",
+            "INC0005",
+            "INC0013"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 21,
+          "query": "We got paged about 30 times for what is clearly the same gateway problem. How do I collapse these into one?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [
+            "RB-11",
+            "RB-12",
+            "RB-11",
+            "RB-12",
+            "RB-14"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 22,
+          "query": "The Alertmanager webhook keeps redelivering the same alert and we open a new incident each time; how do I make it idempotent using the alert fingerprint?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [
+            "RB-11",
+            "RB-20",
+            "RB-13",
+            "RB-05",
+            "RB-06"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 23,
+          "query": "An alert fired for one short spike and then cleared on its own, and no users seem affected. Do I need to open an incident?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [
+            "RB-20",
+            "RB-12",
+            "RB-12",
+            "RB-13",
+            "RB-12"
+          ],
+          "first_relevant_rank": 2
+        },
+        {
+          "item": 24,
+          "query": "I think the alert was caused by a gap in Prometheus scraping or a quick burst of traffic. How do I confirm it wasn't real and document why I silenced it?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [
+            "RB-12",
+            "RB-11",
+            "RB-18",
+            "RB-10",
+            "RB-19"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 25,
+          "query": "Several services are alerting at once, but some are hurting users badly and others barely at all. How do I decide what sev level this is?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [
+            "RB-17",
+            "RB-16",
+            "RB-13",
+            "RB-12",
+            "RB-08"
+          ],
+          "first_relevant_rank": 3
+        },
+        {
+          "item": 26,
+          "query": "Failed user requests are spreading across more services and I want to raise the incident's priority level; how do I justify and record that change?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [
+            "RB-13",
+            "RB-13",
+            "RB-12",
+            "RB-03",
+            "RB-11"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 27,
+          "query": "The gateway is slow and payments is erroring at the same time. How do I figure out which one is the actual cause and which is just a symptom?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [
+            "RB-11",
+            "RB-12",
+            "RB-11",
+            "RB-12",
+            "RB-02"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 28,
+          "query": "I want to follow trace IDs from the gateway spans down into the payment spans to find the first span that actually failed. What should my root-cause hypothesis cite?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [
+            "RB-14",
+            "RB-14",
+            "RB-09",
+            "INC0005",
+            "INC0013"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 29,
+          "query": "A payments alert fired around the time of a release, but I'm not convinced the deploy caused it. How do I gather evidence either way?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [
+            "RB-17",
+            "RB-15",
+            "RB-06",
+            "RB-05",
+            "RB-09"
+          ],
+          "first_relevant_rank": 2
+        },
+        {
+          "item": 30,
+          "query": "Before I blame the rollout for this payments issue, what should I record (version, rollout time, change ticket, baseline error rate), and how do I rule out a dependency that just happened to fail at the same time?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [
+            "RB-15",
+            "RB-05",
+            "RB-08",
+            "RB-06",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 31,
+          "query": "The backup finished as partial: some data got written but not all of it. How do I find out what was skipped?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [
+            "RB-16",
+            "RB-16",
+            "RB-16",
+            "RB-17",
+            "RB-17"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 32,
+          "query": "Bytes written by last night's backup are much lower than the last healthy run and a few clients show errors or excluded paths. How do I rerun just those?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [
+            "RB-16",
+            "RB-16",
+            "RB-07",
+            "RB-16",
+            "INC0007"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 33,
+          "query": "Our backups all report success, but nobody has ever actually tried restoring from them. How do I prove they're usable?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [
+            "RB-17",
+            "RB-17",
+            "RB-14",
+            "RB-17",
+            "RB-01"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 34,
+          "query": "How should I restore a backup into a non-production target, check the checksum and that the application can read the data, and time how long recovery takes?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [
+            "RB-17",
+            "RB-17",
+            "RB-16",
+            "RB-07",
+            "INC0007"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 35,
+          "query": "The payment processor started returning 401 unauthorized on every request.",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [
+            "RB-18",
+            "RB-18",
+            "RB-01",
+            "INC0001",
+            "INC0009"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 36,
+          "query": "I think the processor API key expired during rotation or we're referencing the wrong secret. How do I investigate without leaking the secret into logs?",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [
+            "RB-18",
+            "RB-18",
+            "RB-14",
+            "RB-19",
+            "RB-01"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 37,
+          "query": "New gateway replicas come up but never pass their readiness check.",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [
+            "RB-19",
+            "RB-17",
+            "RB-17",
+            "INC0003",
+            "INC0011"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 38,
+          "query": "Gateway pods boot but stay out of rotation because the probe keeps failing after startup; could it be a startup dependency or the wrong probe path?",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [
+            "RB-19",
+            "RB-18",
+            "RB-19",
+            "INC0005",
+            "INC0013"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 39,
+          "query": "Someone wants to push a risky config change to payments while a severe incident is still open. What sign-offs and checks do we need before it's executed?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [
+            "RB-20",
+            "RB-20",
+            "RB-20",
+            "RB-19",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 40,
+          "query": "An engineer wants to apply an untested payments config change during a change freeze. Who has to approve it (owner, QA, security) and what test evidence must be attached?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [
+            "RB-20",
+            "RB-20",
+            "RB-20",
+            "RB-20",
+            "RB-17"
+          ],
+          "first_relevant_rank": 1
+        }
+      ]
+    },
+    "vector": {
+      "recall_at_5": 0.8,
+      "mrr_at_5": 0.7104166666666667,
+      "rows": [
+        {
+          "item": 1,
+          "query": "Checkout is failing for a lot of customers, the payments service is throwing 500s and charges are getting rejected by the processor. Where do I start?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [
+            "RB-01",
+            "INC0065",
+            "INC0001",
+            "INC0073",
+            "INC0057"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 2,
+          "query": "The payment handler is raising exceptions and the share of payment requests returning server errors jumped well above normal. How do I triage it and confirm we're back to healthy?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [
+            "RB-01",
+            "INC0073",
+            "INC0049",
+            "INC0001",
+            "INC0017"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 3,
+          "query": "The gateway's p95 has been above 2 seconds for a while even though traffic is light. What should I look at?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [
+            "RB-02",
+            "INC0010",
+            "RB-02",
+            "INC0050",
+            "INC0066"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 4,
+          "query": "Requests through the gateway are slow at the tail but throughput is low; how do I tell whether a slow downstream call or an overloaded worker is the culprit, and when can I call it recovered?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [
+            "RB-02",
+            "INC0050",
+            "INC0058",
+            "INC0074",
+            "INC0042"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 5,
+          "query": "Gateway resident memory keeps climbing in a straight line until the process gets restarted, and then it starts all over again.",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [
+            "INC0051",
+            "INC0059",
+            "INC0027",
+            "INC0043",
+            "INC0035"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 6,
+          "query": "Since the last gateway release its RSS never comes back down; I suspect a cache that never evicts or requests being held onto. How do I grab a heap profile safely and should I prepare a rollback?",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [
+            "INC0067",
+            "INC0027",
+            "INC0051",
+            "INC0003",
+            "INC0011"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 7,
+          "query": "Gateway CPU is pinned above 90% and the request queue keeps getting longer.",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [
+            "INC0052",
+            "INC0076",
+            "INC0068",
+            "RB-04",
+            "INC0060"
+          ],
+          "first_relevant_rank": 4
+        },
+        {
+          "item": 8,
+          "query": "Gateway pods are compute-bound and a backlog is building up; could an expensive code path be eating cycles, and is it OK to switch off optional batch work to relieve it?",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [
+            "RB-04",
+            "INC0068",
+            "INC0052",
+            "INC0044",
+            "INC0004"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 9,
+          "query": "Payments is logging connection refused whenever it tries to reach the downstream dependency it relies on. What checks should I run?",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [
+            "INC0053",
+            "INC0029",
+            "RB-05",
+            "INC0045",
+            "INC0005"
+          ],
+          "first_relevant_rank": 3
+        },
+        {
+          "item": 10,
+          "query": "The payment service can't get a connection to its dependency, I'm seeing connection pool exhaustion errors and wondering if DNS for that endpoint is broken.",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [
+            "INC0053",
+            "INC0061",
+            "INC0029",
+            "INC0069",
+            "INC0077"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 11,
+          "query": "We shipped a new payments version 15 minutes ago and errors started right after; the canary pods look worse than stable. Should we roll it back, and what do I need to do that?",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [
+            "INC0054",
+            "INC0070",
+            "INC0062",
+            "INC0046",
+            "INC0038"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 12,
+          "query": "Payment failures kicked off right after today's payments deploy. I want to show the new build regressed by pulling a failing trace and comparing canary to stable before asking the owner to revert.",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [
+            "INC0070",
+            "INC0054",
+            "RB-06",
+            "INC0062",
+            "INC0078"
+          ],
+          "first_relevant_rank": 3
+        },
+        {
+          "item": 13,
+          "query": "Last night's backup ended with status failed and an error code, maybe the client was offline. What do I check before rerunning it?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [
+            "INC0031",
+            "INC0063",
+            "INC0071",
+            "INC0007",
+            "INC0039"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 14,
+          "query": "A backup job errored out and I suspect the destination repository was unreachable or the credentials or policy were wrong. How do I diagnose it without losing our last good restore point?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [
+            "RB-07",
+            "INC0063",
+            "INC0007",
+            "INC0071",
+            "INC0055"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 15,
+          "query": "The backup repository is reporting zero free disk and backup writes are failing.",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [
+            "INC0072",
+            "INC0080",
+            "INC0048",
+            "INC0056",
+            "INC0032"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 16,
+          "query": "Our backup target is completely full. Can I delete old snapshots to make room, and how should I check retention before I do?",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [
+            "INC0072",
+            "INC0056",
+            "INC0024",
+            "INC0080",
+            "INC0032"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 17,
+          "query": "Payment requests to the processor keep exceeding the configured client timeout and the gateway's response times are rising too. How do I check the connect timeout and retry count?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [
+            "RB-09",
+            "RB-09",
+            "RB-09",
+            "RB-01",
+            "RB-02"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 18,
+          "query": "The card processor is now slower than the timeout we give it, so payment calls time out. What evidence do I need before proposing a longer timeout?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [
+            "RB-09",
+            "RB-09",
+            "RB-09",
+            "RB-05",
+            "RB-18"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 19,
+          "query": "Request volume on the gateway has roughly doubled but most of it is retries, and completed checkouts are dropping.",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [
+            "RB-10",
+            "RB-10",
+            "INC0012",
+            "INC0060",
+            "INC0076"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 20,
+          "query": "Clients keep retrying a failing dependency and it's amplifying the load; how do I check whether the circuit breaker opened and cap the number of retry attempts?",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [
+            "RB-10",
+            "RB-05",
+            "RB-04",
+            "RB-19",
+            "RB-08"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 21,
+          "query": "We got paged about 30 times for what is clearly the same gateway problem. How do I collapse these into one?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [
+            "RB-02",
+            "RB-11",
+            "RB-19",
+            "RB-11",
+            "INC0075"
+          ],
+          "first_relevant_rank": 2
+        },
+        {
+          "item": 22,
+          "query": "The Alertmanager webhook keeps redelivering the same alert and we open a new incident each time; how do I make it idempotent using the alert fingerprint?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [
+            "RB-11",
+            "RB-11",
+            "RB-13",
+            "RB-12",
+            "RB-11"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 23,
+          "query": "An alert fired for one short spike and then cleared on its own, and no users seem affected. Do I need to open an incident?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [
+            "RB-12",
+            "RB-13",
+            "RB-11",
+            "RB-19",
+            "RB-12"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 24,
+          "query": "I think the alert was caused by a gap in Prometheus scraping or a quick burst of traffic. How do I confirm it wasn't real and document why I silenced it?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [
+            "RB-12",
+            "RB-11",
+            "RB-20",
+            "RB-02",
+            "RB-16"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 25,
+          "query": "Several services are alerting at once, but some are hurting users badly and others barely at all. How do I decide what sev level this is?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [
+            "RB-13",
+            "RB-11",
+            "RB-04",
+            "RB-11",
+            "RB-12"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 26,
+          "query": "Failed user requests are spreading across more services and I want to raise the incident's priority level; how do I justify and record that change?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [
+            "RB-13",
+            "RB-04",
+            "RB-13",
+            "RB-20",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 27,
+          "query": "The gateway is slow and payments is erroring at the same time. How do I figure out which one is the actual cause and which is just a symptom?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [
+            "RB-14",
+            "RB-02",
+            "RB-14",
+            "RB-01",
+            "RB-14"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 28,
+          "query": "I want to follow trace IDs from the gateway spans down into the payment spans to find the first span that actually failed. What should my root-cause hypothesis cite?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [
+            "RB-14",
+            "RB-01",
+            "INC0001",
+            "INC0009",
+            "INC0049"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 29,
+          "query": "A payments alert fired around the time of a release, but I'm not convinced the deploy caused it. How do I gather evidence either way?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [
+            "RB-14",
+            "RB-15",
+            "RB-06",
+            "RB-20",
+            "RB-09"
+          ],
+          "first_relevant_rank": 2
+        },
+        {
+          "item": 30,
+          "query": "Before I blame the rollout for this payments issue, what should I record (version, rollout time, change ticket, baseline error rate), and how do I rule out a dependency that just happened to fail at the same time?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [
+            "RB-15",
+            "INC0070",
+            "INC0062",
+            "INC0006",
+            "INC0046"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 31,
+          "query": "The backup finished as partial: some data got written but not all of it. How do I find out what was skipped?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [
+            "RB-16",
+            "RB-16",
+            "RB-16",
+            "RB-08",
+            "INC0039"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 32,
+          "query": "Bytes written by last night's backup are much lower than the last healthy run and a few clients show errors or excluded paths. How do I rerun just those?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [
+            "RB-16",
+            "RB-16",
+            "INC0040",
+            "INC0039",
+            "INC0032"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 33,
+          "query": "Our backups all report success, but nobody has ever actually tried restoring from them. How do I prove they're usable?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [
+            "RB-17",
+            "INC0007",
+            "INC0072",
+            "INC0071",
+            "INC0008"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 34,
+          "query": "How should I restore a backup into a non-production target, check the checksum and that the application can read the data, and time how long recovery takes?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [
+            "RB-17",
+            "RB-08",
+            "INC0007",
+            "RB-17",
+            "INC0071"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 35,
+          "query": "The payment processor started returning 401 unauthorized on every request.",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [
+            "RB-18",
+            "RB-18",
+            "RB-01",
+            "INC0049",
+            "INC0073"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 36,
+          "query": "I think the processor API key expired during rotation or we're referencing the wrong secret. How do I investigate without leaking the secret into logs?",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [
+            "RB-18",
+            "RB-18",
+            "RB-04",
+            "RB-03",
+            "RB-18"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 37,
+          "query": "New gateway replicas come up but never pass their readiness check.",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [
+            "INC0018",
+            "INC0058",
+            "INC0050",
+            "INC0066",
+            "INC0002"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 38,
+          "query": "Gateway pods boot but stay out of rotation because the probe keeps failing after startup; could it be a startup dependency or the wrong probe path?",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [
+            "RB-19",
+            "RB-05",
+            "RB-14",
+            "RB-19",
+            "RB-02"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 39,
+          "query": "Someone wants to push a risky config change to payments while a severe incident is still open. What sign-offs and checks do we need before it's executed?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [
+            "RB-20",
+            "RB-09",
+            "RB-01",
+            "RB-06",
+            "RB-15"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 40,
+          "query": "An engineer wants to apply an untested payments config change during a change freeze. Who has to approve it (owner, QA, security) and what test evidence must be attached?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [
+            "RB-05",
+            "RB-20",
+            "RB-08",
+            "RB-16",
+            "RB-18"
+          ],
+          "first_relevant_rank": 2
+        }
+      ]
+    },
+    "hybrid": {
+      "recall_at_5": 0.775,
+      "mrr_at_5": 0.6858333333333333,
+      "rows": [
+        {
+          "item": 1,
+          "query": "Checkout is failing for a lot of customers, the payments service is throwing 500s and charges are getting rejected by the processor. Where do I start?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [
+            "INC0001",
+            "INC0009",
+            "INC0065",
+            "INC0041",
+            "RB-01"
+          ],
+          "first_relevant_rank": 5
+        },
+        {
+          "item": 2,
+          "query": "The payment handler is raising exceptions and the share of payment requests returning server errors jumped well above normal. How do I triage it and confirm we're back to healthy?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [
+            "RB-01",
+            "INC0001",
+            "INC0017",
+            "INC0009",
+            "INC0049"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 3,
+          "query": "The gateway's p95 has been above 2 seconds for a while even though traffic is light. What should I look at?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [
+            "INC0010",
+            "INC0050",
+            "RB-02",
+            "INC0034",
+            "INC0026"
+          ],
+          "first_relevant_rank": 3
+        },
+        {
+          "item": 4,
+          "query": "Requests through the gateway are slow at the tail but throughput is low; how do I tell whether a slow downstream call or an overloaded worker is the culprit, and when can I call it recovered?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [
+            "INC0002",
+            "INC0050",
+            "INC0018",
+            "INC0058",
+            "INC0042"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 5,
+          "query": "Gateway resident memory keeps climbing in a straight line until the process gets restarted, and then it starts all over again.",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [
+            "INC0027",
+            "INC0051",
+            "INC0059",
+            "INC0043",
+            "INC0035"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 6,
+          "query": "Since the last gateway release its RSS never comes back down; I suspect a cache that never evicts or requests being held onto. How do I grab a heap profile safely and should I prepare a rollback?",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [
+            "INC0003",
+            "INC0027",
+            "INC0011",
+            "INC0067",
+            "INC0051"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 7,
+          "query": "Gateway CPU is pinned above 90% and the request queue keeps getting longer.",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [
+            "INC0052",
+            "INC0012",
+            "INC0004",
+            "INC0076",
+            "INC0068"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 8,
+          "query": "Gateway pods are compute-bound and a backlog is building up; could an expensive code path be eating cycles, and is it OK to switch off optional batch work to relieve it?",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [
+            "RB-04",
+            "INC0004",
+            "INC0052",
+            "INC0044",
+            "INC0068"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 9,
+          "query": "Payments is logging connection refused whenever it tries to reach the downstream dependency it relies on. What checks should I run?",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [
+            "INC0005",
+            "INC0029",
+            "INC0053",
+            "INC0045",
+            "INC0021"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 10,
+          "query": "The payment service can't get a connection to its dependency, I'm seeing connection pool exhaustion errors and wondering if DNS for that endpoint is broken.",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [
+            "INC0029",
+            "INC0053",
+            "INC0005",
+            "INC0061",
+            "INC0021"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 11,
+          "query": "We shipped a new payments version 15 minutes ago and errors started right after; the canary pods look worse than stable. Should we roll it back, and what do I need to do that?",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [
+            "INC0054",
+            "INC0022",
+            "INC0046",
+            "INC0038",
+            "INC0006"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 12,
+          "query": "Payment failures kicked off right after today's payments deploy. I want to show the new build regressed by pulling a failing trace and comparing canary to stable before asking the owner to revert.",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [
+            "RB-06",
+            "INC0006",
+            "INC0054",
+            "INC0070",
+            "INC0014"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 13,
+          "query": "Last night's backup ended with status failed and an error code, maybe the client was offline. What do I check before rerunning it?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [
+            "INC0007",
+            "INC0031",
+            "INC0063",
+            "INC0039",
+            "INC0015"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 14,
+          "query": "A backup job errored out and I suspect the destination repository was unreachable or the credentials or policy were wrong. How do I diagnose it without losing our last good restore point?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [
+            "RB-07",
+            "INC0007",
+            "INC0063",
+            "INC0031",
+            "INC0015"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 15,
+          "query": "The backup repository is reporting zero free disk and backup writes are failing.",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [
+            "INC0048",
+            "INC0032",
+            "INC0008",
+            "INC0072",
+            "INC0024"
+          ],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 16,
+          "query": "Our backup target is completely full. Can I delete old snapshots to make room, and how should I check retention before I do?",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [
+            "INC0024",
+            "INC0056",
+            "INC0016",
+            "INC0032",
+            "RB-08"
+          ],
+          "first_relevant_rank": 5
+        },
+        {
+          "item": 17,
+          "query": "Payment requests to the processor keep exceeding the configured client timeout and the gateway's response times are rising too. How do I check the connect timeout and retry count?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [
+            "RB-09",
+            "RB-01",
+            "INC0061",
+            "INC0077",
+            "INC0053"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 18,
+          "query": "The card processor is now slower than the timeout we give it, so payment calls time out. What evidence do I need before proposing a longer timeout?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [
+            "RB-09",
+            "RB-09",
+            "RB-09",
+            "RB-05",
+            "RB-18"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 19,
+          "query": "Request volume on the gateway has roughly doubled but most of it is retries, and completed checkouts are dropping.",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [
+            "RB-10",
+            "RB-10",
+            "INC0012",
+            "INC0028",
+            "INC0004"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 20,
+          "query": "Clients keep retrying a failing dependency and it's amplifying the load; how do I check whether the circuit breaker opened and cap the number of retry attempts?",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [
+            "RB-10",
+            "RB-05",
+            "RB-09",
+            "RB-19",
+            "INC0005"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 21,
+          "query": "We got paged about 30 times for what is clearly the same gateway problem. How do I collapse these into one?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [
+            "RB-11",
+            "RB-11",
+            "RB-14",
+            "INC0002",
+            "RB-02"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 22,
+          "query": "The Alertmanager webhook keeps redelivering the same alert and we open a new incident each time; how do I make it idempotent using the alert fingerprint?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [
+            "RB-11",
+            "RB-12",
+            "RB-20",
+            "RB-18",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 23,
+          "query": "An alert fired for one short spike and then cleared on its own, and no users seem affected. Do I need to open an incident?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [
+            "RB-12",
+            "RB-12",
+            "RB-13",
+            "RB-20",
+            "RB-11"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 24,
+          "query": "I think the alert was caused by a gap in Prometheus scraping or a quick burst of traffic. How do I confirm it wasn't real and document why I silenced it?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [
+            "RB-12",
+            "RB-11",
+            "RB-18",
+            "RB-19",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 25,
+          "query": "Several services are alerting at once, but some are hurting users badly and others barely at all. How do I decide what sev level this is?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [
+            "RB-13",
+            "RB-12",
+            "RB-13",
+            "RB-17",
+            "RB-11"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 26,
+          "query": "Failed user requests are spreading across more services and I want to raise the incident's priority level; how do I justify and record that change?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [
+            "RB-13",
+            "RB-13",
+            "RB-12",
+            "RB-20",
+            "RB-01"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 27,
+          "query": "The gateway is slow and payments is erroring at the same time. How do I figure out which one is the actual cause and which is just a symptom?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [
+            "RB-02",
+            "RB-14",
+            "RB-09",
+            "INC0002",
+            "INC0058"
+          ],
+          "first_relevant_rank": 2
+        },
+        {
+          "item": 28,
+          "query": "I want to follow trace IDs from the gateway spans down into the payment spans to find the first span that actually failed. What should my root-cause hypothesis cite?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [
+            "RB-14",
+            "RB-14",
+            "INC0001",
+            "INC0009",
+            "INC0017"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 29,
+          "query": "A payments alert fired around the time of a release, but I'm not convinced the deploy caused it. How do I gather evidence either way?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [
+            "RB-15",
+            "RB-09",
+            "RB-06",
+            "RB-20",
+            "RB-05"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 30,
+          "query": "Before I blame the rollout for this payments issue, what should I record (version, rollout time, change ticket, baseline error rate), and how do I rule out a dependency that just happened to fail at the same time?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [
+            "RB-15",
+            "RB-20",
+            "RB-05",
+            "RB-01",
+            "INC0070"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 31,
+          "query": "The backup finished as partial: some data got written but not all of it. How do I find out what was skipped?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [
+            "RB-16",
+            "RB-16",
+            "RB-16",
+            "RB-08",
+            "RB-17"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 32,
+          "query": "Bytes written by last night's backup are much lower than the last healthy run and a few clients show errors or excluded paths. How do I rerun just those?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [
+            "RB-16",
+            "RB-16",
+            "INC0039",
+            "INC0031",
+            "INC0007"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 33,
+          "query": "Our backups all report success, but nobody has ever actually tried restoring from them. How do I prove they're usable?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [
+            "RB-17",
+            "RB-17",
+            "INC0007",
+            "RB-14",
+            "INC0072"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 34,
+          "query": "How should I restore a backup into a non-production target, check the checksum and that the application can read the data, and time how long recovery takes?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [
+            "RB-17",
+            "RB-17",
+            "INC0007",
+            "INC0023",
+            "INC0015"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 35,
+          "query": "The payment processor started returning 401 unauthorized on every request.",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [
+            "RB-18",
+            "RB-18",
+            "RB-01",
+            "INC0001",
+            "INC0049"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 36,
+          "query": "I think the processor API key expired during rotation or we're referencing the wrong secret. How do I investigate without leaking the secret into logs?",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [
+            "RB-18",
+            "RB-18",
+            "RB-09",
+            "RB-08",
+            "RB-18"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 37,
+          "query": "New gateway replicas come up but never pass their readiness check.",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [
+            "INC0011",
+            "INC0019",
+            "INC0027",
+            "INC0067",
+            "RB-19"
+          ],
+          "first_relevant_rank": 5
+        },
+        {
+          "item": 38,
+          "query": "Gateway pods boot but stay out of rotation because the probe keeps failing after startup; could it be a startup dependency or the wrong probe path?",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [
+            "RB-19",
+            "RB-19",
+            "RB-05",
+            "RB-18",
+            "RB-14"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 39,
+          "query": "Someone wants to push a risky config change to payments while a severe incident is still open. What sign-offs and checks do we need before it's executed?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [
+            "RB-20",
+            "RB-20",
+            "RB-10",
+            "RB-10",
+            "RB-09"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 40,
+          "query": "An engineer wants to apply an untested payments config change during a change freeze. Who has to approve it (owner, QA, security) and what test evidence must be attached?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [
+            "RB-20",
+            "RB-20",
+            "RB-05",
+            "RB-08",
+            "RB-16"
+          ],
+          "first_relevant_rank": 1
+        }
+      ]
+    },
+    "lexical": {
+      "recall_at_5": 0.0,
+      "mrr_at_5": 0.0,
+      "rows": [
+        {
+          "item": 1,
+          "query": "Checkout is failing for a lot of customers, the payments service is throwing 500s and charges are getting rejected by the processor. Where do I start?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 2,
+          "query": "The payment handler is raising exceptions and the share of payment requests returning server errors jumped well above normal. How do I triage it and confirm we're back to healthy?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 3,
+          "query": "The gateway's p95 has been above 2 seconds for a while even though traffic is light. What should I look at?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 4,
+          "query": "Requests through the gateway are slow at the tail but throughput is low; how do I tell whether a slow downstream call or an overloaded worker is the culprit, and when can I call it recovered?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 5,
+          "query": "Gateway resident memory keeps climbing in a straight line until the process gets restarted, and then it starts all over again.",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 6,
+          "query": "Since the last gateway release its RSS never comes back down; I suspect a cache that never evicts or requests being held onto. How do I grab a heap profile safely and should I prepare a rollback?",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 7,
+          "query": "Gateway CPU is pinned above 90% and the request queue keeps getting longer.",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 8,
+          "query": "Gateway pods are compute-bound and a backlog is building up; could an expensive code path be eating cycles, and is it OK to switch off optional batch work to relieve it?",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 9,
+          "query": "Payments is logging connection refused whenever it tries to reach the downstream dependency it relies on. What checks should I run?",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 10,
+          "query": "The payment service can't get a connection to its dependency, I'm seeing connection pool exhaustion errors and wondering if DNS for that endpoint is broken.",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 11,
+          "query": "We shipped a new payments version 15 minutes ago and errors started right after; the canary pods look worse than stable. Should we roll it back, and what do I need to do that?",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 12,
+          "query": "Payment failures kicked off right after today's payments deploy. I want to show the new build regressed by pulling a failing trace and comparing canary to stable before asking the owner to revert.",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 13,
+          "query": "Last night's backup ended with status failed and an error code, maybe the client was offline. What do I check before rerunning it?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 14,
+          "query": "A backup job errored out and I suspect the destination repository was unreachable or the credentials or policy were wrong. How do I diagnose it without losing our last good restore point?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 15,
+          "query": "The backup repository is reporting zero free disk and backup writes are failing.",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 16,
+          "query": "Our backup target is completely full. Can I delete old snapshots to make room, and how should I check retention before I do?",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 17,
+          "query": "Payment requests to the processor keep exceeding the configured client timeout and the gateway's response times are rising too. How do I check the connect timeout and retry count?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 18,
+          "query": "The card processor is now slower than the timeout we give it, so payment calls time out. What evidence do I need before proposing a longer timeout?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 19,
+          "query": "Request volume on the gateway has roughly doubled but most of it is retries, and completed checkouts are dropping.",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 20,
+          "query": "Clients keep retrying a failing dependency and it's amplifying the load; how do I check whether the circuit breaker opened and cap the number of retry attempts?",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 21,
+          "query": "We got paged about 30 times for what is clearly the same gateway problem. How do I collapse these into one?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 22,
+          "query": "The Alertmanager webhook keeps redelivering the same alert and we open a new incident each time; how do I make it idempotent using the alert fingerprint?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 23,
+          "query": "An alert fired for one short spike and then cleared on its own, and no users seem affected. Do I need to open an incident?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 24,
+          "query": "I think the alert was caused by a gap in Prometheus scraping or a quick burst of traffic. How do I confirm it wasn't real and document why I silenced it?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 25,
+          "query": "Several services are alerting at once, but some are hurting users badly and others barely at all. How do I decide what sev level this is?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 26,
+          "query": "Failed user requests are spreading across more services and I want to raise the incident's priority level; how do I justify and record that change?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 27,
+          "query": "The gateway is slow and payments is erroring at the same time. How do I figure out which one is the actual cause and which is just a symptom?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 28,
+          "query": "I want to follow trace IDs from the gateway spans down into the payment spans to find the first span that actually failed. What should my root-cause hypothesis cite?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 29,
+          "query": "A payments alert fired around the time of a release, but I'm not convinced the deploy caused it. How do I gather evidence either way?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 30,
+          "query": "Before I blame the rollout for this payments issue, what should I record (version, rollout time, change ticket, baseline error rate), and how do I rule out a dependency that just happened to fail at the same time?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 31,
+          "query": "The backup finished as partial: some data got written but not all of it. How do I find out what was skipped?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 32,
+          "query": "Bytes written by last night's backup are much lower than the last healthy run and a few clients show errors or excluded paths. How do I rerun just those?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 33,
+          "query": "Our backups all report success, but nobody has ever actually tried restoring from them. How do I prove they're usable?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 34,
+          "query": "How should I restore a backup into a non-production target, check the checksum and that the application can read the data, and time how long recovery takes?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 35,
+          "query": "The payment processor started returning 401 unauthorized on every request.",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 36,
+          "query": "I think the processor API key expired during rotation or we're referencing the wrong secret. How do I investigate without leaking the secret into logs?",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 37,
+          "query": "New gateway replicas come up but never pass their readiness check.",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 38,
+          "query": "Gateway pods boot but stay out of rotation because the probe keeps failing after startup; could it be a startup dependency or the wrong probe path?",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 39,
+          "query": "Someone wants to push a risky config change to payments while a severe incident is still open. What sign-offs and checks do we need before it's executed?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        },
+        {
+          "item": 40,
+          "query": "An engineer wants to apply an untested payments config change during a change freeze. Who has to approve it (owner, QA, security) and what test evidence must be attached?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [],
+          "first_relevant_rank": null
+        }
+      ]
+    },
+    "agent_runbook_hybrid": {
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.9875,
+      "rows": [
+        {
+          "item": 1,
+          "query": "Checkout is failing for a lot of customers, the payments service is throwing 500s and charges are getting rejected by the processor. Where do I start?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [
+            "RB-01",
+            "RB-01",
+            "RB-18",
+            "RB-01",
+            "RB-06"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 2,
+          "query": "The payment handler is raising exceptions and the share of payment requests returning server errors jumped well above normal. How do I triage it and confirm we're back to healthy?",
+          "relevant": [
+            "RB-01"
+          ],
+          "retrieved": [
+            "RB-01",
+            "RB-06",
+            "RB-06",
+            "RB-14",
+            "RB-14"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 3,
+          "query": "The gateway's p95 has been above 2 seconds for a while even though traffic is light. What should I look at?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [
+            "RB-02",
+            "RB-02",
+            "RB-04",
+            "RB-04",
+            "RB-02"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 4,
+          "query": "Requests through the gateway are slow at the tail but throughput is low; how do I tell whether a slow downstream call or an overloaded worker is the culprit, and when can I call it recovered?",
+          "relevant": [
+            "RB-02"
+          ],
+          "retrieved": [
+            "RB-02",
+            "RB-02",
+            "RB-02",
+            "RB-01",
+            "RB-09"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 5,
+          "query": "Gateway resident memory keeps climbing in a straight line until the process gets restarted, and then it starts all over again.",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [
+            "RB-03",
+            "RB-03",
+            "RB-03",
+            "RB-03",
+            "RB-04"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 6,
+          "query": "Since the last gateway release its RSS never comes back down; I suspect a cache that never evicts or requests being held onto. How do I grab a heap profile safely and should I prepare a rollback?",
+          "relevant": [
+            "RB-03"
+          ],
+          "retrieved": [
+            "RB-03",
+            "RB-03",
+            "RB-03",
+            "RB-02",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 7,
+          "query": "Gateway CPU is pinned above 90% and the request queue keeps getting longer.",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [
+            "RB-04",
+            "RB-04",
+            "RB-02",
+            "RB-02",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 8,
+          "query": "Gateway pods are compute-bound and a backlog is building up; could an expensive code path be eating cycles, and is it OK to switch off optional batch work to relieve it?",
+          "relevant": [
+            "RB-04"
+          ],
+          "retrieved": [
+            "RB-04",
+            "RB-02",
+            "RB-17",
+            "RB-07",
+            "RB-04"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 9,
+          "query": "Payments is logging connection refused whenever it tries to reach the downstream dependency it relies on. What checks should I run?",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [
+            "RB-05",
+            "RB-05",
+            "RB-05",
+            "RB-14",
+            "RB-19"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 10,
+          "query": "The payment service can't get a connection to its dependency, I'm seeing connection pool exhaustion errors and wondering if DNS for that endpoint is broken.",
+          "relevant": [
+            "RB-05"
+          ],
+          "retrieved": [
+            "RB-05",
+            "RB-05",
+            "RB-05",
+            "RB-14",
+            "RB-01"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 11,
+          "query": "We shipped a new payments version 15 minutes ago and errors started right after; the canary pods look worse than stable. Should we roll it back, and what do I need to do that?",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [
+            "RB-06",
+            "RB-15",
+            "RB-01",
+            "RB-06",
+            "RB-14"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 12,
+          "query": "Payment failures kicked off right after today's payments deploy. I want to show the new build regressed by pulling a failing trace and comparing canary to stable before asking the owner to revert.",
+          "relevant": [
+            "RB-06"
+          ],
+          "retrieved": [
+            "RB-06",
+            "RB-14",
+            "RB-15",
+            "RB-01",
+            "RB-02"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 13,
+          "query": "Last night's backup ended with status failed and an error code, maybe the client was offline. What do I check before rerunning it?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [
+            "RB-07",
+            "RB-07",
+            "RB-07",
+            "RB-16",
+            "RB-16"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 14,
+          "query": "A backup job errored out and I suspect the destination repository was unreachable or the credentials or policy were wrong. How do I diagnose it without losing our last good restore point?",
+          "relevant": [
+            "RB-07"
+          ],
+          "retrieved": [
+            "RB-07",
+            "RB-18",
+            "RB-08",
+            "RB-17",
+            "RB-16"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 15,
+          "query": "The backup repository is reporting zero free disk and backup writes are failing.",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [
+            "RB-08",
+            "RB-08",
+            "RB-08",
+            "RB-07",
+            "RB-07"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 16,
+          "query": "Our backup target is completely full. Can I delete old snapshots to make room, and how should I check retention before I do?",
+          "relevant": [
+            "RB-08"
+          ],
+          "retrieved": [
+            "RB-08",
+            "RB-17",
+            "RB-16",
+            "RB-08",
+            "RB-16"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 17,
+          "query": "Payment requests to the processor keep exceeding the configured client timeout and the gateway's response times are rising too. How do I check the connect timeout and retry count?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [
+            "RB-09",
+            "RB-01",
+            "RB-09",
+            "RB-09",
+            "RB-04"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 18,
+          "query": "The card processor is now slower than the timeout we give it, so payment calls time out. What evidence do I need before proposing a longer timeout?",
+          "relevant": [
+            "RB-09"
+          ],
+          "retrieved": [
+            "RB-09",
+            "RB-09",
+            "RB-09",
+            "RB-05",
+            "RB-18"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 19,
+          "query": "Request volume on the gateway has roughly doubled but most of it is retries, and completed checkouts are dropping.",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [
+            "RB-10",
+            "RB-10",
+            "RB-02",
+            "RB-04",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 20,
+          "query": "Clients keep retrying a failing dependency and it's amplifying the load; how do I check whether the circuit breaker opened and cap the number of retry attempts?",
+          "relevant": [
+            "RB-10"
+          ],
+          "retrieved": [
+            "RB-10",
+            "RB-05",
+            "RB-09",
+            "RB-19",
+            "RB-14"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 21,
+          "query": "We got paged about 30 times for what is clearly the same gateway problem. How do I collapse these into one?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [
+            "RB-11",
+            "RB-11",
+            "RB-12",
+            "RB-14",
+            "RB-14"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 22,
+          "query": "The Alertmanager webhook keeps redelivering the same alert and we open a new incident each time; how do I make it idempotent using the alert fingerprint?",
+          "relevant": [
+            "RB-11"
+          ],
+          "retrieved": [
+            "RB-11",
+            "RB-12",
+            "RB-20",
+            "RB-18",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 23,
+          "query": "An alert fired for one short spike and then cleared on its own, and no users seem affected. Do I need to open an incident?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [
+            "RB-12",
+            "RB-12",
+            "RB-20",
+            "RB-13",
+            "RB-11"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 24,
+          "query": "I think the alert was caused by a gap in Prometheus scraping or a quick burst of traffic. How do I confirm it wasn't real and document why I silenced it?",
+          "relevant": [
+            "RB-12"
+          ],
+          "retrieved": [
+            "RB-12",
+            "RB-11",
+            "RB-19",
+            "RB-18",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 25,
+          "query": "Several services are alerting at once, but some are hurting users badly and others barely at all. How do I decide what sev level this is?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [
+            "RB-13",
+            "RB-12",
+            "RB-13",
+            "RB-03",
+            "RB-15"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 26,
+          "query": "Failed user requests are spreading across more services and I want to raise the incident's priority level; how do I justify and record that change?",
+          "relevant": [
+            "RB-13"
+          ],
+          "retrieved": [
+            "RB-13",
+            "RB-13",
+            "RB-12",
+            "RB-20",
+            "RB-01"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 27,
+          "query": "The gateway is slow and payments is erroring at the same time. How do I figure out which one is the actual cause and which is just a symptom?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [
+            "RB-02",
+            "RB-14",
+            "RB-14",
+            "RB-09",
+            "RB-14"
+          ],
+          "first_relevant_rank": 2
+        },
+        {
+          "item": 28,
+          "query": "I want to follow trace IDs from the gateway spans down into the payment spans to find the first span that actually failed. What should my root-cause hypothesis cite?",
+          "relevant": [
+            "RB-14"
+          ],
+          "retrieved": [
+            "RB-14",
+            "RB-14",
+            "RB-01",
+            "RB-02",
+            "RB-14"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 29,
+          "query": "A payments alert fired around the time of a release, but I'm not convinced the deploy caused it. How do I gather evidence either way?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [
+            "RB-15",
+            "RB-15",
+            "RB-09",
+            "RB-06",
+            "RB-05"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 30,
+          "query": "Before I blame the rollout for this payments issue, what should I record (version, rollout time, change ticket, baseline error rate), and how do I rule out a dependency that just happened to fail at the same time?",
+          "relevant": [
+            "RB-15"
+          ],
+          "retrieved": [
+            "RB-15",
+            "RB-05",
+            "RB-06",
+            "RB-20",
+            "RB-14"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 31,
+          "query": "The backup finished as partial: some data got written but not all of it. How do I find out what was skipped?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [
+            "RB-16",
+            "RB-16",
+            "RB-16",
+            "RB-07",
+            "RB-17"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 32,
+          "query": "Bytes written by last night's backup are much lower than the last healthy run and a few clients show errors or excluded paths. How do I rerun just those?",
+          "relevant": [
+            "RB-16"
+          ],
+          "retrieved": [
+            "RB-16",
+            "RB-16",
+            "RB-07",
+            "RB-16",
+            "RB-17"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 33,
+          "query": "Our backups all report success, but nobody has ever actually tried restoring from them. How do I prove they're usable?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [
+            "RB-17",
+            "RB-17",
+            "RB-17",
+            "RB-08",
+            "RB-07"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 34,
+          "query": "How should I restore a backup into a non-production target, check the checksum and that the application can read the data, and time how long recovery takes?",
+          "relevant": [
+            "RB-17"
+          ],
+          "retrieved": [
+            "RB-17",
+            "RB-17",
+            "RB-07",
+            "RB-08",
+            "RB-16"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 35,
+          "query": "The payment processor started returning 401 unauthorized on every request.",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [
+            "RB-18",
+            "RB-18",
+            "RB-01",
+            "RB-09",
+            "RB-06"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 36,
+          "query": "I think the processor API key expired during rotation or we're referencing the wrong secret. How do I investigate without leaking the secret into logs?",
+          "relevant": [
+            "RB-18"
+          ],
+          "retrieved": [
+            "RB-18",
+            "RB-09",
+            "RB-18",
+            "RB-18",
+            "RB-01"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 37,
+          "query": "New gateway replicas come up but never pass their readiness check.",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [
+            "RB-19",
+            "RB-19",
+            "RB-06",
+            "RB-14",
+            "RB-05"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 38,
+          "query": "Gateway pods boot but stay out of rotation because the probe keeps failing after startup; could it be a startup dependency or the wrong probe path?",
+          "relevant": [
+            "RB-19"
+          ],
+          "retrieved": [
+            "RB-19",
+            "RB-05",
+            "RB-14",
+            "RB-19",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 39,
+          "query": "Someone wants to push a risky config change to payments while a severe incident is still open. What sign-offs and checks do we need before it's executed?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [
+            "RB-20",
+            "RB-20",
+            "RB-09",
+            "RB-10",
+            "RB-10"
+          ],
+          "first_relevant_rank": 1
+        },
+        {
+          "item": 40,
+          "query": "An engineer wants to apply an untested payments config change during a change freeze. Who has to approve it (owner, QA, security) and what test evidence must be attached?",
+          "relevant": [
+            "RB-20"
+          ],
+          "retrieved": [
+            "RB-20",
+            "RB-05",
+            "RB-20",
+            "RB-16",
+            "RB-08"
+          ],
+          "first_relevant_rank": 1
+        }
+      ]
+    }
+  },
+  "indexed_chunks": 160
+}

@@ -10,6 +10,13 @@ class FixtureTools:
     def query_logs(self, args):
         return {"source_id": "loki:unavailable", "available": False, "entries": []}
 
+    def query_anomalies(self, args):
+        return {"source_id": f"anomaly:{args.service}", "available": False}
+
+    def query_traces(self, args):
+        return {"source_id": f"tempo:traces:{args.service}", "available": False,
+                "traces": []}
+
     def get_recent_deploys(self, args):
         return {"source_id": f"deploys:{args.service}", "deploys": []}
 
@@ -87,3 +94,49 @@ def test_invalid_model_citations_retry_once_then_fail_closed() -> None:
     assert "made-up-id" not in result["summary"]
     assert result["hypotheses"][0]["fallback"] is True
     assert "fallback" not in result["recommendations"][0]
+
+
+def test_agent_searches_with_observed_symptom_and_bounds_untrusted_annotation() -> None:
+    class CapturingTools(FixtureTools):
+        def __init__(self):
+            self.queries = []
+
+        def search_runbooks(self, args):
+            self.queries.append(args.query)
+            return super().search_runbooks(args)
+
+        def get_similar_incidents(self, args):
+            self.queries.append(args.query)
+            return super().get_similar_incidents(args)
+
+    tools = CapturingTools()
+    graph = build_graph(tools, DeterministicBackend())
+    graph.invoke({"alert": {
+        "fingerprint": "symptom-query",
+        "labels": {"alertname": "ServiceDegraded", "service": "gateway"},
+        "annotations": {"description": "Gateway p95 latency rose " * 40, "summary": 17},
+    }})
+    assert len(tools.queries) == 2
+    assert tools.queries[0] == tools.queries[1]
+    assert tools.queries[0].startswith("gateway Gateway p95 latency rose")
+    assert len(tools.queries[0]) == 500
+
+
+def test_graph_includes_anomaly_and_tempo_evidence_for_a_dated_alert() -> None:
+    class EvidenceTools(FixtureTools):
+        def query_anomalies(self, args):
+            assert args.incident_start.isoformat() == "2026-10-29T04:34:00+00:00"
+            return {"source_id": "anomaly:payments", "available": True,
+                    "anomalous_samples": 3, "incident_samples": 4}
+
+        def query_traces(self, args):
+            return {"source_id": "tempo:traces:payments", "available": True,
+                    "traces": [{"source_id": "tempo:trace:abc123", "spans": []}]}
+
+    result = build_graph(EvidenceTools(), DeterministicBackend()).invoke({"alert": {
+        "fingerprint": "evidence-test", "startsAt": "2026-10-29T04:34:00+00:00",
+        "labels": {"alertname": "PaymentErrorsInjected", "service": "payments"},
+    }})
+    assert "Metric anomaly detector: 3 of 4" in result["summary"]
+    assert "Tempo: 1 recent traces inspected" in result["summary"]
+    assert result["context"]["traces"]["traces"][0]["source_id"] == "tempo:trace:abc123"

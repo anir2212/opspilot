@@ -1,0 +1,1100 @@
+{
+  "scope": "authored development scenarios; runbook retrieval only, no LLM call",
+  "candidate_chunks": 5,
+  "search_mode": "hybrid",
+  "source_type": "runbook",
+  "scenarios": 32,
+  "indexed_chunks": 160,
+  "legacy": {
+    "mean_expected_runbook_recall_at_5": 0.46875,
+    "full_credit_scenarios": 13,
+    "zero_credit_scenarios": 15,
+    "elapsed_seconds": 0.699,
+    "rows": [
+      {
+        "id": "backup_failure_baseline",
+        "expected": [
+          "RB-07"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-17",
+          "RB-16",
+          "RB-07",
+          "RB-08"
+        ],
+        "found": [
+          "RB-07"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "backup_failure_concurrent",
+        "expected": [
+          "RB-07",
+          "RB-08"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-17",
+          "RB-16",
+          "RB-07",
+          "RB-08"
+        ],
+        "found": [
+          "RB-07",
+          "RB-08"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "backup_failure_noisy",
+        "expected": [
+          "RB-07"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-17",
+          "RB-16",
+          "RB-07",
+          "RB-08"
+        ],
+        "found": [
+          "RB-07"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "backup_failure_sparse",
+        "expected": [
+          "RB-07"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-17",
+          "RB-16",
+          "RB-07",
+          "RB-08"
+        ],
+        "found": [
+          "RB-07"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "bad_deploy_baseline",
+        "expected": [
+          "RB-06"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [
+          "RB-06"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "bad_deploy_concurrent",
+        "expected": [
+          "RB-06",
+          "RB-07"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [
+          "RB-06"
+        ],
+        "recall": 0.5
+      },
+      {
+        "id": "bad_deploy_noisy",
+        "expected": [
+          "RB-06"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [
+          "RB-06"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "bad_deploy_sparse",
+        "expected": [
+          "RB-06"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [
+          "RB-06"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "cpu_saturation_baseline",
+        "expected": [
+          "RB-04"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "cpu_saturation_concurrent",
+        "expected": [
+          "RB-04",
+          "RB-05"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "cpu_saturation_noisy",
+        "expected": [
+          "RB-04"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "cpu_saturation_sparse",
+        "expected": [
+          "RB-04"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "dependency_down_baseline",
+        "expected": [
+          "RB-05"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "dependency_down_concurrent",
+        "expected": [
+          "RB-05",
+          "RB-06"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [
+          "RB-06"
+        ],
+        "recall": 0.5
+      },
+      {
+        "id": "dependency_down_noisy",
+        "expected": [
+          "RB-05"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "dependency_down_sparse",
+        "expected": [
+          "RB-05"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "disk_full_baseline",
+        "expected": [
+          "RB-08"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-17",
+          "RB-16",
+          "RB-07",
+          "RB-08"
+        ],
+        "found": [
+          "RB-08"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "disk_full_concurrent",
+        "expected": [
+          "RB-08",
+          "RB-01"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-17",
+          "RB-16",
+          "RB-07",
+          "RB-08"
+        ],
+        "found": [
+          "RB-08"
+        ],
+        "recall": 0.5
+      },
+      {
+        "id": "disk_full_noisy",
+        "expected": [
+          "RB-08"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-17",
+          "RB-16",
+          "RB-07",
+          "RB-08"
+        ],
+        "found": [
+          "RB-08"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "disk_full_sparse",
+        "expected": [
+          "RB-08"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-17",
+          "RB-16",
+          "RB-07",
+          "RB-08"
+        ],
+        "found": [
+          "RB-08"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "latency_baseline",
+        "expected": [
+          "RB-02"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "latency_concurrent",
+        "expected": [
+          "RB-02",
+          "RB-03"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "latency_noisy",
+        "expected": [
+          "RB-02"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "latency_sparse",
+        "expected": [
+          "RB-02"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "memory_leak_baseline",
+        "expected": [
+          "RB-03"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "memory_leak_concurrent",
+        "expected": [
+          "RB-03",
+          "RB-04"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "memory_leak_noisy",
+        "expected": [
+          "RB-03"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "memory_leak_sparse",
+        "expected": [
+          "RB-03"
+        ],
+        "retrieved": [
+          "RB-14",
+          "RB-12",
+          "RB-19",
+          "RB-13",
+          "RB-14"
+        ],
+        "found": [],
+        "recall": 0.0
+      },
+      {
+        "id": "payment_errors_baseline",
+        "expected": [
+          "RB-01"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [
+          "RB-01"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "payment_errors_concurrent",
+        "expected": [
+          "RB-01",
+          "RB-02"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [
+          "RB-01"
+        ],
+        "recall": 0.5
+      },
+      {
+        "id": "payment_errors_noisy",
+        "expected": [
+          "RB-01"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [
+          "RB-01"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "payment_errors_sparse",
+        "expected": [
+          "RB-01"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-09",
+          "RB-06",
+          "RB-06",
+          "RB-14"
+        ],
+        "found": [
+          "RB-01"
+        ],
+        "recall": 1.0
+      }
+    ]
+  },
+  "symptom_aware": {
+    "mean_expected_runbook_recall_at_5": 0.890625,
+    "full_credit_scenarios": 25,
+    "zero_credit_scenarios": 0,
+    "elapsed_seconds": 0.31,
+    "rows": [
+      {
+        "id": "backup_failure_baseline",
+        "expected": [
+          "RB-07"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-07",
+          "RB-07",
+          "RB-17",
+          "RB-17"
+        ],
+        "found": [
+          "RB-07"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "backup_failure_concurrent",
+        "expected": [
+          "RB-07",
+          "RB-08"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-07",
+          "RB-07",
+          "RB-17",
+          "RB-17"
+        ],
+        "found": [
+          "RB-07"
+        ],
+        "recall": 0.5
+      },
+      {
+        "id": "backup_failure_noisy",
+        "expected": [
+          "RB-07"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-07",
+          "RB-07",
+          "RB-17",
+          "RB-17"
+        ],
+        "found": [
+          "RB-07"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "backup_failure_sparse",
+        "expected": [
+          "RB-07"
+        ],
+        "retrieved": [
+          "RB-07",
+          "RB-07",
+          "RB-07",
+          "RB-17",
+          "RB-17"
+        ],
+        "found": [
+          "RB-07"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "bad_deploy_baseline",
+        "expected": [
+          "RB-06"
+        ],
+        "retrieved": [
+          "RB-06",
+          "RB-06",
+          "RB-15",
+          "RB-09",
+          "RB-05"
+        ],
+        "found": [
+          "RB-06"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "bad_deploy_concurrent",
+        "expected": [
+          "RB-06",
+          "RB-07"
+        ],
+        "retrieved": [
+          "RB-06",
+          "RB-06",
+          "RB-15",
+          "RB-09",
+          "RB-05"
+        ],
+        "found": [
+          "RB-06"
+        ],
+        "recall": 0.5
+      },
+      {
+        "id": "bad_deploy_noisy",
+        "expected": [
+          "RB-06"
+        ],
+        "retrieved": [
+          "RB-06",
+          "RB-06",
+          "RB-15",
+          "RB-09",
+          "RB-05"
+        ],
+        "found": [
+          "RB-06"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "bad_deploy_sparse",
+        "expected": [
+          "RB-06"
+        ],
+        "retrieved": [
+          "RB-06",
+          "RB-06",
+          "RB-15",
+          "RB-09",
+          "RB-05"
+        ],
+        "found": [
+          "RB-06"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "cpu_saturation_baseline",
+        "expected": [
+          "RB-04"
+        ],
+        "retrieved": [
+          "RB-04",
+          "RB-04",
+          "RB-19",
+          "RB-04",
+          "RB-14"
+        ],
+        "found": [
+          "RB-04"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "cpu_saturation_concurrent",
+        "expected": [
+          "RB-04",
+          "RB-05"
+        ],
+        "retrieved": [
+          "RB-04",
+          "RB-04",
+          "RB-19",
+          "RB-04",
+          "RB-14"
+        ],
+        "found": [
+          "RB-04"
+        ],
+        "recall": 0.5
+      },
+      {
+        "id": "cpu_saturation_noisy",
+        "expected": [
+          "RB-04"
+        ],
+        "retrieved": [
+          "RB-04",
+          "RB-04",
+          "RB-19",
+          "RB-04",
+          "RB-14"
+        ],
+        "found": [
+          "RB-04"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "cpu_saturation_sparse",
+        "expected": [
+          "RB-04"
+        ],
+        "retrieved": [
+          "RB-04",
+          "RB-04",
+          "RB-19",
+          "RB-04",
+          "RB-14"
+        ],
+        "found": [
+          "RB-04"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "dependency_down_baseline",
+        "expected": [
+          "RB-05"
+        ],
+        "retrieved": [
+          "RB-05",
+          "RB-14",
+          "RB-05",
+          "RB-01",
+          "RB-05"
+        ],
+        "found": [
+          "RB-05"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "dependency_down_concurrent",
+        "expected": [
+          "RB-05",
+          "RB-06"
+        ],
+        "retrieved": [
+          "RB-05",
+          "RB-14",
+          "RB-05",
+          "RB-01",
+          "RB-05"
+        ],
+        "found": [
+          "RB-05"
+        ],
+        "recall": 0.5
+      },
+      {
+        "id": "dependency_down_noisy",
+        "expected": [
+          "RB-05"
+        ],
+        "retrieved": [
+          "RB-05",
+          "RB-14",
+          "RB-05",
+          "RB-01",
+          "RB-05"
+        ],
+        "found": [
+          "RB-05"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "dependency_down_sparse",
+        "expected": [
+          "RB-05"
+        ],
+        "retrieved": [
+          "RB-05",
+          "RB-14",
+          "RB-05",
+          "RB-01",
+          "RB-05"
+        ],
+        "found": [
+          "RB-05"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "disk_full_baseline",
+        "expected": [
+          "RB-08"
+        ],
+        "retrieved": [
+          "RB-08",
+          "RB-07",
+          "RB-04",
+          "RB-05",
+          "RB-16"
+        ],
+        "found": [
+          "RB-08"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "disk_full_concurrent",
+        "expected": [
+          "RB-08",
+          "RB-01"
+        ],
+        "retrieved": [
+          "RB-08",
+          "RB-07",
+          "RB-04",
+          "RB-05",
+          "RB-16"
+        ],
+        "found": [
+          "RB-08"
+        ],
+        "recall": 0.5
+      },
+      {
+        "id": "disk_full_noisy",
+        "expected": [
+          "RB-08"
+        ],
+        "retrieved": [
+          "RB-08",
+          "RB-07",
+          "RB-04",
+          "RB-05",
+          "RB-16"
+        ],
+        "found": [
+          "RB-08"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "disk_full_sparse",
+        "expected": [
+          "RB-08"
+        ],
+        "retrieved": [
+          "RB-08",
+          "RB-07",
+          "RB-04",
+          "RB-05",
+          "RB-16"
+        ],
+        "found": [
+          "RB-08"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "latency_baseline",
+        "expected": [
+          "RB-02"
+        ],
+        "retrieved": [
+          "RB-02",
+          "RB-02",
+          "RB-02",
+          "RB-04",
+          "RB-04"
+        ],
+        "found": [
+          "RB-02"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "latency_concurrent",
+        "expected": [
+          "RB-02",
+          "RB-03"
+        ],
+        "retrieved": [
+          "RB-02",
+          "RB-02",
+          "RB-02",
+          "RB-04",
+          "RB-04"
+        ],
+        "found": [
+          "RB-02"
+        ],
+        "recall": 0.5
+      },
+      {
+        "id": "latency_noisy",
+        "expected": [
+          "RB-02"
+        ],
+        "retrieved": [
+          "RB-02",
+          "RB-02",
+          "RB-02",
+          "RB-04",
+          "RB-04"
+        ],
+        "found": [
+          "RB-02"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "latency_sparse",
+        "expected": [
+          "RB-02"
+        ],
+        "retrieved": [
+          "RB-02",
+          "RB-02",
+          "RB-02",
+          "RB-04",
+          "RB-04"
+        ],
+        "found": [
+          "RB-02"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "memory_leak_baseline",
+        "expected": [
+          "RB-03"
+        ],
+        "retrieved": [
+          "RB-03",
+          "RB-03",
+          "RB-04",
+          "RB-14",
+          "RB-02"
+        ],
+        "found": [
+          "RB-03"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "memory_leak_concurrent",
+        "expected": [
+          "RB-03",
+          "RB-04"
+        ],
+        "retrieved": [
+          "RB-03",
+          "RB-03",
+          "RB-04",
+          "RB-14",
+          "RB-02"
+        ],
+        "found": [
+          "RB-03",
+          "RB-04"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "memory_leak_noisy",
+        "expected": [
+          "RB-03"
+        ],
+        "retrieved": [
+          "RB-03",
+          "RB-03",
+          "RB-04",
+          "RB-14",
+          "RB-02"
+        ],
+        "found": [
+          "RB-03"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "memory_leak_sparse",
+        "expected": [
+          "RB-03"
+        ],
+        "retrieved": [
+          "RB-03",
+          "RB-03",
+          "RB-04",
+          "RB-14",
+          "RB-02"
+        ],
+        "found": [
+          "RB-03"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "payment_errors_baseline",
+        "expected": [
+          "RB-01"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-01",
+          "RB-01",
+          "RB-05",
+          "RB-05"
+        ],
+        "found": [
+          "RB-01"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "payment_errors_concurrent",
+        "expected": [
+          "RB-01",
+          "RB-02"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-01",
+          "RB-01",
+          "RB-05",
+          "RB-05"
+        ],
+        "found": [
+          "RB-01"
+        ],
+        "recall": 0.5
+      },
+      {
+        "id": "payment_errors_noisy",
+        "expected": [
+          "RB-01"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-01",
+          "RB-01",
+          "RB-05",
+          "RB-05"
+        ],
+        "found": [
+          "RB-01"
+        ],
+        "recall": 1.0
+      },
+      {
+        "id": "payment_errors_sparse",
+        "expected": [
+          "RB-01"
+        ],
+        "retrieved": [
+          "RB-01",
+          "RB-01",
+          "RB-01",
+          "RB-05",
+          "RB-05"
+        ],
+        "found": [
+          "RB-01"
+        ],
+        "recall": 1.0
+      }
+    ]
+  }
+}
