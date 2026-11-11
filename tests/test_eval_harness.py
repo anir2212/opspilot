@@ -5,10 +5,15 @@ import subprocess
 import sys
 from collections import Counter
 from pathlib import Path
+from runpy import run_path
 
 import yaml
 
 from opspilot.citation_review import review_items, summarize_review, write_review_queue
+
+summarize = run_path(str(Path(__file__).resolve().parents[1] / "eval" / "run_eval.py"))[
+    "summarize"
+]
 
 
 def test_forty_scenarios_cover_all_variants_and_five_run():
@@ -31,8 +36,22 @@ def test_forty_scenarios_cover_all_variants_and_five_run():
     )
     report = json.loads(result.stdout)
     assert report["agent"]["scenario_count"] == 5
-    assert report["agent"]["mean_tool_calls_per_scenario"] == 7
+    assert report["agent"]["mean_tool_calls_per_scenario"] == 9
     assert report["agent"]["citation_semantic_precision"] is None
+
+
+def test_provider_failures_do_not_change_model_accuracy_denominator():
+    base = {"root_at_1": True, "root_at_3": True, "false_alarm_abstained": None,
+            "runbook_recall_at_3": 1.0, "citation_id_validity": 1.0,
+            "time_to_first_summary_seconds": 2.0, "tool_calls": 9,
+            "input_tokens": 100, "output_tokens": 20, "failed": False}
+    failed = dict(base, root_at_1=False, root_at_3=False, failed=True,
+                  error_type="HTTPStatusError:429")
+    report = summarize([base, failed])
+    assert report["scenario_count"] == 2
+    assert report["successful_scenarios"] == 1
+    assert report["failed_scenarios"] == 1
+    assert report["root_cause_accuracy_at_1"] == 1.0
 
 
 def test_citation_review_preserves_evidence_and_requires_manual_labels(tmp_path):

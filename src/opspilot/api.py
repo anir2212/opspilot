@@ -23,7 +23,14 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from opspilot.actions import router as actions_router
-from opspilot.agent import DeterministicBackend, OllamaBackend, answer_followup, build_graph
+from opspilot.agent import (
+    DeterministicBackend,
+    GeminiBackend,
+    OllamaBackend,
+    TriageBackend,
+    answer_followup,
+    build_graph,
+)
 from opspilot.change_approval import router as change_review_router
 from opspilot.mocks import get_session
 from opspilot.mocks import router as mocks_router
@@ -127,11 +134,16 @@ def create_app(*, init_storage: bool = False) -> FastAPI:
             saver_url = database_url.replace("postgresql+psycopg://", "postgresql://", 1)
             with PostgresSaver.from_conn_string(saver_url) as saver:
                 saver.setup()
-                backend = (
-                    OllamaBackend()
-                    if os.getenv("OPSPILOT_LLM_BACKEND") == "ollama"
-                    else DeterministicBackend()
-                )
+                backend_name = os.getenv("OPSPILOT_LLM_BACKEND", "deterministic")
+                backend: TriageBackend
+                if backend_name == "ollama":
+                    backend = OllamaBackend()
+                elif backend_name == "gemini":
+                    backend = GeminiBackend()
+                elif backend_name == "deterministic":
+                    backend = DeterministicBackend()
+                else:
+                    raise ValueError(f"Unsupported OPSPILOT_LLM_BACKEND: {backend_name}")
                 app.state.backend = backend
                 app.state.graph = build_graph(InvestigationTools(), backend, saver)
                 yield

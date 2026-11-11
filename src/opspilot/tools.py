@@ -25,7 +25,21 @@ ServiceName = Literal["gateway", "payments", "backups"]
 
 
 class MetricQuery(BaseModel):
-    metric: Literal["error_rate", "p95_latency", "cpu_usage", "memory_bytes", "fault_active"]
+    metric: Literal[
+        "error_rate", "p95_latency", "p50_latency", "cpu_usage", "memory_bytes", "fault_active"
+    ]
+    service: ServiceName
+    range_minutes: int = Field(default=10, ge=1, le=60)
+    step_seconds: int = Field(default=15, ge=5, le=60)
+
+
+class AnomalyQuery(BaseModel):
+    service: ServiceName
+    range_minutes: int = Field(default=10, ge=3, le=60)
+    incident_start: datetime | None = None
+
+
+class TraceQuery(BaseModel):
     service: ServiceName
     range_minutes: int = Field(default=10, ge=1, le=60)
 
@@ -58,11 +72,16 @@ class TicketDraft(BaseModel):
 
 PROMQL_TEMPLATES = {
     "error_rate": (
-        'sum(rate(opspilot_requests_total{{service="{service}",outcome="error"}}[1m])) '
+        '(sum(rate(opspilot_requests_total{{service="{service}",outcome="error"}}[1m])) '
+        'or vector(0)) '
         '/ clamp_min(sum(rate(opspilot_requests_total{{service="{service}"}}[1m])), 0.001)'
     ),
     "p95_latency": (
         "histogram_quantile(0.95, sum by (le) "
+        '(rate(opspilot_request_duration_seconds_bucket{{service="{service}"}}[1m])))'
+    ),
+    "p50_latency": (
+        "histogram_quantile(0.50, sum by (le) "
         '(rate(opspilot_request_duration_seconds_bucket{{service="{service}"}}[1m])))'
     ),
     "cpu_usage": (
@@ -84,6 +103,7 @@ class InvestigationTools:
         database_url: str | None = None,
         prometheus_url: str | None = None,
         loki_url: str | None = None,
+        tempo_url: str | None = None,
         client: httpx.Client | None = None,
     ) -> None:
         self.Session = session_factory(make_engine(database_url))
@@ -91,6 +111,7 @@ class InvestigationTools:
             prometheus_url or os.getenv("OPSPILOT_PROMETHEUS_URL") or "http://127.0.0.1:18109"
         )
         self.loki_url = loki_url or os.getenv("OPSPILOT_LOKI_URL", "")
+        self.tempo_url = tempo_url or os.getenv("OPSPILOT_TEMPO_URL", "")
         self.client = client or httpx.Client(timeout=8)
 
     def query_metrics(self, args: MetricQuery) -> dict:
@@ -103,7 +124,7 @@ class InvestigationTools:
                 "query": expression,
                 "start": start.timestamp(),
                 "end": end.timestamp(),
-                "step": 15,
+                "step": args.step_seconds,
             },
         )
         response.raise_for_status()
@@ -115,6 +136,80 @@ class InvestigationTools:
             "query": expression,
             "series": payload.get("data", {}).get("result", []),
         }
+
+    def query_anomalies(self, args: AnomalyQuery) -> dict:
+        """Score recent Prometheus samples against pre-incident healthy samples."""
+        from opspilot.live_anomaly import score_live_series
+
+        metric_names = ("p95_latency", "p50_latency", "error_rate", "cpu_usage", "memory_bytes")
+        series = {
+            name: self.query_metrics(MetricQuery.model_validate({
+                "metric": name, "service": args.service,
+                "range_minutes": args.range_minutes, "step_seconds": 5,
+            }))["series"]
+            for name in metric_names
+        }
+        return score_live_series(args, series)
+
+    def query_traces(self, args: TraceQuery) -> dict:
+        """Return bounded Tempo trace and span summaries for one allow-listed service."""
+        source = f"tempo:traces:{args.service}"
+        if not self.tempo_url:
+            return {"source_id": source, "available": False, "traces": []}
+        now = datetime.now(UTC)
+        response = self.client.get(
+            self.tempo_url + "/api/search",
+            params={
+                "tags": f"service.name={args.service}",
+                "start": int((now - timedelta(minutes=args.range_minutes)).timestamp()),
+                "end": int(now.timestamp()),
+                "limit": 5,
+            },
+        )
+        response.raise_for_status()
+        traces = []
+        candidates = sorted(
+            response.json().get("traces", [])[:5],
+            key=lambda row: int(row.get("startTimeUnixNano", 0)), reverse=True,
+        )
+        for row in candidates[:3]:
+            trace_id = row.get("traceID", "")
+            if not isinstance(trace_id, str) or not (16 <= len(trace_id) <= 32):
+                continue
+            if any(char not in "0123456789abcdefABCDEF" for char in trace_id):
+                continue
+            detail = self.client.get(self.tempo_url + f"/api/traces/{trace_id}")
+            if detail.status_code == 404:
+                continue
+            detail.raise_for_status()
+            payload = detail.json()
+            spans: list[dict] = []
+            for batch in payload.get("batches", payload.get("resourceSpans", [])):
+                resource = batch.get("resource", {})
+                attributes = {item.get("key"): item.get("value", {}).get("stringValue")
+                              for item in resource.get("attributes", [])}
+                service = attributes.get("service.name", "unknown")
+                for scope in batch.get("scopeSpans", batch.get("instrumentationLibrarySpans", [])):
+                    for span in scope.get("spans", []):
+                        if len(spans) >= 20:
+                            break
+                        safe_keys = {
+                            "http.status_code", "http.response.status_code",
+                            "http.route", "error.type",
+                        }
+                        safe = {item.get("key"): item.get("value", {}).get("intValue")
+                                or item.get("value", {}).get("stringValue")
+                                for item in span.get("attributes", [])
+                                if item.get("key") in safe_keys}
+                        spans.append({"service": service, "name": str(span.get("name", ""))[:100],
+                                      "status": span.get("status", {}).get("code"),
+                                      "attributes": safe})
+            traces.append({
+                "source_id": f"tempo:trace:{trace_id}", "trace_id": trace_id,
+                "root_service": row.get("rootServiceName"),
+                "duration_ms": row.get("durationMs"), "spans": spans,
+            })
+        return {"source_id": source, "available": True, "traces": traces}
 
     def query_logs(self, args: LogQuery) -> dict:
         if not self.loki_url:

@@ -1,0 +1,1860 @@
+{
+  "backend": "ollama",
+  "model": "qwen2.5:0.5b",
+  "model_digest": "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+  "scope": "authored context fixtures; no live fault injection in this harness run",
+  "single_shot_rag": {
+    "scenario_count": 8,
+    "successful_scenarios": 8,
+    "root_cause_accuracy_at_1": 0.25,
+    "root_cause_accuracy_at_3": 0.5,
+    "false_alarm_abstention": 0.0,
+    "runbook_recall_at_3": 0.5,
+    "citation_id_validity_not_precision": 0.7812,
+    "citation_semantic_precision": null,
+    "median_time_to_first_summary_seconds": 1.1495,
+    "mean_tool_calls_per_scenario": 1.0,
+    "mean_input_tokens_per_scenario": 1076.0,
+    "mean_output_tokens_per_scenario": 182.0,
+    "failed_scenarios": 0,
+    "cost_usd_per_incident": null
+  },
+  "agent": {
+    "scenario_count": 8,
+    "successful_scenarios": 8,
+    "root_cause_accuracy_at_1": 0.25,
+    "root_cause_accuracy_at_3": 0.5,
+    "false_alarm_abstention": 0.0,
+    "runbook_recall_at_3": 1.0,
+    "citation_id_validity_not_precision": 1.0,
+    "citation_semantic_precision": null,
+    "median_time_to_first_summary_seconds": 3.2937,
+    "mean_tool_calls_per_scenario": 9.0,
+    "mean_input_tokens_per_scenario": 3313.375,
+    "mean_output_tokens_per_scenario": 492.75,
+    "failed_scenarios": 0,
+    "cost_usd_per_incident": null
+  },
+  "rows": {
+    "single_shot_rag": [
+      {
+        "id": "backup_failure_baseline",
+        "variant": "baseline",
+        "root_at_1": false,
+        "root_at_3": false,
+        "false_alarm_abstained": null,
+        "runbook_recall_at_3": 0.0,
+        "citation_id_validity": 0.25,
+        "tool_calls": 1,
+        "time_to_first_summary_seconds": 1.5193050419984502,
+        "input_tokens": 1084,
+        "output_tokens": 226,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "backup_failure_false_alarm",
+        "variant": "false_alarm",
+        "root_at_1": null,
+        "root_at_3": null,
+        "false_alarm_abstained": false,
+        "runbook_recall_at_3": null,
+        "citation_id_validity": 0.0,
+        "tool_calls": 1,
+        "time_to_first_summary_seconds": 1.0921461249963613,
+        "input_tokens": 1094,
+        "output_tokens": 155,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "bad_deploy_baseline",
+        "variant": "baseline",
+        "root_at_1": false,
+        "root_at_3": false,
+        "false_alarm_abstained": null,
+        "runbook_recall_at_3": 1.0,
+        "citation_id_validity": 1.0,
+        "tool_calls": 1,
+        "time_to_first_summary_seconds": 1.1345780420015217,
+        "input_tokens": 1068,
+        "output_tokens": 163,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "bad_deploy_false_alarm",
+        "variant": "false_alarm",
+        "root_at_1": null,
+        "root_at_3": null,
+        "false_alarm_abstained": false,
+        "runbook_recall_at_3": null,
+        "citation_id_validity": 1.0,
+        "tool_calls": 1,
+        "time_to_first_summary_seconds": 1.1636212500015972,
+        "input_tokens": 1078,
+        "output_tokens": 170,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "dependency_down_baseline",
+        "variant": "baseline",
+        "root_at_1": false,
+        "root_at_3": true,
+        "false_alarm_abstained": null,
+        "runbook_recall_at_3": 1.0,
+        "citation_id_validity": 1.0,
+        "tool_calls": 1,
+        "time_to_first_summary_seconds": 1.1354572909986018,
+        "input_tokens": 1054,
+        "output_tokens": 157,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "dependency_down_false_alarm",
+        "variant": "false_alarm",
+        "root_at_1": null,
+        "root_at_3": null,
+        "false_alarm_abstained": false,
+        "runbook_recall_at_3": null,
+        "citation_id_validity": 1.0,
+        "tool_calls": 1,
+        "time_to_first_summary_seconds": 1.1159916660035378,
+        "input_tokens": 1064,
+        "output_tokens": 155,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "payment_errors_baseline",
+        "variant": "baseline",
+        "root_at_1": true,
+        "root_at_3": true,
+        "false_alarm_abstained": null,
+        "runbook_recall_at_3": 0.0,
+        "citation_id_validity": 1.0,
+        "tool_calls": 1,
+        "time_to_first_summary_seconds": 1.4670982500028913,
+        "input_tokens": 1078,
+        "output_tokens": 217,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "payment_errors_false_alarm",
+        "variant": "false_alarm",
+        "root_at_1": null,
+        "root_at_3": null,
+        "false_alarm_abstained": false,
+        "runbook_recall_at_3": null,
+        "citation_id_validity": 1.0,
+        "tool_calls": 1,
+        "time_to_first_summary_seconds": 1.4258885830058716,
+        "input_tokens": 1088,
+        "output_tokens": 213,
+        "failed": false,
+        "error_type": null
+      }
+    ],
+    "agent": [
+      {
+        "id": "backup_failure_baseline",
+        "variant": "baseline",
+        "root_at_1": true,
+        "root_at_3": true,
+        "false_alarm_abstained": null,
+        "runbook_recall_at_3": 1.0,
+        "citation_id_validity": 1.0,
+        "tool_calls": 9,
+        "time_to_first_summary_seconds": 2.5917453750007553,
+        "input_tokens": 2763,
+        "output_tokens": 369,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "backup_failure_false_alarm",
+        "variant": "false_alarm",
+        "root_at_1": null,
+        "root_at_3": null,
+        "false_alarm_abstained": false,
+        "runbook_recall_at_3": null,
+        "citation_id_validity": 1.0,
+        "tool_calls": 9,
+        "time_to_first_summary_seconds": 4.2399751669945545,
+        "input_tokens": 3978,
+        "output_tokens": 614,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "bad_deploy_baseline",
+        "variant": "baseline",
+        "root_at_1": false,
+        "root_at_3": true,
+        "false_alarm_abstained": null,
+        "runbook_recall_at_3": 1.0,
+        "citation_id_validity": 1.0,
+        "tool_calls": 9,
+        "time_to_first_summary_seconds": 2.2543051250031567,
+        "input_tokens": 2673,
+        "output_tokens": 321,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "bad_deploy_false_alarm",
+        "variant": "false_alarm",
+        "root_at_1": null,
+        "root_at_3": null,
+        "false_alarm_abstained": false,
+        "runbook_recall_at_3": null,
+        "citation_id_validity": 1.0,
+        "tool_calls": 9,
+        "time_to_first_summary_seconds": 2.2088421669977834,
+        "input_tokens": 2691,
+        "output_tokens": 329,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "dependency_down_baseline",
+        "variant": "baseline",
+        "root_at_1": false,
+        "root_at_3": false,
+        "false_alarm_abstained": null,
+        "runbook_recall_at_3": 1.0,
+        "citation_id_validity": 1.0,
+        "tool_calls": 9,
+        "time_to_first_summary_seconds": 2.3929277499992168,
+        "input_tokens": 2592,
+        "output_tokens": 338,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "dependency_down_false_alarm",
+        "variant": "false_alarm",
+        "root_at_1": null,
+        "root_at_3": null,
+        "false_alarm_abstained": false,
+        "runbook_recall_at_3": null,
+        "citation_id_validity": 1.0,
+        "tool_calls": 9,
+        "time_to_first_summary_seconds": 4.999811666995811,
+        "input_tokens": 4055,
+        "output_tokens": 769,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "payment_errors_baseline",
+        "variant": "baseline",
+        "root_at_1": false,
+        "root_at_3": false,
+        "false_alarm_abstained": null,
+        "runbook_recall_at_3": 1.0,
+        "citation_id_validity": 1.0,
+        "tool_calls": 9,
+        "time_to_first_summary_seconds": 4.169698334000714,
+        "input_tokens": 3826,
+        "output_tokens": 605,
+        "failed": false,
+        "error_type": null
+      },
+      {
+        "id": "payment_errors_false_alarm",
+        "variant": "false_alarm",
+        "root_at_1": null,
+        "root_at_3": null,
+        "false_alarm_abstained": false,
+        "runbook_recall_at_3": null,
+        "citation_id_validity": 1.0,
+        "tool_calls": 9,
+        "time_to_first_summary_seconds": 3.995581916999072,
+        "input_tokens": 3929,
+        "output_tokens": 597,
+        "failed": false,
+        "error_type": null
+      }
+    ]
+  },
+  "outputs": {
+    "backup_failure_baseline": {
+      "agent": {
+        "hypotheses": [
+          {
+            "text": "The backup job failed due to a transient scrape gap or short traffic burst.",
+            "source_ids": [
+              "RB-07",
+              "RB-08"
+            ],
+            "confidence": null,
+            "cause_id": "backup_failure"
+          },
+          {
+            "text": "The backup job failed due to a client offline, repository unreachable, or authentication or policy error.",
+            "source_ids": [
+              "RB-07",
+              "RB-08"
+            ],
+            "confidence": null,
+            "cause_id": "backup_failure"
+          },
+          {
+            "text": "The backup job failed due to a disk free metric at zero or write failure.",
+            "source_ids": [
+              "RB-07",
+              "RB-08"
+            ],
+            "confidence": null,
+            "cause_id": "disk_full"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "The backup job failed due to a transient scrape gap or short traffic burst.",
+            "source_ids": [
+              "RB-07",
+              "RB-08"
+            ],
+            "confidence": null,
+            "cause_id": "backup_failure"
+          },
+          {
+            "text": "The backup job failed due to a client offline, repository unreachable, or authentication or policy error.",
+            "source_ids": [
+              "RB-07",
+              "RB-08"
+            ],
+            "confidence": null,
+            "cause_id": "backup_failure"
+          },
+          {
+            "text": "The backup job failed due to a disk free metric at zero or write failure.",
+            "source_ids": [
+              "RB-07",
+              "RB-08"
+            ],
+            "confidence": null,
+            "cause_id": "disk_full"
+          }
+        ],
+        "context": {
+          "error_rate": {
+            "source_id": "fixture:metric:error_rate:backups",
+            "observation": {
+              "signal": "scheduled backup job failed",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "p95_latency": {
+            "source_id": "fixture:metric:p95_latency:backups",
+            "observation": {
+              "signal": "scheduled backup job failed",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "logs": {
+            "source_id": "fixture:log:backups",
+            "available": true,
+            "entries": [
+              "scheduled backup job failed"
+            ]
+          },
+          "anomalies": {
+            "source_id": "fixture:anomaly:backups",
+            "available": false,
+            "reason": "Fixture has no pre-incident Prometheus series"
+          },
+          "traces": {
+            "source_id": "fixture:tempo:backups",
+            "available": false,
+            "traces": []
+          },
+          "deploys": {
+            "source_id": "fixture:deploys:backups",
+            "deploys": []
+          },
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-07",
+                "body": "---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-08",
+                "body": "---\nid: RB-08\nservice: backups\nsymptoms: Disk free metric at zero or write failure\n---\n# Backup capacity exhausted\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Disk free metric at zero or write failure. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Backup repository capacity exhausted. Check free space and retention; identify safe expired snapshots; ask storage owner before deletion; extend capacity through approved change. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Free space and a test backup write remain healthy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          },
+          "incidents": {
+            "source_id": "fixture:incidents",
+            "results": []
+          },
+          "backups": {
+            "source_id": "fixture:backups",
+            "jobs": [
+              {
+                "id": 1,
+                "status": "failed",
+                "error_code": "SYNTHETIC"
+              }
+            ]
+          }
+        },
+        "error": null
+      },
+      "single_shot_rag": {
+        "hypotheses": [
+          {
+            "text": "The current observation of a transient scrape gap or short traffic burst is a strong indicator of a transient scrape gap or short traffic burst.",
+            "source_ids": [
+              "alert:fixture-backup_failure-baseline",
+              "alert:backup_job_status_failed"
+            ],
+            "confidence": ">95%",
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "The current observation of a client offline, repository unreachable, authentication or policy error is a strong indicator of a client offline, repository unreachable, authentication or policy error.",
+            "source_ids": [
+              "alert:backup_job_status_failed"
+            ],
+            "confidence": ">95%",
+            "cause_id": "bad_deploy"
+          },
+          {
+            "text": "The current observation of a disk free metric at zero or write failure is a strong indicator of a disk free metric at zero or write failure.",
+            "source_ids": [
+              "alert:backup_job_status_failed"
+            ],
+            "confidence": ">95%",
+            "cause_id": "disk_full"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "The current observation of a transient scrape gap or short traffic burst is a strong indicator of a transient scrape gap or short traffic burst.",
+            "source_ids": [
+              "alert:fixture-backup_failure-baseline",
+              "alert:backup_job_status_failed"
+            ],
+            "confidence": ">95%",
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "The current observation of a client offline, repository unreachable, authentication or policy error is a strong indicator of a client offline, repository unreachable, authentication or policy error.",
+            "source_ids": [
+              "alert:backup_job_status_failed"
+            ],
+            "confidence": ">95%",
+            "cause_id": "bad_deploy"
+          },
+          {
+            "text": "The current observation of a disk free metric at zero or write failure is a strong indicator of a disk free metric at zero or write failure.",
+            "source_ids": [
+              "alert:backup_job_status_failed"
+            ],
+            "confidence": ">95%",
+            "cause_id": "disk_full"
+          }
+        ],
+        "context": {
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-07",
+                "body": "---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-08",
+                "body": "---\nid: RB-08\nservice: backups\nsymptoms: Disk free metric at zero or write failure\n---\n# Backup capacity exhausted\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Disk free metric at zero or write failure. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Backup repository capacity exhausted. Check free space and retention; identify safe expired snapshots; ask storage owner before deletion; extend capacity through approved change. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Free space and a test backup write remain healthy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          }
+        },
+        "error": null
+      }
+    },
+    "backup_failure_false_alarm": {
+      "agent": {
+        "hypotheses": [
+          {
+            "text": "Hypothesis unavailable because supplied citations were invalid",
+            "source_ids": [
+              "alert:fixture-backup_failure-false_alarm"
+            ],
+            "confidence": "unknown",
+            "fallback": true
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Transient signal resembling scheduled backup job failed; recovered before sustained impact",
+            "source_ids": [
+              "alert:fixture-backup_failure-false_alarm"
+            ],
+            "confidence": "unknown",
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Transient signal resembling scheduled backup job failed; recovered before sustained impact",
+            "source_ids": [
+              "alert:fixture-backup_failure-false_alarm"
+            ],
+            "confidence": "unknown",
+            "cause_id": "cpu_saturation"
+          },
+          {
+            "text": "Transient signal resembling scheduled backup job failed; recovered before sustained impact",
+            "source_ids": [
+              "alert:fixture-backup_failure-false_alarm"
+            ],
+            "confidence": "unknown",
+            "cause_id": "memory_leak"
+          }
+        ],
+        "context": {
+          "error_rate": {
+            "source_id": "fixture:metric:error_rate:backups",
+            "observation": {
+              "signal": "Transient signal resembling scheduled backup job failed; recovered before sustained impact",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "p95_latency": {
+            "source_id": "fixture:metric:p95_latency:backups",
+            "observation": {
+              "signal": "Transient signal resembling scheduled backup job failed; recovered before sustained impact",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "logs": {
+            "source_id": "fixture:log:backups",
+            "available": true,
+            "entries": [
+              "Transient signal resembling scheduled backup job failed; recovered before sustained impact"
+            ]
+          },
+          "anomalies": {
+            "source_id": "fixture:anomaly:backups",
+            "available": false,
+            "reason": "Fixture has no pre-incident Prometheus series"
+          },
+          "traces": {
+            "source_id": "fixture:tempo:backups",
+            "available": false,
+            "traces": []
+          },
+          "deploys": {
+            "source_id": "fixture:deploys:backups",
+            "deploys": []
+          },
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-07",
+                "body": "---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-08",
+                "body": "---\nid: RB-08\nservice: backups\nsymptoms: Disk free metric at zero or write failure\n---\n# Backup capacity exhausted\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Disk free metric at zero or write failure. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Backup repository capacity exhausted. Check free space and retention; identify safe expired snapshots; ask storage owner before deletion; extend capacity through approved change. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Free space and a test backup write remain healthy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          },
+          "incidents": {
+            "source_id": "fixture:incidents",
+            "results": []
+          },
+          "backups": {
+            "source_id": "fixture:backups",
+            "jobs": []
+          }
+        },
+        "error": null
+      },
+      "single_shot_rag": {
+        "hypotheses": [
+          {
+            "text": "Payment errors are a common cause of transient signal anomalies.",
+            "source_ids": [
+              "alert:payment-errors"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Memory leaks are a common cause of transient signal anomalies.",
+            "source_ids": [
+              "alert:memory_leak"
+            ],
+            "confidence": null,
+            "cause_id": "memory_leak"
+          },
+          {
+            "text": "CPU saturation is a common cause of transient signal anomalies.",
+            "source_ids": [
+              "alert:cpu_saturation"
+            ],
+            "confidence": null,
+            "cause_id": "cpu_saturation"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Payment errors are a common cause of transient signal anomalies.",
+            "source_ids": [
+              "alert:payment-errors"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Memory leaks are a common cause of transient signal anomalies.",
+            "source_ids": [
+              "alert:memory_leak"
+            ],
+            "confidence": null,
+            "cause_id": "memory_leak"
+          },
+          {
+            "text": "CPU saturation is a common cause of transient signal anomalies.",
+            "source_ids": [
+              "alert:cpu_saturation"
+            ],
+            "confidence": null,
+            "cause_id": "cpu_saturation"
+          }
+        ],
+        "context": {
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-07",
+                "body": "---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-08",
+                "body": "---\nid: RB-08\nservice: backups\nsymptoms: Disk free metric at zero or write failure\n---\n# Backup capacity exhausted\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Disk free metric at zero or write failure. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Backup repository capacity exhausted. Check free space and retention; identify safe expired snapshots; ask storage owner before deletion; extend capacity through approved change. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Free space and a test backup write remain healthy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          }
+        },
+        "error": null
+      }
+    },
+    "bad_deploy_baseline": {
+      "agent": {
+        "hypotheses": [
+          {
+            "text": "Payment service releases are often accompanied by transient errors.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "New payment versions often introduce regression issues.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Client connectivity issues can cause temporary errors.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "bad_deploy"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Payment service releases are often accompanied by transient errors.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "New payment versions often introduce regression issues.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Client connectivity issues can cause temporary errors.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "bad_deploy"
+          }
+        ],
+        "context": {
+          "error_rate": {
+            "source_id": "fixture:metric:error_rate:payments",
+            "observation": {
+              "signal": "payment failures began after a release",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "p95_latency": {
+            "source_id": "fixture:metric:p95_latency:payments",
+            "observation": {
+              "signal": "payment failures began after a release",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "logs": {
+            "source_id": "fixture:log:payments",
+            "available": true,
+            "entries": [
+              "payment failures began after a release"
+            ]
+          },
+          "anomalies": {
+            "source_id": "fixture:anomaly:payments",
+            "available": false,
+            "reason": "Fixture has no pre-incident Prometheus series"
+          },
+          "traces": {
+            "source_id": "fixture:tempo:payments",
+            "available": false,
+            "traces": []
+          },
+          "deploys": {
+            "source_id": "fixture:deploys:payments",
+            "deploys": [
+              {
+                "source_id": "fixture:deploy:bad_deploy_baseline",
+                "status": "failed"
+              }
+            ]
+          },
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-06",
+                "body": "---\nid: RB-06\nservice: payments\nsymptoms: Errors begin shortly after a payment service release\n---\n# Payment rollback decision\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Errors begin shortly after a payment service release. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: New payment version introduced regression. Verify deploy timestamp against error onset; compare canary and stable instances; collect failing trace; draft a rollback request with owner sign-off. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. After approved rollback, errors drop and smoke payment passes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-07",
+                "body": "---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          },
+          "incidents": {
+            "source_id": "fixture:incidents",
+            "results": []
+          },
+          "backups": {
+            "source_id": "fixture:backups",
+            "jobs": []
+          }
+        },
+        "error": null
+      },
+      "single_shot_rag": {
+        "hypotheses": [
+          {
+            "text": "Payment service releases are often accompanied by transient errors.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Latency issues can cause transient errors.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "latency"
+          },
+          {
+            "text": "Memory leaks can lead to transient errors.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "memory_leak"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Payment service releases are often accompanied by transient errors.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Latency issues can cause transient errors.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "latency"
+          },
+          {
+            "text": "Memory leaks can lead to transient errors.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "memory_leak"
+          }
+        ],
+        "context": {
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-06",
+                "body": "---\nid: RB-06\nservice: payments\nsymptoms: Errors begin shortly after a payment service release\n---\n# Payment rollback decision\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Errors begin shortly after a payment service release. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: New payment version introduced regression. Verify deploy timestamp against error onset; compare canary and stable instances; collect failing trace; draft a rollback request with owner sign-off. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. After approved rollback, errors drop and smoke payment passes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-07",
+                "body": "---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          }
+        },
+        "error": null
+      }
+    },
+    "bad_deploy_false_alarm": {
+      "agent": {
+        "hypotheses": [
+          {
+            "text": "Payment service releases are often associated with transient signal anomalies.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Memory leaks can cause transient signal anomalies.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "memory_leak"
+          },
+          {
+            "text": "CPU saturation can lead to transient signal anomalies.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "cpu_saturation"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Transient signal anomalies can be caused by payment service releases.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Memory leaks can lead to transient signal anomalies.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "memory_leak"
+          },
+          {
+            "text": "CPU saturation can cause transient signal anomalies.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "cpu_saturation"
+          }
+        ],
+        "context": {
+          "error_rate": {
+            "source_id": "fixture:metric:error_rate:payments",
+            "observation": {
+              "signal": "Transient signal resembling payment failures began after a release; recovered before sustained impact",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "p95_latency": {
+            "source_id": "fixture:metric:p95_latency:payments",
+            "observation": {
+              "signal": "Transient signal resembling payment failures began after a release; recovered before sustained impact",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "logs": {
+            "source_id": "fixture:log:payments",
+            "available": true,
+            "entries": [
+              "Transient signal resembling payment failures began after a release; recovered before sustained impact"
+            ]
+          },
+          "anomalies": {
+            "source_id": "fixture:anomaly:payments",
+            "available": false,
+            "reason": "Fixture has no pre-incident Prometheus series"
+          },
+          "traces": {
+            "source_id": "fixture:tempo:payments",
+            "available": false,
+            "traces": []
+          },
+          "deploys": {
+            "source_id": "fixture:deploys:payments",
+            "deploys": []
+          },
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-06",
+                "body": "---\nid: RB-06\nservice: payments\nsymptoms: Errors begin shortly after a payment service release\n---\n# Payment rollback decision\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Errors begin shortly after a payment service release. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: New payment version introduced regression. Verify deploy timestamp against error onset; compare canary and stable instances; collect failing trace; draft a rollback request with owner sign-off. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. After approved rollback, errors drop and smoke payment passes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-07",
+                "body": "---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          },
+          "incidents": {
+            "source_id": "fixture:incidents",
+            "results": []
+          },
+          "backups": {
+            "source_id": "fixture:backups",
+            "jobs": []
+          }
+        },
+        "error": null
+      },
+      "single_shot_rag": {
+        "hypotheses": [
+          {
+            "text": "Payment service release caused transient signal with no evidence of a direct cause.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Low latency and high memory usage caused a temporary false alarm.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "latency"
+          },
+          {
+            "text": "Memory leak caused a false alarm.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "memory_leak"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Payment service release caused transient signal with no evidence of a direct cause.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Low latency and high memory usage caused a temporary false alarm.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "latency"
+          },
+          {
+            "text": "Memory leak caused a false alarm.",
+            "source_ids": [
+              "RB-06",
+              "RB-07"
+            ],
+            "confidence": null,
+            "cause_id": "memory_leak"
+          }
+        ],
+        "context": {
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-06",
+                "body": "---\nid: RB-06\nservice: payments\nsymptoms: Errors begin shortly after a payment service release\n---\n# Payment rollback decision\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Errors begin shortly after a payment service release. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: New payment version introduced regression. Verify deploy timestamp against error onset; compare canary and stable instances; collect failing trace; draft a rollback request with owner sign-off. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. After approved rollback, errors drop and smoke payment passes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-07",
+                "body": "---\nid: RB-07\nservice: backups\nsymptoms: Backup status failed and error code recorded\n---\n# Backup job failed\n\n## Signal and scope\nThis runbook applies to the local `backups` demo service. Symptoms: Backup status failed and error code recorded. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Client offline, repository unreachable, authentication or policy error. Read backup job error code and policy; verify client and destination reachability; rerun only after cause is fixed; preserve the previous valid restore point. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. A retry succeeds and restore-point age is within policy. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          }
+        },
+        "error": null
+      }
+    },
+    "dependency_down_baseline": {
+      "agent": {
+        "hypotheses": [
+          {
+            "text": "Payment dependency is not reachable or has a connection issue.",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Payment dependency is not reachable or has a connection issue.",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Payment dependency is not reachable or has a connection issue.",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Payment dependency is not reachable or has a connection issue.",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Payment dependency is not reachable or has a connection issue.",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Payment dependency is not reachable or has a connection issue.",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          }
+        ],
+        "context": {
+          "error_rate": {
+            "source_id": "fixture:metric:error_rate:payments",
+            "observation": {
+              "signal": "payments cannot reach its dependency",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "p95_latency": {
+            "source_id": "fixture:metric:p95_latency:payments",
+            "observation": {
+              "signal": "payments cannot reach its dependency",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "logs": {
+            "source_id": "fixture:log:payments",
+            "available": true,
+            "entries": [
+              "payments cannot reach its dependency"
+            ]
+          },
+          "anomalies": {
+            "source_id": "fixture:anomaly:payments",
+            "available": false,
+            "reason": "Fixture has no pre-incident Prometheus series"
+          },
+          "traces": {
+            "source_id": "fixture:tempo:payments",
+            "available": false,
+            "traces": []
+          },
+          "deploys": {
+            "source_id": "fixture:deploys:payments",
+            "deploys": []
+          },
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-05",
+                "body": "---\nid: RB-05\nservice: payments\nsymptoms: Connection refused or timeout from payment dependency\n---\n# Payment dependency unavailable\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Connection refused or timeout from payment dependency. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Dependency endpoint unavailable or connection pool exhausted. Check dependency health and DNS; inspect connection pool errors; keep retry budget bounded; notify dependency owner. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Synthetic payment request succeeds without retry storm. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-06",
+                "body": "---\nid: RB-06\nservice: payments\nsymptoms: Errors begin shortly after a payment service release\n---\n# Payment rollback decision\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Errors begin shortly after a payment service release. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: New payment version introduced regression. Verify deploy timestamp against error onset; compare canary and stable instances; collect failing trace; draft a rollback request with owner sign-off. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. After approved rollback, errors drop and smoke payment passes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          },
+          "incidents": {
+            "source_id": "fixture:incidents",
+            "results": []
+          },
+          "backups": {
+            "source_id": "fixture:backups",
+            "jobs": []
+          }
+        },
+        "error": null
+      },
+      "single_shot_rag": {
+        "hypotheses": [
+          {
+            "text": "Payment dependency unavailable",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Dependency endpoint unavailable or connection pool exhausted",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "dependency_down"
+          },
+          {
+            "text": "Transient scrape gap or short traffic burst",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "latency"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Payment dependency unavailable",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Dependency endpoint unavailable or connection pool exhausted",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "dependency_down"
+          },
+          {
+            "text": "Transient scrape gap or short traffic burst",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "latency"
+          }
+        ],
+        "context": {
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-05",
+                "body": "---\nid: RB-05\nservice: payments\nsymptoms: Connection refused or timeout from payment dependency\n---\n# Payment dependency unavailable\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Connection refused or timeout from payment dependency. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Dependency endpoint unavailable or connection pool exhausted. Check dependency health and DNS; inspect connection pool errors; keep retry budget bounded; notify dependency owner. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Synthetic payment request succeeds without retry storm. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-06",
+                "body": "---\nid: RB-06\nservice: payments\nsymptoms: Errors begin shortly after a payment service release\n---\n# Payment rollback decision\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Errors begin shortly after a payment service release. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: New payment version introduced regression. Verify deploy timestamp against error onset; compare canary and stable instances; collect failing trace; draft a rollback request with owner sign-off. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. After approved rollback, errors drop and smoke payment passes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          }
+        },
+        "error": null
+      }
+    },
+    "dependency_down_false_alarm": {
+      "agent": {
+        "hypotheses": [
+          {
+            "text": "Payment dependency is not reachable due to transient issues.",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Memory leak is causing the payment dependency to fail.",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "memory_leak"
+          },
+          {
+            "text": "CPU saturation is causing the payment dependency to fail.",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "cpu_saturation"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Recommendation unavailable because supplied citations were invalid",
+            "source_ids": [
+              "alert:fixture-dependency_down-false_alarm"
+            ],
+            "confidence": "unknown",
+            "fallback": true
+          }
+        ],
+        "context": {
+          "error_rate": {
+            "source_id": "fixture:metric:error_rate:payments",
+            "observation": {
+              "signal": "Transient signal resembling payments cannot reach its dependency; recovered before sustained impact",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "p95_latency": {
+            "source_id": "fixture:metric:p95_latency:payments",
+            "observation": {
+              "signal": "Transient signal resembling payments cannot reach its dependency; recovered before sustained impact",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "logs": {
+            "source_id": "fixture:log:payments",
+            "available": true,
+            "entries": [
+              "Transient signal resembling payments cannot reach its dependency; recovered before sustained impact"
+            ]
+          },
+          "anomalies": {
+            "source_id": "fixture:anomaly:payments",
+            "available": false,
+            "reason": "Fixture has no pre-incident Prometheus series"
+          },
+          "traces": {
+            "source_id": "fixture:tempo:payments",
+            "available": false,
+            "traces": []
+          },
+          "deploys": {
+            "source_id": "fixture:deploys:payments",
+            "deploys": []
+          },
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-05",
+                "body": "---\nid: RB-05\nservice: payments\nsymptoms: Connection refused or timeout from payment dependency\n---\n# Payment dependency unavailable\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Connection refused or timeout from payment dependency. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Dependency endpoint unavailable or connection pool exhausted. Check dependency health and DNS; inspect connection pool errors; keep retry budget bounded; notify dependency owner. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Synthetic payment request succeeds without retry storm. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-06",
+                "body": "---\nid: RB-06\nservice: payments\nsymptoms: Errors begin shortly after a payment service release\n---\n# Payment rollback decision\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Errors begin shortly after a payment service release. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: New payment version introduced regression. Verify deploy timestamp against error onset; compare canary and stable instances; collect failing trace; draft a rollback request with owner sign-off. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. After approved rollback, errors drop and smoke payment passes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          },
+          "incidents": {
+            "source_id": "fixture:incidents",
+            "results": []
+          },
+          "backups": {
+            "source_id": "fixture:backups",
+            "jobs": []
+          }
+        },
+        "error": null
+      },
+      "single_shot_rag": {
+        "hypotheses": [
+          {
+            "text": "Payment dependency unavailable",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Dependency endpoint unavailable or connection pool exhausted",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "dependency_down"
+          },
+          {
+            "text": "New payment version introduced regression",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "bad_deploy"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Payment dependency unavailable",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Dependency endpoint unavailable or connection pool exhausted",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "dependency_down"
+          },
+          {
+            "text": "New payment version introduced regression",
+            "source_ids": [
+              "RB-05",
+              "RB-06"
+            ],
+            "confidence": null,
+            "cause_id": "bad_deploy"
+          }
+        ],
+        "context": {
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-05",
+                "body": "---\nid: RB-05\nservice: payments\nsymptoms: Connection refused or timeout from payment dependency\n---\n# Payment dependency unavailable\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Connection refused or timeout from payment dependency. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Dependency endpoint unavailable or connection pool exhausted. Check dependency health and DNS; inspect connection pool errors; keep retry budget bounded; notify dependency owner. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Synthetic payment request succeeds without retry storm. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-06",
+                "body": "---\nid: RB-06\nservice: payments\nsymptoms: Errors begin shortly after a payment service release\n---\n# Payment rollback decision\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: Errors begin shortly after a payment service release. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: New payment version introduced regression. Verify deploy timestamp against error onset; compare canary and stable instances; collect failing trace; draft a rollback request with owner sign-off. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. After approved rollback, errors drop and smoke payment passes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          }
+        },
+        "error": null
+      }
+    },
+    "payment_errors_baseline": {
+      "agent": {
+        "hypotheses": [
+          {
+            "text": "Hypothesis unavailable because supplied citations were invalid",
+            "source_ids": [
+              "alert:fixture-payment_errors-baseline"
+            ],
+            "confidence": "unknown",
+            "fallback": true
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Payment handler returns exceptions or upstream processor rejects requests",
+            "source_ids": [
+              "RB-01",
+              "RB-02"
+            ],
+            "confidence": "high",
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Slow downstream requests or an overloaded gateway worker",
+            "source_ids": [
+              "alert:fixture-payment_errors-baseline"
+            ],
+            "confidence": "high",
+            "cause_id": "cpu_saturation"
+          },
+          {
+            "text": "Gateway p95 request latency above two seconds with low throughput",
+            "source_ids": [
+              "alert:fixture-payment_errors-baseline"
+            ],
+            "confidence": "high",
+            "cause_id": "latency"
+          }
+        ],
+        "context": {
+          "error_rate": {
+            "source_id": "fixture:metric:error_rate:payments",
+            "observation": {
+              "signal": "payment requests fail with 5xx responses",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "p95_latency": {
+            "source_id": "fixture:metric:p95_latency:payments",
+            "observation": {
+              "signal": "payment requests fail with 5xx responses",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "logs": {
+            "source_id": "fixture:log:payments",
+            "available": true,
+            "entries": [
+              "payment requests fail with 5xx responses"
+            ]
+          },
+          "anomalies": {
+            "source_id": "fixture:anomaly:payments",
+            "available": false,
+            "reason": "Fixture has no pre-incident Prometheus series"
+          },
+          "traces": {
+            "source_id": "fixture:tempo:payments",
+            "available": false,
+            "traces": []
+          },
+          "deploys": {
+            "source_id": "fixture:deploys:payments",
+            "deploys": []
+          },
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-01",
+                "body": "---\nid: RB-01\nservice: payments\nsymptoms: HTTP 5xx, rejected charges and failed checkout\n---\n# Payment error spike\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: HTTP 5xx, rejected charges and failed checkout. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Payment handler returns exceptions or upstream processor rejects requests. Inspect payment error ratio and gateway 5xx; compare processor responses; pause retries if they amplify errors; escalate to payment owner. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Error ratio returns below baseline and test checkout succeeds. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-02",
+                "body": "---\nid: RB-02\nservice: gateway\nsymptoms: p95 request latency above two seconds with low throughput\n---\n# Gateway latency\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: p95 request latency above two seconds with low throughput. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Slow downstream requests or an overloaded gateway worker. Inspect gateway p50 and p95; compare payment latency; sample traces; limit expensive retries; ask owner before changing capacity. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. p95 falls below alert threshold for ten minutes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          },
+          "incidents": {
+            "source_id": "fixture:incidents",
+            "results": []
+          },
+          "backups": {
+            "source_id": "fixture:backups",
+            "jobs": []
+          }
+        },
+        "error": null
+      },
+      "single_shot_rag": {
+        "hypotheses": [
+          {
+            "text": "Payment requests fail with 5xx responses, which is a common symptom of a payment error.",
+            "source_ids": [
+              "alert:fixture-payment_errors-baseline",
+              "alert:fixture-payment_errors-baseline"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "HTTP 5xx responses indicate a payment error, which is a common cause of payment issues.",
+            "source_ids": [
+              "alert:fixture-payment_errors-baseline",
+              "alert:fixture-payment_errors-baseline"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Latency issues, such as p95 request latency above two seconds with low throughput, are common causes of payment errors.",
+            "source_ids": [
+              "alert:fixture-payment_errors-baseline",
+              "alert:fixture-payment_errors-baseline"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Payment requests fail with 5xx responses, which is a common symptom of a payment error.",
+            "source_ids": [
+              "alert:fixture-payment_errors-baseline",
+              "alert:fixture-payment_errors-baseline"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "HTTP 5xx responses indicate a payment error, which is a common cause of payment issues.",
+            "source_ids": [
+              "alert:fixture-payment_errors-baseline",
+              "alert:fixture-payment_errors-baseline"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Latency issues, such as p95 request latency above two seconds with low throughput, are common causes of payment errors.",
+            "source_ids": [
+              "alert:fixture-payment_errors-baseline",
+              "alert:fixture-payment_errors-baseline"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          }
+        ],
+        "context": {
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-01",
+                "body": "---\nid: RB-01\nservice: payments\nsymptoms: HTTP 5xx, rejected charges and failed checkout\n---\n# Payment error spike\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: HTTP 5xx, rejected charges and failed checkout. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Payment handler returns exceptions or upstream processor rejects requests. Inspect payment error ratio and gateway 5xx; compare processor responses; pause retries if they amplify errors; escalate to payment owner. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Error ratio returns below baseline and test checkout succeeds. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-02",
+                "body": "---\nid: RB-02\nservice: gateway\nsymptoms: p95 request latency above two seconds with low throughput\n---\n# Gateway latency\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: p95 request latency above two seconds with low throughput. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Slow downstream requests or an overloaded gateway worker. Inspect gateway p50 and p95; compare payment latency; sample traces; limit expensive retries; ask owner before changing capacity. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. p95 falls below alert threshold for ten minutes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          }
+        },
+        "error": null
+      }
+    },
+    "payment_errors_false_alarm": {
+      "agent": {
+        "hypotheses": [
+          {
+            "text": "Hypothesis unavailable because supplied citations were invalid",
+            "source_ids": [
+              "alert:fixture-payment_errors-false_alarm"
+            ],
+            "confidence": "unknown",
+            "fallback": true
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Transient signal resembling payment requests fail with 5xx responses; recovered before sustained impact",
+            "source_ids": [
+              "alert:fixture-payment_errors-false_alarm"
+            ],
+            "confidence": "high",
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Transient signal resembling payment requests fail with 5xx responses; recovered before sustained impact",
+            "source_ids": [
+              "alert:fixture-payment_errors-false_alarm"
+            ],
+            "confidence": "high",
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Transient signal resembling payment requests fail with 5xx responses; recovered before sustained impact",
+            "source_ids": [
+              "alert:fixture-payment_errors-false_alarm"
+            ],
+            "confidence": "high",
+            "cause_id": "payment_errors"
+          }
+        ],
+        "context": {
+          "error_rate": {
+            "source_id": "fixture:metric:error_rate:payments",
+            "observation": {
+              "signal": "Transient signal resembling payment requests fail with 5xx responses; recovered before sustained impact",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "p95_latency": {
+            "source_id": "fixture:metric:p95_latency:payments",
+            "observation": {
+              "signal": "Transient signal resembling payment requests fail with 5xx responses; recovered before sustained impact",
+              "noise": "",
+              "incomplete": false
+            }
+          },
+          "logs": {
+            "source_id": "fixture:log:payments",
+            "available": true,
+            "entries": [
+              "Transient signal resembling payment requests fail with 5xx responses; recovered before sustained impact"
+            ]
+          },
+          "anomalies": {
+            "source_id": "fixture:anomaly:payments",
+            "available": false,
+            "reason": "Fixture has no pre-incident Prometheus series"
+          },
+          "traces": {
+            "source_id": "fixture:tempo:payments",
+            "available": false,
+            "traces": []
+          },
+          "deploys": {
+            "source_id": "fixture:deploys:payments",
+            "deploys": []
+          },
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-01",
+                "body": "---\nid: RB-01\nservice: payments\nsymptoms: HTTP 5xx, rejected charges and failed checkout\n---\n# Payment error spike\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: HTTP 5xx, rejected charges and failed checkout. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Payment handler returns exceptions or upstream processor rejects requests. Inspect payment error ratio and gateway 5xx; compare processor responses; pause retries if they amplify errors; escalate to payment owner. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Error ratio returns below baseline and test checkout succeeds. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-02",
+                "body": "---\nid: RB-02\nservice: gateway\nsymptoms: p95 request latency above two seconds with low throughput\n---\n# Gateway latency\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: p95 request latency above two seconds with low throughput. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Slow downstream requests or an overloaded gateway worker. Inspect gateway p50 and p95; compare payment latency; sample traces; limit expensive retries; ask owner before changing capacity. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. p95 falls below alert threshold for ten minutes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          },
+          "incidents": {
+            "source_id": "fixture:incidents",
+            "results": []
+          },
+          "backups": {
+            "source_id": "fixture:backups",
+            "jobs": []
+          }
+        },
+        "error": null
+      },
+      "single_shot_rag": {
+        "hypotheses": [
+          {
+            "text": "Payment requests fail with 5xx responses, indicating a transient signal.",
+            "source_ids": [
+              "alert:fixture-payment_errors-false_alarm",
+              "alert:fixture-payment_errors-false_alarm"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Low p95 request latency with low throughput, suggesting a potential issue with the gateway.",
+            "source_ids": [
+              "alert:fixture-payment_errors-false_alarm",
+              "alert:fixture-payment_errors-false_alarm"
+            ],
+            "confidence": null,
+            "cause_id": "latency"
+          },
+          {
+            "text": "Gateway p95 request latency above two seconds with low throughput, indicating a potential issue with the gateway.",
+            "source_ids": [
+              "alert:fixture-payment_errors-false_alarm",
+              "alert:fixture-payment_errors-false_alarm"
+            ],
+            "confidence": null,
+            "cause_id": "latency"
+          }
+        ],
+        "recommendations": [
+          {
+            "text": "Payment requests fail with 5xx responses, indicating a transient signal.",
+            "source_ids": [
+              "alert:fixture-payment_errors-false_alarm",
+              "alert:fixture-payment_errors-false_alarm"
+            ],
+            "confidence": null,
+            "cause_id": "payment_errors"
+          },
+          {
+            "text": "Low p95 request latency with low throughput, suggesting a potential issue with the gateway.",
+            "source_ids": [
+              "alert:fixture-payment_errors-false_alarm",
+              "alert:fixture-payment_errors-false_alarm"
+            ],
+            "confidence": null,
+            "cause_id": "latency"
+          },
+          {
+            "text": "Gateway p95 request latency above two seconds with low throughput, indicating a potential issue with the gateway.",
+            "source_ids": [
+              "alert:fixture-payment_errors-false_alarm",
+              "alert:fixture-payment_errors-false_alarm"
+            ],
+            "confidence": null,
+            "cause_id": "latency"
+          }
+        ],
+        "context": {
+          "runbooks": {
+            "source_id": "fixture:runbooks",
+            "results": [
+              {
+                "source_id": "RB-12",
+                "body": "---\nid: RB-12\nservice: gateway\nsymptoms: One brief metric excursion without user impact\n---\n# Noisy false alarm\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: One brief metric excursion without user impact. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Transient scrape gap or short traffic burst. Verify metric continuity and request impact; check alert duration; avoid incident escalation until corroborated; record reason for suppression. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Signal returns without recurrent impact. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-01",
+                "body": "---\nid: RB-01\nservice: payments\nsymptoms: HTTP 5xx, rejected charges and failed checkout\n---\n# Payment error spike\n\n## Signal and scope\nThis runbook applies to the local `payments` demo service. Symptoms: HTTP 5xx, rejected charges and failed checkout. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Payment handler returns exceptions or upstream processor rejects requests. Inspect payment error ratio and gateway 5xx; compare processor responses; pause retries if they amplify errors; escalate to payment owner. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. Error ratio returns below baseline and test checkout succeeds. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              },
+              {
+                "source_id": "RB-02",
+                "body": "---\nid: RB-02\nservice: gateway\nsymptoms: p95 request latency above two seconds with low throughput\n---\n# Gateway latency\n\n## Signal and scope\nThis runbook applies to the local `gateway` demo service. Symptoms: p95 request latency above two seconds with low throughput. Record the alert start time, affected requests, current release, and related services before suggesting a cause. Treat this document as guidance, not authorization to change a live system.\n\n## Investigation\nLikely cause to test: Slow downstream requests or an overloaded gateway worker. Inspect gateway p50 and p95; compare payment latency; sample traces; limit expensive retries; ask owner before changing capacity. Link each observation to its Prometheus query, trace, backup job, or incident number. Compare the signal against a healthy interval; a coincident deploy alone does not prove causation.\n\n## Recovery and verification\nAny state-changing step requires a human-approved change request. p95 falls below alert threshold for ten minutes. Record the exact time, owner, and evidence after verification. If the expected recovery does not occur, reopen the hypothesis and escalate.\n"
+              }
+            ]
+          }
+        },
+        "error": null
+      }
+    }
+  },
+  "false_alarm_rule": "no cause_id in hypotheses or recommendations and no runbook citation in recommendations"
+}

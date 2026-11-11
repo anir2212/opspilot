@@ -16,7 +16,7 @@ flowchart LR
   OTEL --> TEMPO[Tempo]
   OTEL --> LOKI[Loki]
   OTEL --> FILE[Trace export file]
-  API -->|tool reads| PROM & LOKI
+  API -->|tool reads| PROM & LOKI & TEMPO
   API -->|SQL/checkpoints| PG[(PostgreSQL + pgvector)]
   API -->|opt-in delivery| CHAT[Slack / Teams]
   WEB[React console] --> API
@@ -29,8 +29,8 @@ flowchart LR
 1. The injector asks one demo app to activate a fault for a bounded duration, then appends the accepted event to `eval/fault_log.jsonl`. `/work` generates observable request outcomes and durations. Resource labels simulate pressure; they do not exhaust the host.
 2. Prometheus scrapes counters, histograms, and fault gauges every five seconds. Alert rules fire into Alertmanager, which posts to `/api/alertmanager/webhook`. The direct fault gauges validate routing but are excluded from the anomaly benchmark.
 3. `AlertEvent.fingerprint` deduplicates retried webhooks. A new firing transition starts one LangGraph thread. PostgreSQL checkpoint rows preserve that thread across API restarts.
-4. The graph executes `triage → gather_context → hypothesise → recommend → draft_outputs`. Context gathering calls seven validated tools concurrently. Its runbook and similar-incident query combines the validated service with the alert's symptom description, summary and name, capped at 500 characters; it does not use a known fault label. PromQL and LogQL are selected from fixed templates, so model text cannot run arbitrary queries. Search uses BM25, BGE embeddings in pgvector, RRF, and optional cross-encoder reranking. The agent runbook tool uses runbook-filtered hybrid RRF; the full-corpus reranker benchmark is a separate path.
-5. The backend returns structured claims. A source-ID check rejects IDs missing from gathered evidence and retries once. This is an existence check, **not** proof that the text is supported. The default backend is a deterministic fixture; local Ollama is opt-in.
+4. The graph executes `triage → gather_context → hypothesise → recommend → draft_outputs`. Context gathering calls nine validated tools concurrently: seven prior evidence queries plus bounded anomaly scoring and Tempo trace summaries. The detector uses pre-`startsAt` Prometheus p50/p95, error fraction, CPU and memory samples; it needs 20 healthy points and never uses the direct injected-fault gauge. Its baseline is unavailable if there is no trustworthy alert start or sufficient data. Tempo search is restricted to an allow-listed service and returns at most three traces with at most 20 safe span summaries each. The runbook and similar-incident query combines the validated service with the alert's symptom description, summary and name, capped at 500 characters. PromQL and LogQL are selected from fixed templates; model text cannot run arbitrary queries. Search uses BM25, BGE embeddings in pgvector, RRF, and optional cross-encoder reranking. The agent runbook tool uses runbook-filtered hybrid RRF; the full-corpus reranker benchmark is a separate path.
+5. The full tool output remains in checkpoint state. Before an opt-in model call, `context_view.py` reduces metric series to recent values, bounds log/trace and historical-incident text, keeps distinct runbook IDs, and includes backup jobs only when the alert concerns backups. The prompt separates current observations from runbook possibilities and asks for abstention on uncorroborated recovered signals. The backend returns structured claims. A source-ID check rejects IDs missing from gathered evidence and retries once. This is an existence check, **not** proof that the text is supported or that the prompt improves diagnosis. The default backend is a deterministic fixture; local Ollama and hosted Gemini are opt-in. Gemini receives the reduced synthetic alert and evidence context only when selected.
 6. A ticket note or change request is stored as a pending action. Only a separate operator request with the local approval token can apply it to mock ITSM. No approval token is configured by default.
 7. The console reads persisted incidents and checkpoint state. Slack/Teams delivery requires explicit credentials and `OPSPILOT_CHAT_DELIVERY=1`. Chat buttons acknowledge or draft; they never approve.
 
@@ -38,7 +38,7 @@ flowchart LR
 
 Each FastAPI app and outgoing HTTPX call is instrumented with OTel. Graph nodes and tool calls create spans. OTLP HTTP goes to the collector; Tempo stores traces, Loki stores logs, and a collector file exporter provides recent spans for dependency inference. The correlator links caller and callee only when a trace contains cross-service parent and child span IDs. If there is no trace file, it reports a static graph fallback. Prometheus scrapes `opspilot_agent_runs_total`, agent duration histograms, tool-call counters, and workload metrics. Grafana's provisioned health dashboard plots them and displays firing alerts. The local verification observed a `gateway → payments` edge and queried a real trace ID in Tempo.
 
-Anomaly scoring is separate from alert routing. STL/MAD uses only the prefix seen at each scoring point; IsolationForest trains on a separate healthy sample and has a range guard for constant features. The local development set has 32 injected episodes, but resource effects are simulated and thresholds were tuned while inspecting the set. See `RESULTS.md` before making a performance claim.
+The offline anomaly benchmark remains separate from alert routing. The live triage path reuses STL/MAD and IsolationForest on pre-alert Prometheus samples; it does not create alerts independently. The offline evaluation trained on a separate healthy recording and scored 32 injected episodes. The live Prometheus feature distribution and timing differ from that benchmark, so its 32/32 result does not estimate live triage accuracy. Resource effects are simulated and thresholds were tuned on development data. See `RESULTS.md` before making a performance claim.
 
 ## Persistence and failure behavior
 
@@ -48,9 +48,9 @@ An unavailable Loki URL produces an explicit `available: false` tool result. A m
 
 ## Deployment choices and limits
 
-Compose is the full local demo path because it fits the small laptop and supports direct fault/telemetry inspection. `charts/opspilot` is an isolated Kubernetes smoke deployment with a one-replica API and demo services, plus a PostgreSQL PVC. It does not include kube-prometheus-stack, Loki, Tempo, or the collector yet. The chart's default PostgreSQL secret value is **demo-only** and must be overridden with a real secret mechanism outside this environment. The CI workflow runs lint, type checking, unit tests, Compose integration, image builds, and kind smoke. GHCR publication is possible only through a manually dispatched workflow with `publish=true`; this local work made no push.
+Compose is the full local demo path because it fits the small laptop and supports direct fault/telemetry inspection. `charts/opspilot` is an isolated Kubernetes smoke deployment with a one-replica API and demo services, plus a PostgreSQL PVC. It does not include kube-prometheus-stack, Loki, Tempo, or the collector yet. The chart's default PostgreSQL secret value is **demo-only** and must be overridden with a real secret mechanism outside this environment. The CI workflow runs lint, type checking, unit tests, Compose integration, image builds, and kind smoke. GHCR publication is possible only through a manually dispatched workflow with `publish=true`; no image has been pushed.
 
-## Production changes
+## Production changes worth explaining in an interview
 
 - Replace mock ServiceNow/backup/deployment adapters with authenticated enterprise clients; keep the validated tool interface and read-only default.
 - Use OIDC user identity and role checks for approvals; sign the Alertmanager webhook; store secrets in a managed secret store.

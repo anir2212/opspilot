@@ -4,7 +4,7 @@ install:
 	uv sync --extra analysis --extra database --extra embeddings --extra agent --extra mcp --extra bots --extra telemetry --group dev
 
 test:
-	uv run pytest -q
+	uv run python -m pytest -q
 
 lint:
 	uv run ruff check src scripts eval tests
@@ -43,9 +43,9 @@ load:
 	uv run python scripts/loadgen.py --seconds $(or $(SECONDS),60) --rps $(or $(RPS),2)
 
 demo: up
-	$(MAKE) load SECONDS=10
+	$(MAKE) load SECONDS=180 RPS=5
 	$(MAKE) fault NAME=payment_errors DURATION=120
-	$(MAKE) load SECONDS=30
+	$(MAKE) load SECONDS=45 RPS=5
 	@echo "Prometheus http://127.0.0.1:18109, Alertmanager http://127.0.0.1:18193, OpsPilot http://127.0.0.1:18100/api/alerts"
 
 seed:
